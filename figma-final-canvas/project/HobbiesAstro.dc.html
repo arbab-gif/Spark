@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hobbies selection — astrology chart</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&amp;family=DM+Mono:wght@400;500&amp;family=Inter:wght@600&amp;family=Manrope:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#C9D4FF}a:hover{color:#FFFFFF}
+.grain{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.star{transition:transform .15s ease}
+.star:hover{transform:scale(1.06)}
+.star:focus-visible,.pill:focus-visible{outline:2px solid #FFD45C;outline-offset:2px}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: radial-gradient(120% 70% at 50% 45%, #0E1C5C 0%, #08113D 48%, #040924 100%); font-family: 'Manrope', sans-serif; color: #F2F4FF">
+
+  <!-- texture + starfield -->
+  <div aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden">
+    <span style="position: absolute; left: 45px; top: 250px; width: 300px; height: 300px; border-radius: 50%; background: #2F55F4; opacity: 0.22; filter: blur(80px)"></span>
+    <span style="position: absolute; left: 230px; top: -80px; width: 240px; height: 220px; border-radius: 50%; background: #8E5CF0; opacity: 0.2; filter: blur(90px)"></span>
+    <span class="grain" style="position: absolute; inset: 0; opacity: 0.08; mix-blend-mode: soft-light"></span>
+    <svg width="390" height="844" viewBox="0 0 390 844" style="position: absolute; left: 0; top: 0">
+      <circle cx="30" cy="140" r="1" fill="#FFFFFF" opacity="0.6"></circle>
+      <circle cx="360" cy="190" r="1.1" fill="#FFFFFF" opacity="0.5"></circle>
+      <circle cx="22" cy="420" r="0.9" fill="#FFFFFF" opacity="0.5"></circle>
+      <circle cx="372" cy="470" r="1.2" fill="#FFD45C" opacity="0.8"></circle>
+      <circle cx="340" cy="600" r="0.9" fill="#FFFFFF" opacity="0.4"></circle>
+      <circle cx="52" cy="590" r="1" fill="#FFFFFF" opacity="0.4"></circle>
+      <circle cx="120" cy="54" r="0.9" fill="#FFFFFF" opacity="0.5"></circle>
+      <path d="M352 120l1.2 3.4 3.4 1.2-3.4 1.2-1.2 3.4-1.2-3.4-3.4-1.2 3.4-1.2z" fill="#FFFFFF" opacity="0.8"></path>
+      <path d="M36 520l1 2.8 2.8 1-2.8 1-1 2.8-1-2.8-2.8-1 2.8-1z" fill="#B79BFF" opacity="0.85"></path>
+    </svg>
+  </div>
+
+  <!-- status bar -->
+  <div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 390px; height: 47px">
+    <span style="position: absolute; left: 109px; top: 0; width: 172px; height: 32px; border-radius: 0 0 20px 20px; background: #000000"></span>
+    <span style="position: absolute; left: 16px; top: 15px; width: 54px; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; line-height: 21px; letter-spacing: -0.32px; color: #FFFFFF">9:41</span>
+    <svg width="78" height="13" viewBox="0 0 78 13" style="position: absolute; left: 286px; top: 19px" fill="#FFFFFF">
+      <rect x="0" y="8" width="3" height="4" rx="1"></rect><rect x="5" y="6" width="3" height="6" rx="1"></rect><rect x="10" y="3" width="3" height="9" rx="1"></rect><rect x="15" y="0" width="3" height="12" rx="1"></rect>
+      <path d="M31 3.5a9 9 0 0 1 12 0l-1.4 1.5a7 7 0 0 0-9.2 0zM33.5 6.2a5.4 5.4 0 0 1 7 0l-1.5 1.5a3.3 3.3 0 0 0-4 0zM37 9.4l2-2 2 2-2 2z"></path>
+      <rect x="51" y="0.5" width="23" height="11" rx="3.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.5"></rect><rect x="53" y="2.5" width="19" height="7" rx="2"></rect><rect x="75" y="4" width="2" height="4" rx="1" opacity="0.5"></rect>
+    </svg>
+  </div>
+
+  <!-- header -->
+  <header style="position: absolute; left: 16px; top: 62px; width: 358px; height: 40px; display: flex; align-items: center; justify-content: space-between">
+    <a href="Main.dc.html" aria-label="Back" style="width: 36px; height: 36px; border-radius: 18px; border: 1px solid rgba(200, 212, 255, 0.22); box-sizing: border-box; display: flex; align-items: center; justify-content: center; color: #FFFFFF">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 6px">
+      <span style="font-family: 'DM Mono', monospace; font-size: 10.5px; letter-spacing: 2.2px; text-transform: uppercase; color: #B4BFE6">Your chart · Interests</span>
+      <div role="progressbar" aria-label="Question 1 of 25" aria-valuenow="1" aria-valuemin="0" aria-valuemax="25" style="display: flex; align-items: center; gap: 7px">
+        <span style="width: 18px; height: 5px; border-radius: 3px; background: linear-gradient(90deg, #FFD45C, #F7A8CF)"></span>
+        <span style="width: 5px; height: 5px; border-radius: 50%; border: 1px solid rgba(200, 212, 255, 0.5); box-sizing: border-box"></span>
+        <span style="width: 5px; height: 5px; border-radius: 50%; border: 1px solid rgba(200, 212, 255, 0.5); box-sizing: border-box"></span>
+        <span style="width: 5px; height: 5px; border-radius: 50%; border: 1px solid rgba(200, 212, 255, 0.5); box-sizing: border-box"></span>
+        <span style="width: 5px; height: 5px; border-radius: 50%; border: 1px solid rgba(200, 212, 255, 0.5); box-sizing: border-box"></span>
+      </div>
+    </div>
+    <span style="width: 36px; text-align: right; font-family: 'Fraunces', serif; font-style: italic; font-size: 14px; color: #B4BFE6">01<span style="opacity: 0.55">/25</span></span>
+  </header>
+
+  <!-- question -->
+  <h1 style="position: absolute; left: 24px; top: 118px; width: 342px; margin: 0; text-align: center; font-family: 'Fraunces', serif; font-weight: 400; font-size: 26px; line-height: 32px; letter-spacing: -0.3px; color: #F4F6FF">What hobbies or activities do you <em style="font-style: italic; font-weight: 300; color: #FFD45C">enjoy</em> most?</h1>
+  <p style="position: absolute; left: 24px; top: 190px; width: 342px; margin: 0; text-align: center; font-size: 13.5px; line-height: 20px; color: #B4BFE6">Tap the stars that feel like you.</p>
+
+  <!-- the wheel -->
+  <div style="position: absolute; left: 40px; top: 226px; width: 310px; height: 310px">
+    <svg width="310" height="310" viewBox="0 0 310 310" aria-hidden="true" style="position: absolute; left: 0; top: 0">
+      <circle cx="155" cy="155" r="154" fill="none" stroke="rgba(200, 212, 255, 0.28)"></circle>
+      <circle cx="155" cy="155" r="144" fill="none" stroke="rgba(200, 212, 255, 0.16)"></circle>
+      <path d="{{ticks}}" stroke="rgba(200, 212, 255, 0.35)" stroke-width="1"></path>
+      <circle cx="155" cy="155" r="96" fill="none" stroke="rgba(200, 212, 255, 0.14)" stroke-dasharray="2 5"></circle>
+      <path d="{{spokes}}" stroke="rgba(200, 212, 255, 0.10)" stroke-width="1"></path>
+      <circle cx="155" cy="155" r="54" fill="rgba(8, 17, 61, 0.6)" stroke="rgba(255, 212, 92, 0.4)"></circle>
+      <polygon points="{{shape}}" fill="rgba(255, 212, 92, 0.07)" stroke="#FFD45C" stroke-width="1" stroke-dasharray="3 3" stroke-linejoin="round"></polygon>
+      <text x="261" y="51" text-anchor="middle" font-family="DM Mono, monospace" font-size="7.5" fill="rgba(200, 212, 255, 0.6)" letter-spacing="1">I</text>
+      <text x="261" y="264" text-anchor="middle" font-family="DM Mono, monospace" font-size="7.5" fill="rgba(200, 212, 255, 0.6)">IV</text>
+      <text x="49" y="264" text-anchor="middle" font-family="DM Mono, monospace" font-size="7.5" fill="rgba(200, 212, 255, 0.6)">VII</text>
+      <text x="49" y="51" text-anchor="middle" font-family="DM Mono, monospace" font-size="7.5" fill="rgba(200, 212, 255, 0.6)">X</text>
+    </svg>
+
+    <!-- centre: little image + count -->
+    <div aria-live="polite" style="position: absolute; left: 103px; top: 103px; width: 104px; height: 104px; border-radius: 52px; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: center">
+      <img src="/_blob/2fee231aa150f47df790f5b3d1ada03e" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; opacity: 0.38">
+      <span style="position: absolute; inset: 0; background: radial-gradient(circle, rgba(8, 17, 61, 0.2) 0%, rgba(8, 17, 61, 0.75) 100%)"></span>
+      <span style="position: relative; font-family: 'Fraunces', serif; font-size: 34px; line-height: 36px; color: #FFFFFF">{{count}}</span>
+      <span style="position: relative; font-family: 'DM Mono', monospace; font-size: 9px; letter-spacing: 1.6px; text-transform: uppercase; color: #FFD45C">{{countLabel}}</span>
+    </div>
+
+    <sc-for list="{{stars}}" as="s" hint-placeholder-count="12">
+      <button class="star" aria-pressed="{{s.on}}" aria-label="{{s.label}}" onClick="{{s.toggle}}" style="position: absolute; width: 74px; height: 50px; padding: 0; border: none; background: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; {{s.pos}}">
+        <span style="width: 32px; height: 32px; border-radius: 16px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; {{s.dot}}">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="{{s.ink}}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{s.d}}"></path></svg></span>
+        <span style="font-family: 'DM Mono', monospace; font-size: 9px; line-height: 11px; letter-spacing: 0.6px; text-transform: uppercase; white-space: nowrap; {{s.text}}">{{s.label}}</span>
+      </button>
+    </sc-for>
+  </div>
+
+  <!-- the reading -->
+  <div style="position: absolute; left: 24px; top: 552px; width: 342px; text-align: center">
+    <span style="display: block; font-family: 'DM Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #7F8BBE">Your chart reads</span>
+    <span style="display: block; margin-top: 6px; font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; font-size: 17px; line-height: 23px; color: #F4F6FF">{{reading}}</span>
+  </div>
+
+  <!-- more stars -->
+  <div style="position: absolute; left: 20px; top: 626px; width: 350px; display: flex; flex-direction: column; gap: 8px">
+    <span style="font-family: 'DM Mono', monospace; font-size: 9.5px; letter-spacing: 2px; text-transform: uppercase; color: #7F8BBE">More stars</span>
+    <div style="display: flex; flex-wrap: wrap; gap: 6px">
+      <sc-for list="{{more}}" as="m" hint-placeholder-count="7">
+        <button class="pill" aria-pressed="{{m.on}}" onClick="{{m.toggle}}" style="height: 28px; padding: 0 11px; box-sizing: border-box; border-radius: 14px; cursor: pointer; font-family: 'Manrope', sans-serif; font-size: 12.5px; font-weight: 500; white-space: nowrap; {{m.style}}">{{m.text}}</button>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- footer -->
+  <footer style="position: absolute; left: 0; bottom: 0; width: 390px; box-sizing: border-box; padding: 18px 20px 0 20px; display: flex; flex-direction: column; gap: 6px; background: linear-gradient(180deg, rgba(4, 9, 36, 0) 0%, rgba(4, 9, 36, 0.94) 30%)">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <a href="Q2-Value.dc.html" style="font-size: 14px; font-weight: 500; color: #B4BFE6; text-decoration: none">Skip for now</a>
+      <a href="Q2-Value.dc.html" style="height: 52px; padding: 0 22px 0 26px; border-radius: 26px; background: #EEF1FF; box-shadow: 0 10px 28px rgba(76, 114, 255, 0.35); display: flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 600; color: #0A1546; text-decoration: none">Save my chart
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+    <div aria-hidden="true" style="position: relative; width: 100%; height: 34px"><span style="position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); width: 134px; height: 5px; border-radius: 100px; background: #FFFFFF"></span></div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { on: { Travelling: true, Photography: true, Outdoors: true } };
+  }
+  renderVals() {
+    // wheel stars, clockwise from the top: [label, trait used in the reading, icon path]
+    const wheel = [
+      ['Travelling', 'wanderer', 'M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z'],
+      ['Reading', 'quiet thinker', 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5'],
+      ['Music', 'night listener', 'M9 18V5l12-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM21 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z'],
+      ['Photography', 'curious eye', 'M8 6l2-3h4l2 3M5 6h14a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3zM16 13a4 4 0 1 1-8 0 4 4 0 0 1 8 0z'],
+      ['Cooking', 'generous host', 'M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7'],
+      ['Outdoors', 'open-sky soul', 'M8 3l4 8 5-5 5 15H2L8 3z'],
+      ['Art', 'dreamer', 'M12 22a10 10 0 1 1 10-10c0 2.8-2.2 4-4 4h-2a2 2 0 0 0-1.5 3.3A1.7 1.7 0 0 1 12 22zM7.5 10.5h.01M12 7.5h.01M16.5 10.5h.01'],
+      ['Yoga', 'calm centre', 'M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'],
+      ['Coffee', 'long-talk lover', 'M17 8h1a4 4 0 1 1 0 8h-1M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4ZM6 2v2M10 2v2M14 2v2'],
+      ['Movies', 'storyteller', 'M3 7h18v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM3 11h18M7 7l2-4M12 7l2-4M17 7l2-4'],
+      ['Fitness', 'early riser', 'M6.5 6.5v11M17.5 6.5v11M3 9.5v5M21 9.5v5M6.5 12h11'],
+      ['Gaming', 'playful strategist', 'M6 12h4M8 10v4M15 13h.01M18 11h.01M6 6h12a4 4 0 0 1 4 4v4a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4v-4a4 4 0 0 1 4-4z']
+    ];
+    const C = 155, R = 118;
+    const ang = (i) => (i * 30 - 90) * Math.PI / 180;
+    const on = this.state.on;
+    const toggle = (label) => () => this.setState({ on: { ...on, [label]: !on[label] } });
+
+    const stars = wheel.map(([label, , d], i) => {
+      const x = C + R * Math.cos(ang(i)), y = C + R * Math.sin(ang(i));
+      const sel = !!on[label];
+      return {
+        label, d, on: sel,
+        pos: `left: ${(x - 37).toFixed(1)}px; top: ${(y - 16).toFixed(1)}px;`,
+        dot: sel ? 'background: #FFD45C; box-shadow: 0 0 0 4px rgba(255, 212, 92, 0.18), 0 0 18px rgba(255, 212, 92, 0.6)' : 'background: #0A1546; border: 1px solid rgba(200, 212, 255, 0.35)',
+        ink: sel ? '#0A1546' : '#C9D4FF',
+        text: sel ? 'color: #FFFFFF; font-weight: 500' : 'color: #B4BFE6'
+      };
+    });
+    // constellation through the chosen stars, in wheel order
+    const pts = wheel.map(([l], i) => (on[l] ? `${(C + R * Math.cos(ang(i))).toFixed(1)},${(C + R * Math.sin(ang(i))).toFixed(1)}` : null)).filter(Boolean);
+    const shape = pts.length >= 2 ? pts.join(' ') : '';
+
+    let ticks = '';
+    for (let k = 0; k < 72; k++) {
+      const a = k * 5 * Math.PI / 180, r1 = k % 6 === 0 ? 140 : 147;
+      ticks += `M${(C + r1 * Math.cos(a)).toFixed(1)} ${(C + r1 * Math.sin(a)).toFixed(1)}L${(C + 153 * Math.cos(a)).toFixed(1)} ${(C + 153 * Math.sin(a)).toFixed(1)}`;
+    }
+    let spokes = '';
+    for (let k = 0; k < 12; k++) {
+      const a = (k * 30 - 75) * Math.PI / 180;
+      spokes += `M${(C + 56 * Math.cos(a)).toFixed(1)} ${(C + 56 * Math.sin(a)).toFixed(1)}L${(C + 140 * Math.cos(a)).toFixed(1)} ${(C + 140 * Math.sin(a)).toFixed(1)}`;
+    }
+
+    const moreList = ['Languages', 'Pets', 'Writing', 'Volunteering', 'Board games', 'Tech', '+ Add your own'];
+    const more = moreList.map((label) => {
+      const sel = !!on[label];
+      const add = label.startsWith('+');
+      return {
+        on: sel,
+        text: sel ? `✦ ${label}` : label,
+        style: add
+          ? 'background: none; border: 1px dashed rgba(200, 212, 255, 0.35); color: #C9D4FF'
+          : (sel ? 'background: rgba(255, 212, 92, 0.12); border: 1px solid #FFD45C; color: #FFFFFF' : 'background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(200, 212, 255, 0.2); color: #DCE3FF'),
+        toggle: add ? () => {} : toggle(label)
+      };
+    });
+
+    const traits = wheel.filter(([l]) => on[l]).map(([, t]) => t);
+    const n = Object.values(on).filter(Boolean).length;
+    let reading = 'Pick a few stars and we’ll read your chart.';
+    if (traits.length === 1) reading = `Mostly ${traits[0]}.`;
+    if (traits.length === 2) reading = `Part ${traits[0]}, part ${traits[1]}.`;
+    if (traits.length >= 3) reading = `Part ${traits[0]}, part ${traits[1]} — with a little ${traits[2]} in you.`;
+
+    return {
+      stars: stars.map((s) => ({ ...s, toggle: toggle(s.label) })),
+      more, shape, ticks, spokes, reading,
+      count: String(n),
+      countLabel: n === 1 ? 'star chosen' : 'stars chosen'
+    };
+  }
+}
+</script>
+</body>
+</html>

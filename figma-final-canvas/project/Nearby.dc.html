@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Nearby users</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&amp;family=Inter+Tight:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E1A45}a:hover{color:#0B1A4D}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #f6f3ed; font-family: 'Inter Tight', sans-serif; color: #0E1A45">
+
+  <main style="position: absolute; left: 16px; top: 56px; width: 358px; display: flex; flex-direction: column; gap: 24px">
+    <div style="height: 35px; display: flex; align-items: center; justify-content: space-between">
+      <h1 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 28px; line-height: 35px; color: #0E1A45">Nearby</h1>
+      <button aria-label="Nearby settings" style="width: 24px; height: 24px; padding: 0; border: none; background: transparent; display: flex; cursor: pointer"><img src="/_blob/55d1bfd8f4dea6b123abaafefb825df3" alt="" style="width: 24px; height: 24px"></button>
+    </div>
+    <div style="display: flex; gap: 12px; align-items: flex-start">
+      <sc-for list="{{columns}}" as="col" hint-placeholder-count="2">
+        <div style="display: flex; flex-direction: column; gap: 12px">
+          <sc-for list="{{col.people}}" as="p" hint-placeholder-count="4">
+            <article style="position: relative; width: 173px; box-sizing: border-box; padding: 10px; border-radius: 20px; overflow: hidden; display: flex; align-items: flex-end; {{p.h}}">
+              <img src="{{p.img}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+              <span aria-hidden="true" style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(11, 26, 77, 0.7) 100%)"></span>
+              <div style="position: relative; width: 100%; display: flex; align-items: center; justify-content: space-between">
+                <div style="display: flex; flex-direction: column; gap: 2px">
+                  <span style="font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 14px; color: #ffffff">{{p.name}}</span>
+                  <span style="display: flex; align-items: center; gap: 4px; font-family: 'Inter Tight', sans-serif; font-size: 12px; color: rgba(255, 255, 255, 0.8)"><img src="/_blob/ef36a724f4d0b4cb62e53497a5732f2e" alt="" style="width: 16px; height: 16px">2km away</span>
+                </div>
+                <button aria-label="Send Spark to {{p.name}}" style="padding: 6px; border: none; border-radius: 99px; background: linear-gradient(270deg, #8E5CF0 0%, #2F55F4 100%); display: flex; cursor: pointer"><img src="/_blob/fb43e1f55ca9959afd2748d399b3e3d7" alt="" style="width: 24px; height: 24px"></button>
+              </div>
+            </article>
+          </sc-for>
+        </div>
+      </sc-for>
+    </div>
+  </main>
+
+  <div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 390px; height: 47px">
+    <img src="/_blob/a8538f71df874f9932e5ea493aa510b7" alt="" style="position: absolute; left: 109px; top: 0; width: 172px; height: 32px">
+    <span style="position: absolute; left: 16px; top: 15px; width: 54px; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; line-height: 21px; letter-spacing: -0.32px; color: #0B1A4D">9:41</span>
+    <img src="/_blob/67bad442d586fb0f1a0c3d4b871e4a94" alt="" style="position: absolute; left: 286px; top: 19px; width: 77.4px; height: 13px">
+  </div>
+
+  <div style="position: absolute; left: 0; bottom: 0; width: 390px; height: 109px">
+    <span aria-hidden="true" style="position: absolute; left: 0; bottom: 0; width: 390px; height: 109px; opacity: 0.5; backdrop-filter: blur(40px); -webkit-backdrop-filter: blur(40px); background: linear-gradient(180deg, rgba(246, 243, 237, 0) 0%, #f6f3ed 100%)"></span>
+    <nav aria-label="Main" style="position: absolute; left: 0; bottom: 0; width: 390px; box-sizing: border-box; padding: 16px 25px 25px 27px; display: flex; align-items: center; gap: 12px">
+      <span aria-hidden="true" style="position: absolute; top: 12px; right: 14px; bottom: 21px; left: 21px; border-radius: 296px; box-shadow: 0 8px 40px rgba(0, 0, 0, 0.12); overflow: hidden">
+        <span style="position: absolute; inset: 0; background: rgba(11, 26, 77, 0.88)"></span>
+        <span style="position: absolute; inset: 0; background: transparent"></span>
+        <span style="position: absolute; inset: 0; background: transparent"></span>
+      </span>
+      <a href="Home.dc.html" style="position: relative; width: 65px; display: flex; flex-direction: column; align-items: center; gap: 1px; text-decoration: none">
+        <img src="/_blob/107b8d115b4e20d75b1964af52a3f0f1" alt="" style="width: 24px; height: 24px">
+        <span style="font-family: 'Inter Tight', sans-serif; font-weight: 500; font-size: 10px; line-height: 12px; color: rgba(255, 255, 255, 0.6)">Home</span>
+      </a>
+      <a href="Nearby.dc.html" aria-current="page" style="position: relative; width: 65px; box-sizing: border-box; padding: 6px 0 7px 0; display: flex; flex-direction: column; align-items: center; gap: 1px; text-decoration: none">
+        <span aria-hidden="true" style="position: absolute; top: 0; bottom: 0; left: -2px; right: -2px; border-radius: 100px; background: #2F55F4"></span>
+        <img src="/_blob/0429d84f06799e82865a61bded3638bc" alt="" style="position: relative; width: 24px; height: 24px">
+        <span style="position: relative; font-family: 'Inter Tight', sans-serif; font-weight: 500; font-size: 10px; line-height: 12px; color: #ffffff">Nearby</span>
+      </a>
+      <button aria-label="Start a Spark" style="position: relative; padding: 6px; border: none; border-radius: 99px; background: linear-gradient(270deg, #8E5CF0 0%, #2F55F4 100%); display: flex; cursor: pointer"><img src="/_blob/fb43e1f55ca9959afd2748d399b3e3d7" alt="" style="width: 24px; height: 24px"></button>
+      <a href="#" style="position: relative; width: 65px; display: flex; flex-direction: column; align-items: center; gap: 1px; text-decoration: none">
+        <img src="/_blob/a1bb922958f83c8e8d2a40ea26af9842" alt="" style="width: 24px; height: 24px">
+        <span style="font-family: 'Inter Tight', sans-serif; font-weight: 500; font-size: 10px; line-height: 12px; color: rgba(255, 255, 255, 0.6)">Connection</span>
+      </a>
+      <a href="#" style="position: relative; width: 65px; display: flex; flex-direction: column; align-items: center; gap: 1px; text-decoration: none">
+        <img src="/_blob/ed79a476838324672153b74d05979778" alt="" style="width: 24px; height: 24px">
+        <span style="font-family: 'Inter Tight', sans-serif; font-weight: 500; font-size: 10px; line-height: 12px; color: rgba(255, 255, 255, 0.6)">Events</span>
+      </a>
+    </nav>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const tall = 'height: 215px';
+    const short = 'height: 180px';
+    return {
+      columns: [
+        { people: [
+          { name: 'John, 26', img: '/_blob/b8bdf0d9064c5619a58d5d774dcb1073', h: tall },
+          { name: 'Sarah, 26', img: '/_blob/57222488b8a9c0cc5e2162c5552491d2', h: short },
+          { name: 'Emily, 26', img: '/_blob/67caba455c7cd5bde1b649073382df0e', h: tall },
+          { name: 'Sarah, 26', img: '/_blob/57222488b8a9c0cc5e2162c5552491d2', h: short }
+        ] },
+        { people: [
+          { name: 'Emma, 26', img: '/_blob/07bf7e6bf0a5c18bf0c21e8d6441241a', h: short },
+          { name: 'Aqsa, 26', img: '/_blob/a898c5af68df25e8adc71be7a3c4f3d8', h: tall },
+          { name: 'Haris, 26', img: '/_blob/0b43b96a7c3bb04cbd30c74b32678e1b', h: short },
+          { name: 'Aqsa, 26', img: '/_blob/a898c5af68df25e8adc71be7a3c4f3d8', h: tall }
+        ] }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

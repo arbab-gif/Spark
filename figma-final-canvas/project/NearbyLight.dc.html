@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Nearby — light grid</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&amp;family=Inter+Tight:wght@500;600;700&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#2F55F4}a:hover{color:#1E3FD0}
+.chip{transition:background .15s ease, color .15s ease}
+.card{transition:transform .15s ease}.card:hover{transform:translateY(-2px)}
+.spark:focus-visible,.chip:focus-visible{outline:2px solid #FFD45C;outline-offset:2px}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 1380px; overflow: hidden; background: linear-gradient(180deg, #D3DEFF 0%, #E4EAFF 18%, #EFF3FF 40%, #F3F7FF 100%); font-family: 'Manrope', sans-serif; color: #0E1A45">
+
+  <!-- light starry sky (same as the chat screens) -->
+  <div aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden">
+    <span style="position: absolute; left: -150px; top: -170px; width: 400px; height: 380px; border-radius: 50%; background: #9DB5FF; opacity: 0.6; filter: blur(90px)"></span>
+    <span style="position: absolute; left: 190px; top: -130px; width: 320px; height: 320px; border-radius: 50%; background: #C9B5FF; opacity: 0.6; filter: blur(90px)"></span>
+    <span style="position: absolute; left: 40px; top: 860px; width: 340px; height: 300px; border-radius: 50%; background: #B9CBFF; opacity: 0.3; filter: blur(100px)"></span>
+    <svg width="390" height="1380" viewBox="0 0 390 1380" style="position: absolute; left: 0; top: 0">
+      <path d="M326 52l1.7 4.3 4.3 1.7-4.3 1.7-1.7 4.3-1.7-4.3-4.3-1.7 4.3-1.7z" fill="#FFFFFF" opacity="0.95"></path>
+      <path d="M40 300l1 2.8 2.8 1-2.8 1-1 2.8-1-2.8-2.8-1 2.8-1z" fill="#8E5CF0" opacity="0.5"></path>
+      <path d="M362 560l1 2.8 2.8 1-2.8 1-1 2.8-1-2.8-2.8-1 2.8-1z" fill="#2F55F4" opacity="0.4"></path>
+      <circle cx="210" cy="96" r="1.4" fill="#2F55F4" opacity="0.4"></circle>
+      <circle cx="58" cy="140" r="1.2" fill="#8E5CF0" opacity="0.45"></circle>
+      <circle cx="350" cy="220" r="1.4" fill="#F2B53A" opacity="0.7"></circle>
+      <circle cx="20" cy="720" r="1" fill="#2F55F4" opacity="0.35"></circle>
+      <circle cx="372" cy="980" r="1.2" fill="#8E5CF0" opacity="0.4"></circle>
+    </svg>
+  </div>
+
+  <!-- status bar -->
+  <div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 390px; height: 47px">
+    <span style="position: absolute; left: 109px; top: 0; width: 172px; height: 32px; border-radius: 0 0 20px 20px; background: #000000"></span>
+    <span style="position: absolute; left: 16px; top: 15px; width: 54px; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; line-height: 21px; letter-spacing: -0.32px; color: #0B1A4D">9:41</span>
+    <svg width="78" height="13" viewBox="0 0 78 13" style="position: absolute; left: 286px; top: 19px" fill="#0B1A4D">
+      <rect x="0" y="8" width="3" height="4" rx="1"></rect><rect x="5" y="6" width="3" height="6" rx="1"></rect><rect x="10" y="3" width="3" height="9" rx="1"></rect><rect x="15" y="0" width="3" height="12" rx="1"></rect>
+      <path d="M31 3.5a9 9 0 0 1 12 0l-1.4 1.5a7 7 0 0 0-9.2 0zM33.5 6.2a5.4 5.4 0 0 1 7 0l-1.5 1.5a3.3 3.3 0 0 0-4 0zM37 9.4l2-2 2 2-2 2z"></path>
+      <rect x="51" y="0.5" width="23" height="11" rx="3.5" fill="none" stroke="#0B1A4D" stroke-opacity="0.5"></rect><rect x="53" y="2.5" width="19" height="7" rx="2"></rect><rect x="75" y="4" width="2" height="4" rx="1" opacity="0.5"></rect>
+    </svg>
+  </div>
+
+  <!-- header -->
+  <header style="position: absolute; left: 16px; top: 58px; width: 358px; display: flex; align-items: center; gap: 10px">
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 2px">
+      <h1 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 30px; line-height: 36px; color: #0E1A45">Nearby</h1>
+      <span style="font-size: 13px; color: #5B6893">{{countLine}}</span>
+    </div>
+    <button aria-label="Nearby settings" style="width: 44px; height: 44px; border: none; border-radius: 22px; background: #FFFFFF; box-shadow: 0 4px 14px rgba(35, 64, 160, 0.1); display: flex; align-items: center; justify-content: center; cursor: pointer; color: #0E1A45">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"></path><circle cx="16" cy="7" r="2"></circle><circle cx="10" cy="17" r="2"></circle></svg></button>
+    <button aria-label="Quick Spark" style="width: 44px; height: 44px; border: none; border-radius: 22px; background: linear-gradient(135deg, #2F55F4 0%, #8E5CF0 100%); box-shadow: 0 8px 20px rgba(76, 114, 255, 0.35); display: flex; align-items: center; justify-content: center; cursor: pointer; color: #FFFFFF">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z"></path></svg></button>
+  </header>
+
+  <!-- visibility card (same card style as "3 things you both love") -->
+  <section aria-label="Your visibility" style="position: absolute; left: 16px; top: 128px; width: 358px; box-sizing: border-box; padding: 12px 14px; border-radius: 20px; background: #FFFFFF; box-shadow: 0 6px 18px rgba(35, 64, 160, 0.07); display: flex; align-items: center; gap: 12px">
+    <span style="width: 36px; height: 36px; flex: none; border-radius: 11px; background: linear-gradient(135deg, #2F55F4 0%, #8E5CF0 100%); display: flex; align-items: center; justify-content: center">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="2.5"></circle><path d="M7.8 7.8a6 6 0 0 0 0 8.4M16.2 7.8a6 6 0 0 1 0 8.4M4.9 4.9a10 10 0 0 0 0 14.2M19.1 4.9a10 10 0 0 1 0 14.2"></path></svg></span>
+    <div style="flex: 1; display: flex; flex-direction: column; gap: 1px; min-width: 0">
+      <span style="font-weight: 700; font-size: 14px; color: #0E1A45">{{visTitle}}</span>
+      <span style="font-size: 12px; line-height: 16px; color: #5B6893">Others only see your first name and distance.</span>
+    </div>
+    <button role="switch" aria-checked="{{visible}}" aria-label="Visible nearby" onClick="{{toggleVis}}" style="width: 46px; height: 28px; flex: none; border: none; border-radius: 14px; padding: 3px; cursor: pointer; display: flex; transition: background .2s ease; {{switchBg}}">
+      <span style="width: 22px; height: 22px; border-radius: 11px; background: #FFFFFF; box-shadow: 0 2px 6px rgba(14, 26, 69, 0.2); transition: margin .2s ease; {{knob}}"></span></button>
+  </section>
+
+  <!-- distance filters -->
+  <div role="tablist" aria-label="Distance" style="position: absolute; left: 16px; top: 214px; width: 358px; display: flex; gap: 8px">
+    <sc-for list="{{filters}}" as="f" hint-placeholder-count="4">
+      <button class="chip" role="tab" aria-selected="{{f.on}}" onClick="{{f.pick}}" style="height: 36px; padding: 0 14px; border-radius: 18px; cursor: pointer; font-family: 'Manrope', sans-serif; font-weight: 600; font-size: 13px; white-space: nowrap; {{f.style}}">{{f.label}}</button>
+    </sc-for>
+  </div>
+
+  <!-- grid: distance only until both people accept -->
+  <div style="position: absolute; left: 16px; top: 266px; width: 358px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px">
+    <sc-for list="{{people}}" as="p" hint-placeholder-count="8">
+      <article class="card" style="position: relative; height: 240px; border-radius: 26px; overflow: hidden; background: #DCE4FF; box-shadow: 0 12px 28px rgba(35, 64, 160, 0.16)">
+        <img src="{{p.img}}" alt="{{p.name}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover">
+        <span aria-hidden="true" style="position: absolute; inset: 0; border-radius: 26px; box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.55)"></span>
+        <span style="position: absolute; right: 10px; top: 10px; height: 24px; padding: 0 9px; border-radius: 12px; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; align-items: center; gap: 5px; font-weight: 700; font-size: 11px; color: #0E1A45">
+          <i style="width: 7px; height: 7px; border-radius: 50%; {{p.dot}}"></i>{{p.status}}</span>
+        <div style="position: absolute; left: 8px; right: 8px; bottom: 8px; box-sizing: border-box; padding: 9px 8px 9px 12px; border-radius: 18px; background: rgba(255, 255, 255, 0.84); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); box-shadow: 0 6px 16px rgba(14, 26, 69, 0.12); display: flex; align-items: center; gap: 8px">
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+            <span style="font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 16px; line-height: 19px; color: #0E1A45">{{p.name}}</span>
+            <span style="display: flex; align-items: center; gap: 3px; font-size: 11.5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: #5B6893">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#2F55F4" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>{{p.sub}}</span>
+          </div>
+          <button class="spark" onClick="{{p.toggle}}" aria-label="{{p.aria}}" style="width: 36px; height: 36px; flex: none; border: none; border-radius: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center; {{p.btn}}">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="{{p.icon}}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{p.path}}"></path></svg></button>
+        </div>
+      </article>
+    </sc-for>
+  </div>
+
+  <!-- bottom nav (Nearby active) -->
+  <nav aria-label="Main" style="position: absolute; left: 16px; right: 16px; bottom: 26px; height: 66px; box-sizing: border-box; padding: 0 10px; border-radius: 33px; background: rgba(255, 255, 255, 0.88); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 1px solid rgba(47, 85, 244, 0.1); box-shadow: 0 12px 32px rgba(35, 64, 160, 0.14); display: flex; align-items: center; justify-content: space-between">
+    <a href="HomeLight.dc.html" style="width: 62px; height: 50px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-decoration: none; color: #5B6893">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"></path></svg>
+      <span style="font-family: 'Inter Tight', sans-serif; font-weight: 500; font-size: 10px">Home</span></a>
+    <a href="#" aria-current="page" style="width: 62px; height: 50px; border-radius: 25px; background: #E6ECFF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-decoration: none; color: #2F55F4">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+      <span style="font-family: 'Inter Tight', sans-serif; font-weight: 600; font-size: 10px">Nearby</span></a>
+    <button aria-label="Scan a Spark code" style="width: 50px; height: 50px; border: none; border-radius: 25px; background: linear-gradient(270deg, #8E5CF0 0%, #2F55F4 100%); box-shadow: 0 8px 18px rgba(47, 85, 244, 0.35); display: flex; align-items: center; justify-content: center; cursor: pointer">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M12 2l2.2 6.8L21 11l-6.8 2.2L12 20l-2.2-6.8L3 11l6.8-2.2z"></path></svg></button>
+    <a href="#" style="width: 62px; height: 50px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-decoration: none; color: #5B6893">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+      <span style="font-family: 'Inter Tight', sans-serif; font-weight: 500; font-size: 10px">Connections</span></a>
+    <a href="#" style="width: 62px; height: 50px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; text-decoration: none; color: #5B6893">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg>
+      <span style="font-family: 'Inter Tight', sans-serif; font-weight: 500; font-size: 10px">Events</span></a>
+  </nav>
+  <span aria-hidden="true" style="position: absolute; left: 128px; bottom: 8px; width: 134px; height: 5px; border-radius: 100px; background: #0B1A4D"></span>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1380}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { range: 5, onlineOnly: false, visible: true, sent: { Emma: true } };
+  }
+  renderVals() {
+    const all = [
+      { name: 'Sarah', m: 150, online: true, img: '/_blob/57222488b8a9c0cc5e2162c5552491d2' },
+      { name: 'Emma', m: 300, online: false, seen: '5 min ago', img: '/_blob/07bf7e6bf0a5c18bf0c21e8d6441241a' },
+      { name: 'John', m: 450, online: true, img: '/_blob/b8bdf0d9064c5619a58d5d774dcb1073' },
+      { name: 'Aqsa', m: 700, online: false, seen: '12 min ago', img: '/_blob/a898c5af68df25e8adc71be7a3c4f3d8' },
+      { name: 'Maya', m: 900, online: true, img: '/_blob/b0aba884d0f4bdd00278000528162ed6' },
+      { name: 'Emily', m: 1200, online: false, seen: '20 min ago', img: '/_blob/67caba455c7cd5bde1b649073382df0e' },
+      { name: 'Zara', m: 1600, online: true, img: '/_blob/7911960ddfa17b466bf2a58a840f1d92' },
+      { name: 'Lina', m: 2000, online: false, seen: '1 hr ago', img: '/_blob/40fe78ef81d50f030f5c1e382f2f1033' }
+    ];
+    const { range, onlineOnly, visible, sent } = this.state;
+    const bolt = 'M13 2 4 14h7l-1 8 9-12h-7z', check = 'M5 12.5l4.5 4.5L19 7';
+    const people = all
+      .filter((p) => p.m <= range * 1000 && (!onlineOnly || p.online))
+      .map((p) => {
+        const s = !!sent[p.name];
+        return {
+          ...p,
+          dist: p.m < 1000 ? `${p.m} m` : `${(p.m / 1000).toFixed(1).replace('.0', '')} km`,
+          status: p.online ? 'Here now' : `Active ${p.seen}`,
+          here: p.online,
+          sub: p.m < 1000 ? `${p.m} m away` : `${(p.m / 1000).toFixed(1).replace('.0', '')} km away`,
+          dot: p.online ? 'background: #34C77B; box-shadow: 0 0 0 2px rgba(52, 199, 123, 0.25);' : 'background: #A9B3CF;',
+          btn: s ? 'background: #FFFFFF; box-shadow: inset 0 0 0 1.5px #2F55F4;' : 'background: linear-gradient(135deg, #2F55F4 0%, #8E5CF0 100%); box-shadow: 0 8px 18px rgba(76, 114, 255, 0.45);',
+          icon: s ? '#2F55F4' : '#FFFFFF',
+          path: s ? check : bolt,
+          aria: s ? `Spark sent to ${p.name}` : `Send a Spark to ${p.name}`,
+          toggle: () => this.setState({ sent: { ...sent, [p.name]: !s } })
+        };
+      });
+    const opts = [
+      { label: 'Within 1 km', pick: () => this.setState({ range: 1, onlineOnly: false }), on: range === 1 && !onlineOnly },
+      { label: '5 km', pick: () => this.setState({ range: 5, onlineOnly: false }), on: range === 5 && !onlineOnly },
+      { label: '10 km', pick: () => this.setState({ range: 10, onlineOnly: false }), on: range === 10 && !onlineOnly },
+      { label: 'Here now', pick: () => this.setState({ onlineOnly: !onlineOnly }), on: onlineOnly }
+    ];
+    return {
+      people,
+      countLine: `${people.length} people open to a Spark around you`,
+      filters: opts.map((o) => ({ ...o, style: o.on
+        ? 'border: none; background: linear-gradient(135deg, #2F55F4 0%, #8E5CF0 100%); color: #FFFFFF; box-shadow: 0 6px 14px rgba(76, 114, 255, 0.3);'
+        : 'border: 1px solid #DCE5FF; background: rgba(255, 255, 255, 0.85); color: #3A4570;' })),
+      visible,
+      visTitle: visible ? 'You’re visible nearby' : 'You’re hidden from Nearby',
+      toggleVis: () => this.setState({ visible: !visible }),
+      switchBg: visible ? 'background: linear-gradient(135deg, #2F55F4 0%, #8E5CF0 100%);' : 'background: #CDD5EC;',
+      knob: visible ? 'margin-left: 18px;' : 'margin-left: 0;'
+    };
+  }
+}
+</script>
+</body>
+</html>

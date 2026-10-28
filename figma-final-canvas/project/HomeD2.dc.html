@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Home — direction 2</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1C2B6B}a:hover{color:#2F55F4}
+.hs{scrollbar-width:none}.hs::-webkit-scrollbar{display:none}
+.lift{transition:transform .15s ease}.lift:hover{transform:translateY(-2px)}
+.ob:focus-visible{outline:2px solid #FFD45C;outline-offset:2px}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 1330px; overflow: hidden; background: linear-gradient(180deg, #D5DDF8 0%, #E6EBFA 20%, #F1F3FB 50%, #F7F7FB 100%); font-family: 'Manrope', sans-serif; color: #121B45">
+
+  <!-- soft sky -->
+  <div aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden">
+    <span style="position: absolute; left: -140px; top: -170px; width: 400px; height: 360px; border-radius: 50%; background: #AFC0F5; opacity: 0.6; filter: blur(90px)"></span>
+    <span style="position: absolute; left: 200px; top: -150px; width: 320px; height: 300px; border-radius: 50%; background: #CDBFF2; opacity: 0.55; filter: blur(90px)"></span>
+    <svg width="390" height="1330" viewBox="0 0 390 1330" style="position: absolute; left: 0; top: 0">
+      <path d="M58 118l1.4 4 4 1.4-4 1.4-1.4 4-1.4-4-4-1.4 4-1.4z" fill="#FFFFFF"></path>
+      <circle cx="330" cy="140" r="1.2" fill="#F2B53A" opacity="0.8"></circle>
+      <circle cx="250" cy="100" r="1" fill="#1C2B6B" opacity="0.3"></circle>
+    </svg>
+  </div>
+
+  <!-- status bar -->
+  <div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 390px; height: 47px">
+    <span style="position: absolute; left: 109px; top: 0; width: 172px; height: 32px; border-radius: 0 0 20px 20px; background: #000000"></span>
+    <span style="position: absolute; left: 16px; top: 15px; width: 54px; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; line-height: 21px; letter-spacing: -0.32px; color: #121B45">9:41</span>
+    <svg width="78" height="13" viewBox="0 0 78 13" style="position: absolute; left: 286px; top: 19px" fill="#121B45">
+      <rect x="0" y="8" width="3" height="4" rx="1"></rect><rect x="5" y="6" width="3" height="6" rx="1"></rect><rect x="10" y="3" width="3" height="9" rx="1"></rect><rect x="15" y="0" width="3" height="12" rx="1"></rect>
+      <path d="M31 3.5a9 9 0 0 1 12 0l-1.4 1.5a7 7 0 0 0-9.2 0zM33.5 6.2a5.4 5.4 0 0 1 7 0l-1.5 1.5a3.3 3.3 0 0 0-4 0zM37 9.4l2-2 2 2-2 2z"></path>
+      <rect x="51" y="0.5" width="23" height="11" rx="3.5" fill="none" stroke="#121B45" stroke-opacity="0.5"></rect><rect x="53" y="2.5" width="19" height="7" rx="2"></rect><rect x="75" y="4" width="2" height="4" rx="1" opacity="0.5"></rect>
+    </svg>
+  </div>
+
+  <!-- header: avatar · SPARK caps · bell -->
+  <header style="position: absolute; left: 16px; top: 60px; width: 358px; height: 48px; display: flex; align-items: center; justify-content: space-between">
+    <span style="position: relative; width: 44px; height: 44px">
+      <img src="/_blob/0b43b96a7c3bb04cbd30c74b32678e1b" alt="Your profile" style="width: 44px; height: 44px; border-radius: 15px; object-fit: cover; box-sizing: border-box; border: 2px solid #FFFFFF; box-shadow: 0 6px 16px rgba(28, 43, 107, 0.18)">
+      <span aria-hidden="true" style="position: absolute; right: -5px; bottom: -4px; width: 17px; height: 17px; border-radius: 9px; background: #FFD45C; border: 2px solid #EEF1FB; display: flex; align-items: center; justify-content: center">
+        <svg width="8" height="8" viewBox="0 0 24 24"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" fill="#121B45"></path></svg></span>
+    </span>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 8px">
+      <span style="font-weight: 700; font-size: 12px; letter-spacing: 4px; text-transform: uppercase; color: #121B45">Spark</span>
+      <span aria-hidden="true" style="display: flex; align-items: center; gap: 6px"><i style="width: 18px; height: 4px; border-radius: 2px; background: #F2B53A"></i><i style="width: 5px; height: 5px; border-radius: 50%; background: rgba(28, 43, 107, 0.25)"></i><i style="width: 5px; height: 5px; border-radius: 50%; background: rgba(28, 43, 107, 0.25)"></i></span>
+    </div>
+    <button class="ob" aria-label="Notifications" style="position: relative; width: 44px; height: 44px; border-radius: 22px; border: 1px solid rgba(28, 43, 107, 0.18); background: rgba(255, 255, 255, 0.6); box-sizing: border-box; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #121B45">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"></path></svg>
+      <span aria-hidden="true" style="position: absolute; right: 11px; top: 10px; width: 8px; height: 8px; border-radius: 4px; background: #F2B53A; border: 2px solid #EEF1FB"></span></button>
+  </header>
+
+  <!-- two-tone greeting -->
+  <h1 style="position: absolute; left: 20px; top: 128px; width: 350px; margin: 0; text-align: center; font-weight: 800; font-size: 27px; line-height: 33px; letter-spacing: -0.3px; color: #121B45">Good evening, Haris.<br><span style="color: #7A84A8; font-weight: 700">Who will you meet tonight?</span></h1>
+
+  <!-- hero photo card (like a chosen hobby card) -->
+  <a href="NearbyDirection2.dc.html" class="lift" style="position: absolute; left: 16px; top: 214px; width: 358px; height: 262px; border-radius: 26px; overflow: hidden; box-sizing: border-box; border: 2px solid #FFFFFF; box-shadow: 0 0 0 2px rgba(242, 181, 58, 0.45), 0 18px 36px rgba(47, 85, 244, 0.28); text-decoration: none">
+    <img src="/_blob/67645157398d3775e36c2a158398aa84" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 45%">
+    <span style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 18, 54, 0) 35%, rgba(10, 18, 54, 0.85) 100%)"></span>
+    <span aria-hidden="true" style="position: absolute; right: 14px; top: 14px; width: 32px; height: 32px; border-radius: 16px; background: #FFD45C; box-shadow: 0 0 16px rgba(255, 212, 92, 0.6); display: flex; align-items: center; justify-content: center">
+      <svg width="16" height="16" viewBox="0 0 24 24"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" fill="#121B45"></path></svg></span>
+    <span style="position: absolute; left: 18px; right: 18px; bottom: 18px; display: flex; flex-direction: column; gap: 6px">
+      <span style="font-weight: 700; font-size: 10.5px; letter-spacing: 2.2px; text-transform: uppercase; color: rgba(255, 255, 255, 0.85)">Tonight · 12 people nearby</span>
+      <span style="font-weight: 700; font-size: 22px; line-height: 27px; color: #FFFFFF">Great connections start with common ground</span>
+      <span style="align-self: flex-start; margin-top: 6px; height: 42px; padding: 0 18px; border-radius: 21px; background: #FFFFFF; display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; color: #121B45">Explore nearby
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+    </span>
+  </a>
+
+  <!-- profile progress, styled like the onboarding chapter dots -->
+  <a href="#" class="lift" style="position: absolute; left: 16px; top: 494px; width: 358px; box-sizing: border-box; padding: 16px 16px 16px 18px; border-radius: 24px; background: rgba(255, 255, 255, 0.75); border: 1px solid rgba(28, 43, 107, 0.12); display: flex; align-items: center; gap: 14px; text-decoration: none; color: #121B45">
+    <span style="flex: 1; display: flex; flex-direction: column; gap: 8px">
+      <span style="font-weight: 700; font-size: 10.5px; letter-spacing: 2.2px; text-transform: uppercase; color: #6B7497">Your profile · 50%</span>
+      <span style="font-weight: 700; font-size: 16px">Answer 12 more questions</span>
+      <span aria-hidden="true" style="display: flex; gap: 5px">
+        <i style="flex: 1; height: 5px; border-radius: 3px; background: #F2B53A"></i><i style="flex: 1; height: 5px; border-radius: 3px; background: #F2B53A"></i><i style="flex: 1; height: 5px; border-radius: 3px; background: linear-gradient(90deg, #F2B53A 50%, rgba(28, 43, 107, 0.15) 50%)"></i><i style="flex: 1; height: 5px; border-radius: 3px; background: rgba(28, 43, 107, 0.15)"></i><i style="flex: 1; height: 5px; border-radius: 3px; background: rgba(28, 43, 107, 0.15)"></i>
+      </span>
+    </span>
+    <span style="width: 48px; height: 48px; flex: none; border-radius: 24px; background: #121B45; box-shadow: 0 8px 18px rgba(18, 27, 69, 0.28); display: flex; align-items: center; justify-content: center; color: #FFFFFF">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+  </a>
+
+  <!-- spark requests as photo cards -->
+  <div style="position: absolute; left: 16px; top: 620px; width: 358px; display: flex; align-items: center; justify-content: space-between">
+    <span style="font-weight: 700; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #121B45">Spark requests · {{pending}}</span>
+    <a href="#" style="font-weight: 700; font-size: 12.5px; text-decoration: none; color: #6B7497">View all</a>
+  </div>
+  <div style="position: absolute; left: 16px; top: 650px; width: 358px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px">
+    <sc-for list="{{requests}}" as="r" hint-placeholder-count="2">
+      <div style="position: relative; height: 220px; border-radius: 22px; overflow: hidden; box-sizing: border-box; border: 1.5px solid rgba(255, 255, 255, 0.85); box-shadow: 0 10px 24px rgba(28, 43, 107, 0.16)">
+        <img src="{{r.img}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; {{r.filter}}">
+        <span style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 18, 54, 0) 35%, rgba(10, 18, 54, 0.85) 100%)"></span>
+        <span style="position: absolute; left: 12px; top: 12px; height: 24px; padding: 0 9px; border-radius: 12px; background: rgba(255, 255, 255, 0.9); display: flex; align-items: center; font-weight: 700; font-size: 10px; letter-spacing: 1.2px; text-transform: uppercase; color: #121B45">{{r.how}}</span>
+        <span style="position: absolute; left: 12px; right: 12px; bottom: 12px; display: flex; flex-direction: column; gap: 8px">
+          <span style="display: flex; flex-direction: column; gap: 2px">
+            <span style="font-weight: 700; font-size: 17px; color: #FFFFFF">{{r.name}}</span>
+            <span style="font-weight: 600; font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: rgba(255, 255, 255, 0.8)">{{r.meta}}</span>
+          </span>
+          <sc-if value="{{r.open}}" hint-placeholder-val="{{true}}">
+            <span style="display: flex; gap: 8px">
+              <button onClick="{{r.decline}}" aria-label="Decline" style="width: 38px; height: 38px; flex: none; border-radius: 19px; border: 1px solid rgba(255, 255, 255, 0.5); background: rgba(255, 255, 255, 0.15); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; cursor: pointer; color: #FFFFFF">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+              <button onClick="{{r.accept}}" style="flex: 1; height: 38px; border: none; border-radius: 19px; background: #FFD45C; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 13px; color: #121B45">
+                <svg width="13" height="13" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" fill="#121B45"></path></svg>Spark</button>
+            </span>
+          </sc-if>
+          <sc-if value="{{r.done}}" hint-placeholder-val="{{false}}">
+            <span style="height: 38px; border-radius: 19px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px; {{r.doneStyle}}">{{r.doneLabel}}</span>
+          </sc-if>
+        </span>
+      </div>
+    </sc-for>
+  </div>
+
+  <!-- my code, navy -->
+  <a href="#" class="lift" style="position: absolute; left: 16px; top: 888px; width: 358px; height: 84px; box-sizing: border-box; padding: 0 14px 0 14px; border-radius: 24px; background: #121B45; box-shadow: 0 14px 30px rgba(18, 27, 69, 0.3); display: flex; align-items: center; gap: 14px; text-decoration: none; color: #FFFFFF">
+    <span style="width: 56px; height: 56px; flex: none; border-radius: 16px; background: #FFFFFF; display: flex; align-items: center; justify-content: center">
+      <svg width="32" height="32" viewBox="0 0 24 24" aria-hidden="true" fill="#121B45"><path d="M3 3h7v7H3zm2 2v3h3V5zM14 3h7v7h-7zm2 2v3h3V5zM3 14h7v7H3zm2 2v3h3v-3zM14 14h3v3h-3zM18 18h3v3h-3zM14 18h2v3h-2zM18 14h3v2h-3z"></path></svg></span>
+    <span style="flex: 1; display: flex; flex-direction: column; gap: 3px">
+      <span style="font-weight: 700; font-size: 10.5px; letter-spacing: 2.2px; text-transform: uppercase; color: #FFD45C">My Spark code</span>
+      <span style="font-weight: 600; font-size: 14px; line-height: 19px">Let others scan to Spark with you</span>
+    </span>
+    <span style="height: 34px; padding: 0 14px; border-radius: 17px; background: rgba(255, 255, 255, 0.14); display: flex; align-items: center; font-weight: 700; font-size: 12.5px">Show</span>
+  </a>
+
+  <!-- events: photo cards with caps meta -->
+  <div style="position: absolute; left: 16px; top: 994px; width: 358px; display: flex; align-items: center; justify-content: space-between">
+    <span style="font-weight: 700; font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #121B45">Events this week</span>
+    <button class="ob" aria-label="Scan an event code" style="width: 36px; height: 36px; border-radius: 18px; border: 1px solid rgba(28, 43, 107, 0.18); background: rgba(255, 255, 255, 0.6); display: flex; align-items: center; justify-content: center; cursor: pointer; color: #121B45">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M4 8V5a1 1 0 0 1 1-1h3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3M4 12h16"></path></svg></button>
+  </div>
+  <div class="hs" style="position: absolute; left: 0; top: 1040px; width: 390px; overflow-x: auto; display: flex; gap: 12px; padding: 0 16px 12px; box-sizing: border-box">
+    <sc-for list="{{events}}" as="e" hint-placeholder-count="3">
+      <a href="#" class="lift" style="position: relative; flex: none; width: 210px; height: 150px; border-radius: 22px; overflow: hidden; box-sizing: border-box; border: 1.5px solid rgba(255, 255, 255, 0.85); box-shadow: 0 10px 22px rgba(28, 43, 107, 0.16); text-decoration: none">
+        <img src="{{e.img}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; {{e.pos}}">
+        <span style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 18, 54, 0.05) 30%, rgba(10, 18, 54, 0.85) 100%)"></span>
+        <span style="position: absolute; left: 14px; right: 14px; bottom: 12px; display: flex; flex-direction: column; gap: 3px">
+          <span style="font-weight: 700; font-size: 10px; letter-spacing: 1.8px; text-transform: uppercase; color: #FFD45C">{{e.when}}</span>
+          <span style="font-weight: 700; font-size: 15.5px; line-height: 19px; color: #FFFFFF">{{e.title}}</span>
+          <span style="font-weight: 600; font-size: 10px; letter-spacing: 1.4px; text-transform: uppercase; color: rgba(255, 255, 255, 0.75)">{{e.going}} going · {{e.dist}}</span>
+        </span>
+      </a>
+    </sc-for>
+  </div>
+
+  <!-- bottom nav · direction 2 -->
+  <nav aria-label="Main" style="position: absolute; left: 16px; right: 16px; bottom: 30px; height: 64px; box-sizing: border-box; padding: 0 8px; border-radius: 32px; background: #121B45; box-shadow: 0 16px 34px rgba(18, 27, 69, 0.32); display: flex; align-items: center; justify-content: space-between">
+    <a href="#" aria-current="page" style="height: 44px; padding: 0 14px 0 12px; border-radius: 22px; background: #FFFFFF; display: flex; align-items: center; gap: 7px; text-decoration: none; color: #121B45">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"></path></svg>
+      <span style="font-weight: 700; font-size: 10.5px; letter-spacing: 1.8px; text-transform: uppercase">Home</span></a>
+    <a href="NearbyDirection2.dc.html" aria-label="Nearby" style="width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; color: rgba(255, 255, 255, 0.6)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg></a>
+    <button aria-label="Scan a Spark code" style="width: 48px; height: 48px; border: none; border-radius: 24px; background: #FFD45C; box-shadow: 0 0 18px rgba(255, 212, 92, 0.55); display: flex; align-items: center; justify-content: center; cursor: pointer">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" fill="#121B45"></path></svg></button>
+    <a href="ChatDirection2.dc.html" aria-label="Chats" style="position: relative; width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; color: rgba(255, 255, 255, 0.6)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1.1-4.6A8 8 0 1 1 21 12z"></path></svg>
+      <span aria-hidden="true" style="position: absolute; right: 9px; top: 9px; width: 8px; height: 8px; border-radius: 4px; background: #FFD45C; border: 2px solid #121B45"></span></a>
+    <a href="#" aria-label="Events" style="width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; color: rgba(255, 255, 255, 0.6)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></a>
+  </nav>
+  <span aria-hidden="true" style="position: absolute; left: 128px; bottom: 8px; width: 134px; height: 5px; border-radius: 100px; background: #121B45"></span>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1330}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { decided: {} };
+  }
+  renderVals() {
+    const list = [
+      { name: 'Sarah', how: 'Nearby', meta: '150 m · 2 min ago', img: '/_blob/57222488b8a9c0cc5e2162c5552491d2' },
+      { name: 'John', how: 'Scanned QR', meta: 'Harbour Lights · 10 min', img: '/_blob/b8bdf0d9064c5619a58d5d774dcb1073' }
+    ];
+    const d = this.state.decided;
+    const requests = list.map((r) => {
+      const v = d[r.name];
+      return {
+        ...r, open: !v, done: !!v,
+        filter: v === 'no' ? 'filter: grayscale(1) brightness(0.85);' : 'filter: none;',
+        doneLabel: v === 'yes' ? '★ Sparked' : 'Declined',
+        doneStyle: v === 'yes' ? 'background: #FFD45C; color: #121B45;' : 'background: rgba(255, 255, 255, 0.18); color: #FFFFFF;',
+        accept: () => this.setState({ decided: { ...d, [r.name]: 'yes' } }),
+        decline: () => this.setState({ decided: { ...d, [r.name]: 'no' } })
+      };
+    });
+    return {
+      requests,
+      pending: String(requests.filter((r) => r.open).length),
+      events: [
+        { when: 'Sat 1 · 7 PM', title: 'Harbour Night Market', going: 48, dist: '2 km', img: '/_blob/2f598e3fc77b9f28ff7b95875eb5f996', pos: 'object-position: 50% 50%;' },
+        { when: 'Sun 2 · 9 PM', title: 'Stargazing on the Beach', going: 26, dist: '6 km', img: '/_blob/ed54d4cd5fb82417fe7c55deb3d73133', pos: 'object-position: 40% 55%;' },
+        { when: 'Wed 5 · 6:30 PM', title: 'Books & Night Owls', going: 19, dist: '1 km', img: '/_blob/2fee231aa150f47df790f5b3d1ada03e', pos: 'object-position: 50% 30%;' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

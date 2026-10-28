@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Chat — direction 2, light</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#1C2B6B}a:hover{color:#2F55F4}
+input::placeholder{color:#8E97B8}
+.thread{scrollbar-width:none}.thread::-webkit-scrollbar{display:none}
+.thread-in > *{flex-shrink:0}
+.cbtn{transition:background .15s ease}.cbtn:hover{background:rgba(255,255,255,0.95)}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 1400px; overflow: hidden; background: linear-gradient(180deg, #DCE3FA 0%, #EBEFFB 30%, #F5F6FB 70%, #F7F7FB 100%); font-family: 'Manrope', sans-serif; color: #121B45">
+
+  <!-- soft sky -->
+  <div aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden">
+    <span style="position: absolute; left: -140px; top: -170px; width: 400px; height: 360px; border-radius: 50%; background: #AFC0F5; opacity: 0.6; filter: blur(90px)"></span>
+    <span style="position: absolute; left: 200px; top: -150px; width: 320px; height: 300px; border-radius: 50%; background: #CDBFF2; opacity: 0.55; filter: blur(90px)"></span>
+    <svg width="390" height="1400" viewBox="0 0 390 1400" style="position: absolute; left: 0; top: 0">
+      <path d="M330 104l1.4 4 4 1.4-4 1.4-1.4 4-1.4-4-4-1.4 4-1.4z" fill="#FFFFFF"></path>
+      <circle cx="54" cy="128" r="1.2" fill="#1C2B6B" opacity="0.3"></circle>
+      <circle cx="248" cy="80" r="1" fill="#1C2B6B" opacity="0.3"></circle>
+      <circle cx="368" cy="300" r="1.2" fill="#F2B53A" opacity="0.8"></circle>
+    </svg>
+  </div>
+
+  <!-- status bar -->
+  <div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 390px; height: 47px">
+    <span style="position: absolute; left: 109px; top: 0; width: 172px; height: 32px; border-radius: 0 0 20px 20px; background: #000000"></span>
+    <span style="position: absolute; left: 16px; top: 15px; width: 54px; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; line-height: 21px; letter-spacing: -0.32px; color: #121B45">9:41</span>
+    <svg width="78" height="13" viewBox="0 0 78 13" style="position: absolute; left: 286px; top: 19px" fill="#121B45">
+      <rect x="0" y="8" width="3" height="4" rx="1"></rect><rect x="5" y="6" width="3" height="6" rx="1"></rect><rect x="10" y="3" width="3" height="9" rx="1"></rect><rect x="15" y="0" width="3" height="12" rx="1"></rect>
+      <path d="M31 3.5a9 9 0 0 1 12 0l-1.4 1.5a7 7 0 0 0-9.2 0zM33.5 6.2a5.4 5.4 0 0 1 7 0l-1.5 1.5a3.3 3.3 0 0 0-4 0zM37 9.4l2-2 2 2-2 2z"></path>
+      <rect x="51" y="0.5" width="23" height="11" rx="3.5" fill="none" stroke="#121B45" stroke-opacity="0.5"></rect><rect x="53" y="2.5" width="19" height="7" rx="2"></rect><rect x="75" y="4" width="2" height="4" rx="1" opacity="0.5"></rect>
+    </svg>
+  </div>
+
+  <!-- header: outline back · centred person · outline more -->
+  <header style="position: absolute; left: 16px; top: 60px; width: 358px; height: 64px; display: flex; align-items: center; justify-content: space-between">
+    <a href="HomeLight.dc.html" class="cbtn" aria-label="Back" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid rgba(28, 43, 107, 0.18); background: rgba(255, 255, 255, 0.6); box-sizing: border-box; display: flex; align-items: center; justify-content: center; color: #121B45">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 4px">
+      <span style="position: relative; width: 40px; height: 40px">
+        <img src="/_blob/57222488b8a9c0cc5e2162c5552491d2" alt="" style="width: 40px; height: 40px; border-radius: 14px; object-fit: cover; box-sizing: border-box; border: 2px solid #FFFFFF; box-shadow: 0 6px 16px rgba(28, 43, 107, 0.18)">
+        <span aria-hidden="true" style="position: absolute; right: -5px; bottom: -4px; width: 16px; height: 16px; border-radius: 8px; background: #FFD45C; border: 2px solid #F0F3FC; display: flex; align-items: center; justify-content: center">
+          <svg width="8" height="8" viewBox="0 0 24 24"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" fill="#121B45"></path></svg></span>
+      </span>
+      <span style="font-weight: 600; font-size: 11px; letter-spacing: 2.6px; text-transform: uppercase; color: #121B45">Sarah</span>
+    </div>
+    <button class="cbtn" aria-label="More options" style="width: 44px; height: 44px; border-radius: 22px; border: 1px solid rgba(28, 43, 107, 0.18); background: rgba(255, 255, 255, 0.6); box-sizing: border-box; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #121B45">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="5" cy="12" r="1.7"></circle><circle cx="12" cy="12" r="1.7"></circle><circle cx="19" cy="12" r="1.7"></circle></svg></button>
+  </header>
+  <span style="position: absolute; left: 0; top: 128px; width: 390px; text-align: center; font-size: 12px; color: #6B7497">Active now · <span style="color: #121B45; font-weight: 600">3</span> interests in common</span>
+
+  <!-- what you both chose: direction-2 photo cards -->
+  <section aria-label="What you both chose" style="position: absolute; left: 16px; top: 156px; width: 358px">
+    <div style="display: flex; gap: 8px">
+      <sc-for list="{{shared}}" as="c" hint-placeholder-count="3">
+        <div style="position: relative; flex: 1; height: 86px; border-radius: 16px; overflow: hidden; box-sizing: border-box; border: 1.5px solid #FFFFFF; box-shadow: 0 8px 20px rgba(28, 43, 107, 0.16)">
+          <img src="{{c.src}}" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; {{c.pos}}">
+          <span style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 18, 54, 0) 35%, rgba(10, 18, 54, 0.75) 100%)"></span>
+          <span aria-hidden="true" style="position: absolute; right: 6px; top: 6px; width: 18px; height: 18px; border-radius: 9px; background: #FFD45C; display: flex; align-items: center; justify-content: center">
+            <svg width="9" height="9" viewBox="0 0 24 24"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" fill="#121B45"></path></svg></span>
+          <span style="position: absolute; left: 9px; bottom: 7px; font-weight: 600; font-size: 12.5px; color: #FFFFFF">{{c.label}}</span>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- thread (pinned to the newest message) -->
+  <div class="thread" role="log" aria-label="Conversation with Sarah" style="position: absolute; left: 0; top: 254px; width: 390px; height: 1050px; overflow-y: auto; display: flex; flex-direction: column-reverse; -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 28px); mask-image: linear-gradient(180deg, transparent 0, #000 28px)">
+    <div class="thread-in" style="box-sizing: border-box; padding: 8px 16px 12px; display: flex; flex-direction: column; gap: 10px">
+      <span style="align-self: center; font-weight: 600; font-size: 10.5px; letter-spacing: 2.4px; text-transform: uppercase; color: #8E97B8">Today</span>
+
+      <sc-for list="{{messages}}" as="m" hint-placeholder-count="5">
+        <sc-if value="{{m.themText}}" hint-placeholder-val="{{true}}">
+          <div style="align-self: flex-start; display: flex; flex-direction: column; gap: 4px; max-width: 270px">
+            <span style="padding: 11px 15px; border-radius: 20px 20px 20px 6px; background: rgba(255, 255, 255, 0.92); border: 1px solid #E2E7F5; box-shadow: 0 4px 14px rgba(28, 43, 107, 0.06); font-size: 14.5px; line-height: 21px; color: #121B45">{{m.text}}</span>
+            <span style="padding-left: 4px; font-size: 11px; color: #8E97B8">{{m.time}}</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{m.themPhoto}}" hint-placeholder-val="{{false}}">
+          <div style="align-self: flex-start; display: flex; flex-direction: column; gap: 4px">
+            <div style="position: relative; width: 220px; height: 150px; border-radius: 18px; overflow: hidden; box-sizing: border-box; border: 1.5px solid #FFFFFF; box-shadow: 0 10px 24px rgba(28, 43, 107, 0.18)">
+              <img src="/_blob/2f598e3fc77b9f28ff7b95875eb5f996" alt="Harbour lights at night" style="width: 100%; height: 100%; object-fit: cover; object-position: 55% 50%">
+              <span style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 18, 54, 0) 45%, rgba(10, 18, 54, 0.75) 100%)"></span>
+              <span style="position: absolute; left: 12px; bottom: 10px; display: flex; flex-direction: column">
+                <span style="font-weight: 600; font-size: 15px; color: #FFFFFF">{{m.text}}</span>
+                <span style="font-size: 11.5px; color: rgba(255, 255, 255, 0.8)">{{m.sub}}</span>
+              </span>
+            </div>
+            <span style="padding-left: 4px; font-size: 11px; color: #8E97B8">{{m.time}}</span>
+          </div>
+        </sc-if>
+        <sc-if value="{{m.mine}}" hint-placeholder-val="{{false}}">
+          <div style="align-self: flex-end; display: flex; flex-direction: column; align-items: flex-end; gap: 4px; max-width: 270px">
+            <span style="padding: 11px 15px; border-radius: 20px 20px 6px 20px; background: linear-gradient(135deg, #24357E 0%, #121B45 100%); box-shadow: 0 8px 18px rgba(18, 27, 69, 0.25); font-size: 14.5px; line-height: 21px; color: #FFFFFF">{{m.text}}</span>
+            <span style="padding-right: 4px; font-size: 11px; color: #8E97B8">{{m.time}}</span>
+          </div>
+        </sc-if>
+      </sc-for>
+    </div>
+  </div>
+
+  <!-- composer: glass field + navy send, like the direction-2 search and Next -->
+  <footer style="position: absolute; left: 0; bottom: 0; width: 390px; box-sizing: border-box; padding: 12px 16px 0; background: linear-gradient(180deg, rgba(247, 247, 251, 0) 0%, #F7F7FB 28%); display: flex; flex-direction: column; gap: 8px">
+    <div style="display: flex; align-items: center; gap: 8px">
+      <label for="msg3" style="position: absolute; left: -9999px">Message Sarah</label>
+      <div style="flex: 1; min-width: 0; height: 52px; box-sizing: border-box; padding: 0 8px 0 18px; border-radius: 26px; background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(28, 43, 107, 0.16); display: flex; align-items: center; gap: 4px">
+        <input id="msg3" value="{{draft}}" onChange="{{onDraft}}" onKeyDown="{{onKey}}" placeholder="Write to Sarah…" style="flex: 1; min-width: 0; border: none; outline: none; background: transparent; font-family: 'Manrope', sans-serif; font-size: 15px; color: #121B45">
+        <button aria-label="Add photo" style="width: 36px; height: 36px; border: none; background: none; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #121B45">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6l2-3h4l2 3M5 6h14a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></button>
+      </div>
+      <button aria-label="Send" onClick="{{send}}" style="width: 52px; height: 52px; flex: none; border: none; border-radius: 26px; background: #121B45; box-shadow: 0 10px 22px rgba(18, 27, 69, 0.28); display: flex; align-items: center; justify-content: center; cursor: pointer; color: #FFFFFF">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+    </div>
+    <div aria-hidden="true" style="position: relative; width: 100%; height: 30px"><span style="position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); width: 134px; height: 5px; border-radius: 100px; background: #121B45"></span></div>
+  </footer>
+  <!-- edge panel: a tab on the right edge opens Spark prompts (like a phone's edge panel) -->
+  <div aria-hidden="true" onClick="{{closeEdge}}" style="position: absolute; inset: 0; background: rgba(18, 27, 69, 0.28); transition: opacity .25s ease; {{scrim}}"></div>
+  <button onClick="{{toggleEdge}}" aria-label="{{edgeLabel}}" aria-expanded="{{edgeOpen}}" style="position: absolute; right: 0; top: 420px; width: 26px; height: 96px; padding: 0; border: 1px solid rgba(28, 43, 107, 0.16); border-right: none; border-radius: 16px 0 0 16px; background: rgba(255, 255, 255, 0.88); box-shadow: -6px 8px 22px rgba(28, 43, 107, 0.16); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: right .3s ease; {{tabPos}}">
+    <span style="width: 18px; height: 18px; border-radius: 9px; background: #FFD45C; display: flex; align-items: center; justify-content: center">
+      <svg width="10" height="10" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" fill="#121B45"></path></svg></span>
+    <span aria-hidden="true" style="width: 3px; height: 28px; border-radius: 2px; background: rgba(28, 43, 107, 0.25)"></span>
+  </button>
+
+  <aside aria-label="Spark prompts" aria-hidden="{{edgeHidden}}" style="position: absolute; right: 0; top: 230px; width: 290px; box-sizing: border-box; padding: 18px 16px 16px 18px; border-radius: 28px 0 0 28px; background: rgba(255, 255, 255, 0.96); border: 1px solid rgba(28, 43, 107, 0.1); border-right: none; box-shadow: -18px 20px 50px rgba(18, 27, 69, 0.25); display: flex; flex-direction: column; gap: 12px; transition: transform .3s ease; {{panelPos}}">
+    <div style="display: flex; align-items: flex-start; justify-content: space-between">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <span style="display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 10.5px; letter-spacing: 2.4px; text-transform: uppercase; color: #121B45">
+          <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" fill="#F2B53A"></path></svg>Spark prompts</span>
+        <span style="font-size: 12.5px; color: #6B7497">Tap one to start the conversation</span>
+      </div>
+      <button onClick="{{closeEdge}}" aria-label="Close prompts" style="width: 30px; height: 30px; border-radius: 15px; border: 1px solid rgba(28, 43, 107, 0.16); background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #121B45">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    </div>
+    <sc-for list="{{prompts}}" as="p" hint-placeholder-count="4">
+      <button onClick="{{p.pick}}" style="position: relative; width: 100%; box-sizing: border-box; padding: 12px 14px; border-radius: 18px; border: 1px solid #E2E7F5; background: linear-gradient(180deg, #FFFFFF 0%, #F6F8FE 100%); text-align: left; cursor: pointer; display: flex; flex-direction: column; gap: 6px; font-family: 'Manrope', sans-serif">
+        <span style="display: flex; align-items: center; gap: 6px">
+          <img src="{{p.src}}" alt="" style="width: 22px; height: 22px; border-radius: 7px; object-fit: cover">
+          <span style="font-weight: 600; font-size: 10.5px; letter-spacing: 1.6px; text-transform: uppercase; color: #6B7497">{{p.tag}}</span>
+        </span>
+        <span style="font-weight: 600; font-size: 14px; line-height: 19px; color: #121B45">{{p.text}}</span>
+      </button>
+    </sc-for>
+    <button onClick="{{shuffle}}" style="height: 44px; border-radius: 22px; border: none; background: #121B45; color: #FFFFFF; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 14px; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"></path></svg>Shuffle prompts</button>
+  </aside>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1400}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      draft: '',
+      edgeOpen: false,
+      page: 0,
+      messages: [
+        { who: 'them', text: 'Hey! I saw night photography on your list too 📸', time: '7:41 PM' },
+        { who: 'me', text: 'Guilty! The harbour at night is my favourite spot.', time: '7:42 PM' },
+        { who: 'them', photo: true, text: 'Harbour Lights', sub: 'Shot it last week', time: '7:43 PM' },
+        { who: 'them', text: 'Want to shoot there together this weekend?', time: '7:43 PM' },
+        { who: 'me', text: 'Yes! Saturday at 7?', time: '7:44 PM' },
+        { who: 'them', text: 'Perfect 🙌 Golden hour is around 6:40, so we could start a bit early?', time: '7:45 PM' },
+        { who: 'me', text: 'Even better. I’ll bring my tripod.', time: '7:45 PM' },
+        { who: 'them', text: 'And I know a tiny coffee spot by the pier ☕', time: '7:46 PM' },
+        { who: 'me', text: 'Coffee, then photos. I’m in!', time: '7:46 PM' },
+        { who: 'them', text: 'It’s a plan! See you Saturday ✨', time: '7:47 PM' },
+        { who: 'me', text: 'Can’t wait 😊', time: '7:47 PM · Seen' }
+      ]
+    };
+  }
+  renderVals() {
+    const add = (text) => {
+      const t = text.trim();
+      if (!t) return;
+      this.setState({ messages: [...this.state.messages, { who: 'me', text: t, time: 'Just now' }], draft: '' });
+    };
+    const pool = [
+      { tag: 'Photography', src: '/_blob/90c3daa158bdb8274ac8e77638cda2ed', text: 'What’s the best photo you’ve ever taken, and the story behind it?' },
+      { tag: 'Travelling', src: '/_blob/ed54d4cd5fb82417fe7c55deb3d73133', text: 'Which place surprised you the most?' },
+      { tag: 'Reading', src: '/_blob/2fee231aa150f47df790f5b3d1ada03e', text: 'What book would you hand to a new friend?' },
+      { tag: 'Just for fun', src: '/_blob/67645157398d3775e36c2a158398aa84', text: 'What’s something small that made your week?' },
+      { tag: 'Travelling', src: '/_blob/ed54d4cd5fb82417fe7c55deb3d73133', text: 'Mountains or the sea for a weekend away?' },
+      { tag: 'Photography', src: '/_blob/90c3daa158bdb8274ac8e77638cda2ed', text: 'Golden hour or blue hour, and why?' },
+      { tag: 'Reading', src: '/_blob/2fee231aa150f47df790f5b3d1ada03e', text: 'Which story stayed with you long after you finished it?' },
+      { tag: 'Just for fun', src: '/_blob/67645157398d3775e36c2a158398aa84', text: 'What would your perfect Saturday look like?' }
+    ];
+    const open = this.state.edgeOpen;
+    const start = (this.state.page * 4) % pool.length;
+    const prompts = pool.slice(start, start + 4).map((p) => ({ ...p, pick: () => this.setState({ draft: p.text, edgeOpen: false }) }));
+    return {
+      prompts,
+      edgeOpen: open,
+      edgeHidden: !open,
+      edgeLabel: open ? 'Close Spark prompts' : 'Open Spark prompts',
+      toggleEdge: () => this.setState({ edgeOpen: !open }),
+      closeEdge: () => this.setState({ edgeOpen: false }),
+      shuffle: () => this.setState({ page: this.state.page + 1 }),
+      panelPos: open ? 'transform: translateX(0);' : 'transform: translateX(110%);',
+      tabPos: open ? 'right: 290px;' : 'right: 0;',
+      scrim: open ? 'opacity: 1; pointer-events: auto;' : 'opacity: 0; pointer-events: none;',
+      shared: [
+        { label: 'Travelling', src: '/_blob/ed54d4cd5fb82417fe7c55deb3d73133', pos: 'object-position: 40% 55%;' },
+        { label: 'Reading', src: '/_blob/2fee231aa150f47df790f5b3d1ada03e', pos: 'object-position: 50% 30%;' },
+        { label: 'Photography', src: '/_blob/90c3daa158bdb8274ac8e77638cda2ed', pos: 'object-position: 55% 50%;' }
+      ],
+      messages: this.state.messages.map((m) => ({
+        ...m,
+        themText: m.who === 'them' && !m.photo,
+        themPhoto: m.who === 'them' && !!m.photo,
+        mine: m.who === 'me'
+      })),
+      draft: this.state.draft,
+      onDraft: (e) => this.setState({ draft: e.target.value }),
+      onKey: (e) => { if (e.key === 'Enter') add(this.state.draft); },
+      send: () => add(this.state.draft)
+    };
+  }
+}
+</script>
+</body>
+</html>

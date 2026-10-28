@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Question 1 — Interests</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600&amp;family=Inter+Tight:wght@400;500;600;700&amp;family=Manrope:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#0E1A45}a:hover{color:#0B1A4D}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: #f6f3ed; font-family: 'Inter Tight', sans-serif; color: #0E1A45">
+
+  <div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 390px; height: 47px">
+    <img src="/_blob/a8538f71df874f9932e5ea493aa510b7" alt="" style="position: absolute; left: 109px; top: 0; width: 172px; height: 32px">
+    <span style="position: absolute; left: 16px; top: 15px; width: 54px; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; line-height: 21px; letter-spacing: -0.32px; color: #0B1A4D">9:41</span>
+    <img src="/_blob/67bad442d586fb0f1a0c3d4b871e4a94" alt="" style="position: absolute; left: 286px; top: 19px; width: 77.4px; height: 13px">
+  </div>
+
+  <header style="position: absolute; left: 16px; top: 69px; width: 358px; box-sizing: border-box; padding: 12px 0; display: flex; align-items: center; gap: 16px">
+    <a href="Main.dc.html" aria-label="Back" style="width: 24px; height: 24px; display: flex"><img src="/_blob/a7663abdbc755d3c0bd190f85de7bcdc" alt="" style="width: 24px; height: 24px; transform: rotate(180deg)"></a>
+    <div role="progressbar" aria-label="Question 1 of 25" aria-valuenow="1" aria-valuemin="0" aria-valuemax="25" style="position: relative; flex: 1; height: 7px; border-radius: 10px; background: #ffffff; overflow: hidden"><span style="position: absolute; left: 0; top: 0.5px; width: 4%; height: 6px; border-radius: 10px; background: linear-gradient(90deg, #2F55F4 0%, #8E5CF0 100%)"></span></div>
+    <span style="font-family: 'Inter Tight', sans-serif; font-weight: 500; font-size: 14px; color: #3A4570">1/25</span>
+  </header>
+
+  <main style="position: absolute; left: 16px; top: 139px; width: 358px; display: flex; flex-direction: column; gap: 24px">
+    <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 12px">
+      <span style="padding: 4px 8px; border-radius: 99px; background: linear-gradient(270deg, #F07FB5 0%, #8E5CF0 100%); font-family: 'Inter Tight', sans-serif; font-size: 14px; color: #ffffff">Interests</span>
+      <h1 style="margin: 0; font-family: 'Inter Tight', sans-serif; font-weight: 700; font-size: 28px; line-height: 35px; color: #0E1A45">What hobbies or activities do you enjoy most?</h1>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 10px; width: 358px">
+      <sc-for list="{{chips}}" as="c" hint-placeholder-count="18">
+        <button aria-pressed="{{c.on}}" onClick="{{c.toggle}}" style="padding: 6px 12px; border-radius: 99px; border: 1px solid rgba(0, 0, 0, 0.12); font-family: 'Inter Tight', sans-serif; font-size: 16px; line-height: 24px; white-space: nowrap; cursor: pointer; {{c.style}}">{{c.label}}</button>
+      </sc-for>
+    </div>
+  </main>
+
+  <footer style="position: absolute; left: 0; bottom: 0; width: 390px; box-sizing: border-box; padding: 12px 20px 0 20px; display: flex; flex-direction: column; gap: 8px">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <a href="Q2-Value.dc.html" style="font-family: 'Manrope', sans-serif; font-weight: 500; font-size: 16px; color: #0E1A45; text-decoration: none">Skip</a>
+      <div style="display: flex; align-items: center; gap: 8px">
+        <span style="font-family: 'Manrope', sans-serif; font-size: 14px; color: #4A5578">{{count}}</span>
+        <a href="Q2-Value.dc.html" aria-label="Next" style="padding: 15px; border-radius: 99px; background: #0B1A4D; display: flex"><img src="/_blob/982c72edce77965e669467f52fe90aaf" alt="" style="width: 24px; height: 24px"></a>
+      </div>
+    </div>
+    <div aria-hidden="true" style="position: relative; width: 100%; height: 34px"><span style="position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); width: 134px; height: 5px; border-radius: 100px; background: #0B1A4D"></span></div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { on: { 'Travelling': true, 'Hiking': true } };
+  }
+  renderVals() {
+    const list = [
+      ['✈️', 'Travelling'], ['📚', 'Reading'], ['🎮', 'Gaming'], ['👨‍🍳', 'Cooking'], ['🥾', 'Hiking'], ['📸', 'Photography'],
+      ['🎵', 'Music'], ['☕', 'Coffee & Tea'], ['🎬', 'Movies & Series'], ['🎨', 'Art & Design'], ['💪', 'Fitness'], ['🧘', 'Yoga'],
+      ['🌐', 'Languages'], ['🐾', 'Pets'], ['💻', 'Tech'], ['🎲', 'Board Games'], ['✍️', 'Writing'], ['🤝', 'Volunteering']
+    ];
+    const chips = list.map(([e, name]) => {
+      const on = !!this.state.on[name];
+      return {
+        label: `${e} ${name}`, on,
+        style: on ? 'background: #0B1A4D; color: #ffffff; font-weight: 500' : 'background: #ffffff; color: #3A4570; font-weight: 400',
+        toggle: () => this.setState({ on: { ...this.state.on, [name]: !on } })
+      };
+    });
+    return { chips, count: `${chips.filter((c) => c.on).length} selected` };
+  }
+}
+</script>
+</body>
+</html>

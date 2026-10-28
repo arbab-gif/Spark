@@ -1,0 +1,292 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "ChatThread.dc.html": {
+      "h": 2340,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Chat · Conversation start (concept)",
+      "w": 390,
+      "x": 470,
+      "y": 3300
+    },
+    "ChatDetail.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Chat detail · Light blue (concept)",
+      "w": 390,
+      "x": 0,
+      "y": 3300
+    },
+    "HobbiesIndex.dc.html": {
+      "h": 1256,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Hobbies selection · Magazine index (concept)",
+      "w": 390,
+      "x": 1880,
+      "y": 1600
+    },
+    "HobbiesAstro.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Hobbies selection · Astrology chart (concept)",
+      "w": 390,
+      "x": 1410,
+      "y": 1600
+    },
+    "HobbiesEditorial.dc.html": {
+      "h": 1160,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Hobbies selection · Editorial deep blue (concept)",
+      "w": 390,
+      "x": 940,
+      "y": 1600
+    },
+    "HobbiesDark.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Hobbies selection · Dark blue (concept)",
+      "w": 390,
+      "x": 470,
+      "y": 1600
+    },
+    "HomeLight.dc.html": {
+      "h": 1420,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Home · Light blue (concept)",
+      "w": 390,
+      "x": 0,
+      "y": 1600
+    },
+    "Home.dc.html": {
+      "h": 1057,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Home",
+      "w": 390,
+      "x": 3290,
+      "y": 0
+    },
+    "HomeIncomplete.dc.html": {
+      "h": 1167,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Home · Before profile complete",
+      "w": 390,
+      "x": 2820,
+      "y": 0
+    },
+    "Main.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Starting Screen",
+      "w": 390,
+      "x": 0,
+      "y": 0
+    },
+    "Nearby.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Nearby Users",
+      "w": 390,
+      "x": 3760,
+      "y": 0
+    },
+    "Q1-Interests.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Q1 · Interests",
+      "w": 390,
+      "x": 470,
+      "y": 0
+    },
+    "Q2-Value.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Q2 · Value",
+      "w": 390,
+      "x": 940,
+      "y": 0
+    },
+    "Q3-FuturePlans.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Q3 · Future Plans",
+      "w": 390,
+      "x": 1410,
+      "y": 0
+    },
+    "Q4-Routine.dc.html": {
+      "h": 1001,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Q4 · Routine",
+      "w": 390,
+      "x": 1880,
+      "y": 0
+    },
+    "Q5-Experiences.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Q5 · Experiences",
+      "w": 390,
+      "x": 2350,
+      "y": 0
+    },
+    "ChatDirection2.dc.html": {
+      "h": 1400,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Chat · Direction 2, light (concept)",
+      "w": 390,
+      "x": 940,
+      "y": 3300
+    },
+    "ChatSerifCyan.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Chat · Serif & cyan direction, light (concept)",
+      "w": 390,
+      "x": 1410,
+      "y": 3300
+    },
+    "NearbyLight.dc.html": {
+      "h": 1380,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Nearby · Light grid (concept)",
+      "w": 390,
+      "x": 1880,
+      "y": 3300
+    },
+    "NearbyDirection2.dc.html": {
+      "h": 1540,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Nearby · Direction 2, light (concept)",
+      "w": 390,
+      "x": 2350,
+      "y": 3300
+    },
+    "NearbySerifCyan.dc.html": {
+      "h": 1580,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Nearby · Serif & cyan direction, light (concept)",
+      "w": 390,
+      "x": 2820,
+      "y": 3300
+    },
+    "HomeD1.dc.html": {
+      "h": 1200,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Home · Direction 1 — light starry, gradient",
+      "w": 390,
+      "x": 0,
+      "y": 6000
+    },
+    "HomeD2.dc.html": {
+      "h": 1330,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Home · Direction 2 — navy editorial, yellow star",
+      "w": 390,
+      "x": 470,
+      "y": 6000
+    },
+    "HomeD3.dc.html": {
+      "h": 1404,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Home · Direction 3 — serif & cyan",
+      "w": 390,
+      "x": 940,
+      "y": 6000
+    },
+    "HomeD2v2.dc.html": {
+      "h": 1440,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Home · Direction 2 — client brief (layers & whimsy)",
+      "w": 390,
+      "x": 1410,
+      "y": 6000
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-23T10:00:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "titleConnect": {
+      "kind": "title1",
+      "maxW": 1200,
+      "text": "Concepts — light blue to connect, dark blue for self-discovery",
+      "x": 0,
+      "y": 1300
+    },
+    "titleFlow": {
+      "kind": "title1",
+      "maxW": 4150,
+      "text": "Spark — final design (Figma Variant 3)",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "titleHome": {
+      "kind": "title1",
+      "maxW": 1400,
+      "text": "Home — three directions (light, for connecting)",
+      "x": 0,
+      "y": 5750
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Q1-Interests.dc.html",
+    "Q2-Value.dc.html",
+    "Q3-FuturePlans.dc.html",
+    "Q4-Routine.dc.html",
+    "Q5-Experiences.dc.html",
+    "HomeIncomplete.dc.html",
+    "Home.dc.html",
+    "Nearby.dc.html",
+    "HomeLight.dc.html",
+    "HobbiesDark.dc.html",
+    "HobbiesEditorial.dc.html",
+    "HobbiesAstro.dc.html",
+    "HobbiesIndex.dc.html",
+    "ChatDetail.dc.html",
+    "ChatThread.dc.html",
+    "ChatDirection2.dc.html",
+    "ChatSerifCyan.dc.html",
+    "NearbyLight.dc.html",
+    "NearbyDirection2.dc.html",
+    "NearbySerifCyan.dc.html",
+    "HomeD1.dc.html",
+    "HomeD2.dc.html",
+    "HomeD3.dc.html",
+    "HomeD2v2.dc.html"
+  ],
+  "pages": [],
+  "title": "Spark Final Design"
+}

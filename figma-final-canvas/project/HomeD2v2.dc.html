@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Home — direction 2, client brief</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#121B45}a:hover{color:#2F55F4}
+.hs{scrollbar-width:none}.hs::-webkit-scrollbar{display:none}
+.grain{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.07 0 0 0 0 0.1 0 0 0 0 0.27 0 0 0 .5 0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.lift{transition:transform .2s ease}.lift:hover{transform:translateY(-2px) rotate(0deg)}
+.ob:focus-visible{outline:2px solid #FFD45C;outline-offset:2px}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 1440px; overflow: hidden; background: linear-gradient(180deg, #D5DDF8 0%, #E6EBFA 18%, #F1F3FB 45%, #F7F7FB 100%); font-family: 'Manrope', sans-serif; color: #121B45">
+
+  <!-- texture, orbits and sparkles -->
+  <div aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden">
+    <span style="position: absolute; left: -140px; top: -170px; width: 400px; height: 360px; border-radius: 50%; background: #AFC0F5; opacity: 0.6; filter: blur(90px)"></span>
+    <span style="position: absolute; left: 200px; top: -150px; width: 320px; height: 300px; border-radius: 50%; background: #CDBFF2; opacity: 0.55; filter: blur(90px)"></span>
+    <span style="position: absolute; left: 210px; top: 60px; width: 300px; height: 300px; border-radius: 50%; border: 1px solid rgba(28, 43, 107, 0.08)"></span>
+    <span style="position: absolute; left: -120px; top: 520px; width: 260px; height: 260px; border-radius: 50%; border: 1px dashed rgba(28, 43, 107, 0.08)"></span>
+    <span class="grain" style="position: absolute; inset: 0; opacity: 0.35; mix-blend-mode: multiply"></span>
+    <svg width="390" height="1440" viewBox="0 0 390 1440" style="position: absolute; left: 0; top: 0">
+      <path d="M352 116l1.4 4 4 1.4-4 1.4-1.4 4-1.4-4-4-1.4 4-1.4z" fill="#FFFFFF"></path>
+      <path d="M28 450l1 2.8 2.8 1-2.8 1-1 2.8-1-2.8-2.8-1 2.8-1z" fill="#F2B53A" opacity="0.8"></path>
+      <circle cx="372" cy="610" r="1.4" fill="#1C2B6B" opacity="0.3"></circle>
+      <circle cx="18" cy="980" r="1.2" fill="#1C2B6B" opacity="0.3"></circle>
+    </svg>
+  </div>
+
+  <!-- status bar -->
+  <div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 390px; height: 47px">
+    <span style="position: absolute; left: 109px; top: 0; width: 172px; height: 32px; border-radius: 0 0 20px 20px; background: #000000"></span>
+    <span style="position: absolute; left: 16px; top: 15px; width: 54px; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; line-height: 21px; letter-spacing: -0.32px; color: #121B45">9:41</span>
+    <svg width="78" height="13" viewBox="0 0 78 13" style="position: absolute; left: 286px; top: 19px" fill="#121B45">
+      <rect x="0" y="8" width="3" height="4" rx="1"></rect><rect x="5" y="6" width="3" height="6" rx="1"></rect><rect x="10" y="3" width="3" height="9" rx="1"></rect><rect x="15" y="0" width="3" height="12" rx="1"></rect>
+      <path d="M31 3.5a9 9 0 0 1 12 0l-1.4 1.5a7 7 0 0 0-9.2 0zM33.5 6.2a5.4 5.4 0 0 1 7 0l-1.5 1.5a3.3 3.3 0 0 0-4 0zM37 9.4l2-2 2 2-2 2z"></path>
+      <rect x="51" y="0.5" width="23" height="11" rx="3.5" fill="none" stroke="#121B45" stroke-opacity="0.5"></rect><rect x="53" y="2.5" width="19" height="7" rx="2"></rect><rect x="75" y="4" width="2" height="4" rx="1" opacity="0.5"></rect>
+    </svg>
+  </div>
+
+  <!-- header: avatar · SPARK + date · bell -->
+  <header style="position: absolute; left: 16px; top: 58px; width: 358px; height: 50px; display: flex; align-items: center; justify-content: space-between">
+    <span style="position: relative; width: 44px; height: 44px">
+      <img src="/_blob/0b43b96a7c3bb04cbd30c74b32678e1b" alt="Your profile" style="width: 44px; height: 44px; border-radius: 15px; object-fit: cover; box-sizing: border-box; border: 2px solid #FFFFFF; box-shadow: 0 6px 16px rgba(28, 43, 107, 0.18)">
+      <span aria-hidden="true" style="position: absolute; right: -5px; bottom: -4px; width: 17px; height: 17px; border-radius: 9px; background: #FFD45C; border: 2px solid #EEF1FB; display: flex; align-items: center; justify-content: center">
+        <svg width="8" height="8" viewBox="0 0 24 24"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" fill="#121B45"></path></svg></span>
+    </span>
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 5px">
+      <span style="font-weight: 800; font-size: 13px; letter-spacing: 5px; text-transform: uppercase">Spark</span>
+      <span style="font-weight: 600; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #6B7497">Tue 27 Oct · Clear night</span>
+    </div>
+    <button class="ob" aria-label="Notifications" style="position: relative; width: 44px; height: 44px; border-radius: 22px; border: 1px solid rgba(28, 43, 107, 0.18); background: rgba(255, 255, 255, 0.6); box-sizing: border-box; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #121B45">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9M10.3 21a1.9 1.9 0 0 0 3.4 0"></path></svg>
+      <span aria-hidden="true" style="position: absolute; right: 11px; top: 10px; width: 8px; height: 8px; border-radius: 4px; background: #F2B53A; border: 2px solid #EEF1FB"></span></button>
+  </header>
+
+  <!-- tonight's spark: a daily line with a layered photo collage -->
+  <section aria-label="Tonight's Spark" style="position: absolute; left: 16px; top: 124px; width: 358px; height: 318px; box-sizing: border-box; border-radius: 30px; background: rgba(255, 255, 255, 0.72); border: 1px solid rgba(255, 255, 255, 0.9); box-shadow: 0 18px 40px rgba(28, 43, 107, 0.12); overflow: hidden">
+    <svg width="358" height="318" viewBox="0 0 358 318" aria-hidden="true" style="position: absolute; left: 0; top: 0">
+      <circle cx="268" cy="132" r="96" fill="none" stroke="#1C2B6B" stroke-opacity="0.1"></circle>
+      <circle cx="268" cy="132" r="70" fill="none" stroke="#1C2B6B" stroke-opacity="0.08" stroke-dasharray="2 5"></circle>
+      <path d="M326 46a18 18 0 1 0 14 30 14 14 0 0 1-14-30z" fill="#FFD45C"></path>
+      <path d="M190 40l1.4 4 4 1.4-4 1.4-1.4 4-1.4-4-4-1.4 4-1.4z" fill="#2F55F4" opacity="0.5"></path>
+    </svg>
+    <span style="position: absolute; left: 20px; top: 22px; font-weight: 700; font-size: 10.5px; letter-spacing: 2.4px; text-transform: uppercase; color: #6B7497">Tonight’s Spark</span>
+    <span style="position: absolute; left: 20px; top: 48px; width: 170px; font-weight: 800; font-size: 25px; line-height: 30px; letter-spacing: -0.3px; color: #121B45">Find your people, close to home.</span>
+
+    <!-- collage -->
+    <img src="/_blob/ed54d4cd5fb82417fe7c55deb3d73133" alt="" style="position: absolute; left: 240px; top: 60px; width: 92px; height: 112px; object-fit: cover; object-position: 40% 55%; box-sizing: border-box; border: 4px solid #FFFFFF; border-radius: 14px; box-shadow: 0 10px 22px rgba(28, 43, 107, 0.2); transform: rotate(8deg)">
+    <img src="/_blob/2f598e3fc77b9f28ff7b95875eb5f996" alt="" style="position: absolute; left: 204px; top: 108px; width: 96px; height: 116px; object-fit: cover; box-sizing: border-box; border: 4px solid #FFFFFF; border-radius: 14px; box-shadow: 0 10px 22px rgba(28, 43, 107, 0.22); transform: rotate(-7deg)">
+    <img src="/_blob/57222488b8a9c0cc5e2162c5552491d2" alt="" style="position: absolute; left: 268px; top: 150px; width: 72px; height: 88px; object-fit: cover; box-sizing: border-box; border: 4px solid #FFFFFF; border-radius: 36px 36px 12px 12px; box-shadow: 0 10px 22px rgba(28, 43, 107, 0.22); transform: rotate(4deg)">
+    <span aria-hidden="true" style="position: absolute; left: 306px; top: 136px; width: 28px; height: 28px; border-radius: 14px; background: #FFD45C; box-shadow: 0 0 14px rgba(255, 212, 92, 0.6); display: flex; align-items: center; justify-content: center; transform: rotate(-12deg)">
+      <svg width="14" height="14" viewBox="0 0 24 24"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" fill="#121B45"></path></svg></span>
+    <span style="position: absolute; left: 20px; top: 192px; width: 168px; font-size: 13px; line-height: 19px; color: #6B7497">Meet people nearby who share your interests and start something real.</span>
+
+    <div style="position: absolute; left: 20px; right: 20px; bottom: 20px; display: flex; align-items: center; justify-content: space-between">
+      <span style="display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 10.5px; letter-spacing: 1.8px; text-transform: uppercase; color: #121B45">
+        <i style="width: 8px; height: 8px; border-radius: 4px; background: #3DDC84; box-shadow: 0 0 0 3px rgba(61, 220, 132, 0.25)"></i>12 here now</span>
+      <a href="NearbyDirection2.dc.html" style="height: 46px; padding: 0 18px 0 20px; border-radius: 23px; background: #121B45; box-shadow: 0 10px 22px rgba(18, 27, 69, 0.3); display: flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 700; font-size: 14px; color: #FFFFFF">Explore nearby
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+    </div>
+  </section>
+
+  <!-- around you: little arch portraits, colour = here now -->
+  <div style="position: absolute; left: 16px; top: 466px; width: 358px; display: flex; align-items: center; justify-content: space-between">
+    <span style="font-weight: 700; font-size: 11px; letter-spacing: 3px; text-transform: uppercase">Around you</span>
+    <a href="NearbyDirection2.dc.html" style="font-weight: 700; font-size: 12.5px; text-decoration: none; color: #6B7497">See all</a>
+  </div>
+  <div class="hs" style="position: absolute; left: 0; top: 496px; width: 390px; overflow-x: auto; display: flex; gap: 12px; padding: 4px 16px 8px; box-sizing: border-box">
+    <sc-for list="{{around}}" as="p" hint-placeholder-count="5">
+      <a href="NearbyDirection2.dc.html" style="flex: none; width: 66px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-decoration: none; color: #121B45">
+        <span style="position: relative; width: 66px; height: 84px">
+          <img src="{{p.img}}" alt="" style="width: 66px; height: 84px; object-fit: cover; box-sizing: border-box; border: 2px solid #FFFFFF; border-radius: 33px 33px 12px 12px; box-shadow: 0 8px 18px rgba(28, 43, 107, 0.16); {{p.filter}}">
+          <sc-if value="{{p.here}}" hint-placeholder-val="{{true}}">
+            <span aria-hidden="true" style="position: absolute; right: -3px; top: -3px; width: 18px; height: 18px; border-radius: 9px; background: #FFD45C; border: 2px solid #F0F2FB; display: flex; align-items: center; justify-content: center">
+              <svg width="8" height="8" viewBox="0 0 24 24"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" fill="#121B45"></path></svg></span>
+          </sc-if>
+        </span>
+        <span style="font-weight: 700; font-size: 12.5px">{{p.name}}</span>
+        <span style="margin-top: -4px; font-weight: 600; font-size: 9.5px; letter-spacing: 1.2px; text-transform: uppercase; color: #6B7497">{{p.dist}}</span>
+      </a>
+    </sc-for>
+  </div>
+
+  <!-- go deeper: profile lives in the deep blue -->
+  <a href="#" class="lift" style="position: absolute; left: 16px; top: 642px; width: 358px; height: 176px; box-sizing: border-box; padding: 20px; border-radius: 28px; overflow: hidden; background: linear-gradient(150deg, #1E2C78 0%, #121B45 60%, #0A1236 100%); box-shadow: 0 18px 36px rgba(18, 27, 69, 0.3); text-decoration: none; color: #FFFFFF">
+    <svg width="358" height="176" viewBox="0 0 358 176" aria-hidden="true" style="position: absolute; left: 0; top: 0">
+      <circle cx="320" cy="20" r="80" fill="none" stroke="#FFFFFF" stroke-opacity="0.08"></circle>
+      <circle cx="292" cy="38" r="1.2" fill="#FFFFFF" opacity="0.7"></circle><circle cx="250" cy="22" r="1" fill="#FFFFFF" opacity="0.5"></circle><circle cx="336" cy="96" r="1.2" fill="#FFD45C"></circle>
+      <path d="M310 58l1.3 3.6 3.6 1.3-3.6 1.3-1.3 3.6-1.3-3.6-3.6-1.3 3.6-1.3z" fill="#FFFFFF"></path>
+    </svg>
+    <span style="position: relative; display: block; font-weight: 700; font-size: 10.5px; letter-spacing: 2.4px; text-transform: uppercase; color: #FFD45C">Go deeper · 50%</span>
+    <span style="position: relative; display: block; margin-top: 8px; font-weight: 800; font-size: 21px; line-height: 26px">Chapter III · Values</span>
+    <span style="position: relative; display: block; margin-top: 4px; width: 250px; font-size: 13px; line-height: 18px; color: rgba(255, 255, 255, 0.72)">What matters most to you in a friendship?</span>
+    <span style="position: absolute; left: 20px; right: 20px; bottom: 20px; display: flex; align-items: center; justify-content: space-between">
+      <span aria-hidden="true" style="display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 10px; letter-spacing: 1px">
+        <i style="width: 24px; height: 24px; border-radius: 12px; background: #FFD45C; color: #121B45; display: flex; align-items: center; justify-content: center; font-style: normal">I</i>
+        <i style="width: 24px; height: 24px; border-radius: 12px; background: #FFD45C; color: #121B45; display: flex; align-items: center; justify-content: center; font-style: normal">II</i>
+        <i style="width: 24px; height: 24px; box-sizing: border-box; border-radius: 12px; border: 1.5px solid #FFD45C; color: #FFD45C; display: flex; align-items: center; justify-content: center; font-style: normal">III</i>
+        <i style="width: 24px; height: 24px; box-sizing: border-box; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.25); color: rgba(255, 255, 255, 0.45); display: flex; align-items: center; justify-content: center; font-style: normal">IV</i>
+        <i style="width: 24px; height: 24px; box-sizing: border-box; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.25); color: rgba(255, 255, 255, 0.45); display: flex; align-items: center; justify-content: center; font-style: normal">V</i>
+      </span>
+      <span style="height: 40px; padding: 0 16px; border-radius: 20px; background: #FFFFFF; display: flex; align-items: center; gap: 6px; font-weight: 700; font-size: 13.5px; color: #121B45">Continue
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+    </span>
+  </a>
+
+  <!-- spark requests as tilted keepsake cards -->
+  <div style="position: absolute; left: 16px; top: 846px; width: 358px; display: flex; align-items: center; justify-content: space-between">
+    <span style="font-weight: 700; font-size: 11px; letter-spacing: 3px; text-transform: uppercase">Spark requests · {{pending}}</span>
+    <a href="#" style="font-weight: 700; font-size: 12.5px; text-decoration: none; color: #6B7497">View all</a>
+  </div>
+  <div style="position: absolute; left: 16px; top: 882px; width: 358px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px">
+    <sc-for list="{{requests}}" as="r" hint-placeholder-count="2">
+      <div style="box-sizing: border-box; padding: 8px 8px 12px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 12px 28px rgba(28, 43, 107, 0.16); display: flex; flex-direction: column; gap: 10px; {{r.tilt}}">
+        <span style="position: relative; display: block; height: 150px; border-radius: 16px; overflow: hidden">
+          <img src="{{r.img}}" alt="" style="width: 100%; height: 100%; object-fit: cover; {{r.filter}}">
+          <span style="position: absolute; left: 8px; top: 8px; height: 22px; padding: 0 8px; border-radius: 11px; background: rgba(255, 255, 255, 0.9); display: flex; align-items: center; font-weight: 700; font-size: 9.5px; letter-spacing: 1.2px; text-transform: uppercase; color: #121B45">{{r.how}}</span>
+        </span>
+        <span style="padding: 0 4px; display: flex; flex-direction: column; gap: 1px">
+          <span style="font-weight: 800; font-size: 16px">{{r.name}}</span>
+          <span style="font-weight: 600; font-size: 9.5px; letter-spacing: 1.2px; text-transform: uppercase; color: #6B7497">{{r.meta}}</span>
+        </span>
+        <sc-if value="{{r.open}}" hint-placeholder-val="{{true}}">
+          <span style="padding: 0 4px; display: flex; gap: 8px">
+            <button class="ob" onClick="{{r.decline}}" aria-label="Decline" style="width: 36px; height: 36px; flex: none; border-radius: 18px; border: 1px solid rgba(28, 43, 107, 0.2); background: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; color: #121B45">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+            <button class="ob" onClick="{{r.accept}}" style="flex: 1; height: 36px; border: none; border-radius: 18px; background: #FFD45C; display: flex; align-items: center; justify-content: center; gap: 6px; cursor: pointer; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 12.5px; color: #121B45">
+              <svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" fill="#121B45"></path></svg>Spark back</button>
+          </span>
+        </sc-if>
+        <sc-if value="{{r.done}}" hint-placeholder-val="{{false}}">
+          <span style="margin: 0 4px; height: 36px; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12.5px; {{r.doneStyle}}">{{r.doneLabel}}</span>
+        </sc-if>
+      </div>
+    </sc-for>
+  </div>
+
+  <!-- this week: postcard events with a date stamp -->
+  <div style="position: absolute; left: 16px; top: 1166px; width: 358px; display: flex; align-items: center; justify-content: space-between">
+    <span style="font-weight: 700; font-size: 11px; letter-spacing: 3px; text-transform: uppercase">This week</span>
+    <a href="#" style="font-weight: 700; font-size: 12.5px; text-decoration: none; color: #6B7497">Scan event</a>
+  </div>
+  <div class="hs" style="position: absolute; left: 0; top: 1196px; width: 390px; overflow-x: auto; display: flex; gap: 14px; padding: 10px 16px 12px; box-sizing: border-box">
+    <sc-for list="{{events}}" as="e" hint-placeholder-count="3">
+      <a href="#" style="position: relative; flex: none; width: 196px; height: 100px; box-sizing: border-box; padding: 6px; border-radius: 18px; background: #FFFFFF; box-shadow: 0 10px 22px rgba(28, 43, 107, 0.12); display: flex; gap: 10px; text-decoration: none; color: #121B45">
+        <img src="{{e.img}}" alt="" style="width: 80px; height: 88px; flex: none; border-radius: 13px; object-fit: cover; {{e.pos}}">
+        <span style="display: flex; flex-direction: column; justify-content: center; gap: 3px; padding-right: 6px">
+          <span style="font-weight: 700; font-size: 9.5px; letter-spacing: 1.6px; text-transform: uppercase; color: #6B7497">{{e.when}}</span>
+          <span style="font-weight: 800; font-size: 14px; line-height: 18px">{{e.title}}</span>
+          <span style="font-weight: 600; font-size: 9.5px; letter-spacing: 1.2px; text-transform: uppercase; color: #6B7497">{{e.going}} going</span>
+        </span>
+        <span aria-hidden="true" style="position: absolute; left: -6px; top: -8px; padding: 4px 8px; border-radius: 8px; background: #FFD45C; box-shadow: 0 4px 10px rgba(242, 181, 58, 0.4); font-weight: 800; font-size: 10px; letter-spacing: 1px; color: #121B45; transform: rotate(-8deg)">{{e.stamp}}</span>
+      </a>
+    </sc-for>
+  </div>
+
+  <!-- bottom nav · direction 2 -->
+  <nav aria-label="Main" style="position: absolute; left: 16px; right: 16px; bottom: 30px; height: 64px; box-sizing: border-box; padding: 0 8px; border-radius: 32px; background: #121B45; box-shadow: 0 16px 34px rgba(18, 27, 69, 0.32); display: flex; align-items: center; justify-content: space-between">
+    <a href="#" aria-current="page" style="height: 44px; padding: 0 14px 0 12px; border-radius: 22px; background: #FFFFFF; display: flex; align-items: center; gap: 7px; text-decoration: none; color: #121B45">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"></path></svg>
+      <span style="font-weight: 700; font-size: 10.5px; letter-spacing: 1.8px; text-transform: uppercase">Home</span></a>
+    <a href="NearbyDirection2.dc.html" aria-label="Nearby" style="width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; color: rgba(255, 255, 255, 0.6)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path><circle cx="12" cy="10" r="3"></circle></svg></a>
+    <button aria-label="Scan a Spark code" style="width: 48px; height: 48px; border: none; border-radius: 24px; background: #FFD45C; box-shadow: 0 0 18px rgba(255, 212, 92, 0.55); display: flex; align-items: center; justify-content: center; cursor: pointer">
+      <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l2.4 7.6L22 12l-7.6 2.4L12 22l-2.4-7.6L2 12l7.6-2.4z" fill="#121B45"></path></svg></button>
+    <a href="ChatDirection2.dc.html" aria-label="Chats" style="position: relative; width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; color: rgba(255, 255, 255, 0.6)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1.1-4.6A8 8 0 1 1 21 12z"></path></svg>
+      <span aria-hidden="true" style="position: absolute; right: 9px; top: 9px; width: 8px; height: 8px; border-radius: 4px; background: #FFD45C; border: 2px solid #121B45"></span></a>
+    <a href="#" aria-label="Events" style="width: 44px; height: 44px; border-radius: 22px; display: flex; align-items: center; justify-content: center; color: rgba(255, 255, 255, 0.6)">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"></rect><path d="M16 2v4M8 2v4M3 10h18"></path></svg></a>
+  </nav>
+  <span aria-hidden="true" style="position: absolute; left: 128px; bottom: 8px; width: 134px; height: 5px; border-radius: 100px; background: #121B45"></span>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":1440}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { decided: {} };
+  }
+  renderVals() {
+    const around = [
+      { name: 'Sarah', dist: '150 m', here: true, img: '/_blob/57222488b8a9c0cc5e2162c5552491d2' },
+      { name: 'Maya', dist: '900 m', here: true, img: '/_blob/b0aba884d0f4bdd00278000528162ed6' },
+      { name: 'Emma', dist: '300 m', here: false, img: '/_blob/07bf7e6bf0a5c18bf0c21e8d6441241a' },
+      { name: 'Zara', dist: '1.6 km', here: true, img: '/_blob/7911960ddfa17b466bf2a58a840f1d92' },
+      { name: 'Lina', dist: '2 km', here: false, img: '/_blob/40fe78ef81d50f030f5c1e382f2f1033' },
+      { name: 'Aqsa', dist: '700 m', here: false, img: '/_blob/a898c5af68df25e8adc71be7a3c4f3d8' }
+    ].map((p) => ({ ...p, filter: p.here ? 'filter: none;' : 'filter: grayscale(1) brightness(0.92);' }));
+    const list = [
+      { name: 'John', how: 'Scanned QR', meta: 'Harbour Lights · 10 min', img: '/_blob/b8bdf0d9064c5619a58d5d774dcb1073', tilt: 'transform: rotate(-2deg);' },
+      { name: 'Emily', how: 'Nearby', meta: '1.2 km · 20 min ago', img: '/_blob/67caba455c7cd5bde1b649073382df0e', tilt: 'transform: rotate(2deg); margin-top: 10px;' }
+    ];
+    const d = this.state.decided;
+    const requests = list.map((r) => {
+      const v = d[r.name];
+      return {
+        ...r, open: !v, done: !!v,
+        filter: v === 'no' ? 'filter: grayscale(1) brightness(0.9);' : 'filter: none;',
+        doneLabel: v === 'yes' ? '★ Sparked' : 'Declined',
+        doneStyle: v === 'yes' ? 'background: #FFD45C; color: #121B45;' : 'background: #F1F2F8; color: #8E97B8;',
+        accept: () => this.setState({ decided: { ...d, [r.name]: 'yes' } }),
+        decline: () => this.setState({ decided: { ...d, [r.name]: 'no' } })
+      };
+    });
+    return {
+      around,
+      requests,
+      pending: String(requests.filter((r) => r.open).length),
+      events: [
+        { stamp: 'SAT 1', when: '7 PM · 2 km', title: 'Harbour Night Market', going: 48, img: '/_blob/2f598e3fc77b9f28ff7b95875eb5f996', pos: 'object-position: 50% 50%;' },
+        { stamp: 'SUN 2', when: '9 PM · 6 km', title: 'Stargazing on the Beach', going: 26, img: '/_blob/ed54d4cd5fb82417fe7c55deb3d73133', pos: 'object-position: 40% 55%;' },
+        { stamp: 'WED 5', when: '6:30 PM · 1 km', title: 'Books & Night Owls', going: 19, img: '/_blob/2fee231aa150f47df790f5b3d1ada03e', pos: 'object-position: 50% 30%;' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Full-size Freepik originals (web-size copies live in hobbies/web/)
+figma-final-assets/hobbies/*.jpg
+
+# Local layout-check renders
+figma-final-assets/preview-*.html
+
+# OS clutter
+.DS_Store
+Thumbs.db
