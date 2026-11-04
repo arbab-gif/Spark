@@ -226,6 +226,69 @@
       "w": 390,
       "x": 1410,
       "y": 6000
+    },
+    "FbQuestions.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Feedback R2 · Questions — aurora, white icons, add your own",
+      "w": 390,
+      "x": 0,
+      "y": 7700
+    },
+    "FbChat.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Feedback R2 · Chat — bluer sky, Spark button, talk-about row",
+      "w": 390,
+      "x": 470,
+      "y": 7700
+    },
+    "FbNearby.dc.html": {
+      "h": 1290,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Feedback R2 · Nearby — 3 columns, ft/mi, ••• menu, limited list",
+      "w": 390,
+      "x": 940,
+      "y": 7700
+    },
+    "FbFind.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Feedback R2 · Find each other — matched coral bolt",
+      "w": 390,
+      "x": 1410,
+      "y": 7700
+    },
+    "FbQR.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Feedback R2 · QR code inside the logo",
+      "w": 390,
+      "x": 1880,
+      "y": 7700
+    },
+    "FbMatch.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Feedback R2 · Match moment — You sparked!",
+      "w": 390,
+      "x": 2350,
+      "y": 7700
+    },
+    "FbSplash.dc.html": {
+      "h": 844,
+      "is_interactive": true,
+      "radius": 36,
+      "title": "Feedback R2 · Splash — split-bolt mark",
+      "w": 390,
+      "x": 2820,
+      "y": 7700
     }
   },
   "createdOnFiles": {
@@ -258,6 +321,13 @@
       "text": "Home — three directions (light, for connecting)",
       "x": 0,
       "y": 5750
+    },
+    "titleFeedback2": {
+      "kind": "title1",
+      "maxW": 2300,
+      "text": "Client feedback — round 2 (Profiles: reserved for Core Connections, coming soon)",
+      "x": 0,
+      "y": 7450
     }
   },
   "order": [
@@ -285,7 +355,14 @@
     "HomeD1.dc.html",
     "HomeD2.dc.html",
     "HomeD3.dc.html",
-    "HomeD2v2.dc.html"
+    "HomeD2v2.dc.html",
+    "FbQuestions.dc.html",
+    "FbChat.dc.html",
+    "FbNearby.dc.html",
+    "FbFind.dc.html",
+    "FbQR.dc.html",
+    "FbMatch.dc.html",
+    "FbSplash.dc.html"
   ],
   "pages": [],
   "title": "Spark Final Design"

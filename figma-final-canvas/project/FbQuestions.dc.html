@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Feedback R2 — questions</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+input::placeholder{color:rgba(214,226,255,0.6)}
+/* aurora: soft colour bands drifting behind everything */
+@keyframes driftA{0%{transform:translate(-30px,0) scale(1) rotate(-8deg)}50%{transform:translate(40px,30px) scale(1.12) rotate(4deg)}100%{transform:translate(-10px,60px) scale(1.04) rotate(-2deg)}}
+@keyframes driftB{0%{transform:translate(20px,10px) scale(1.05) rotate(10deg)}50%{transform:translate(-50px,-20px) scale(0.95) rotate(-6deg)}100%{transform:translate(30px,40px) scale(1.1) rotate(6deg)}}
+@keyframes driftC{0%{transform:translate(0,0) scale(1)}100%{transform:translate(-40px,-30px) scale(1.15)}}
+.aur{position:absolute;border-radius:50%;mix-blend-mode:screen;will-change:transform}
+/* stars: twinkle with a soft glint, and drift very slowly */
+@keyframes twinkle{0%,100%{opacity:.25;transform:scale(.7)}45%{opacity:1;transform:scale(1)}55%{opacity:.85;transform:scale(1.15)}}
+@keyframes drift{0%{transform:translateY(0)}100%{transform:translateY(-14px)}}
+@keyframes shoot{0%,86%{opacity:0;transform:translate(0,0) rotate(-24deg)}88%{opacity:1}100%{opacity:0;transform:translate(-260px,110px) rotate(-24deg)}}
+.sky{animation:drift 28s ease-in-out infinite alternate}
+.st{position:absolute;border-radius:50%;background:#FFFFFF;animation:twinkle var(--d) ease-in-out infinite;animation-delay:var(--l)}
+.glint{position:absolute;animation:twinkle var(--d) ease-in-out infinite;animation-delay:var(--l)}
+.chip{transition:background .2s ease, box-shadow .2s ease, transform .15s ease}.chip:active{transform:scale(.97)}
+.chip:focus-visible,.go:focus-visible{outline:2px solid #FFFFFF;outline-offset:2px}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: linear-gradient(180deg, #071340 0%, #06103A 45%, #040B2A 100%); font-family: 'Manrope', sans-serif; color: #FFFFFF">
+
+  <!-- aurora -->
+  <div aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden">
+    <span class="aur" style="left: -120px; top: -140px; width: 460px; height: 260px; background: radial-gradient(closest-side, rgba(38, 214, 200, 0.55), rgba(38, 214, 200, 0)); filter: blur(30px); animation: driftA 16s ease-in-out infinite alternate"></span>
+    <span class="aur" style="left: 80px; top: -60px; width: 420px; height: 220px; background: radial-gradient(closest-side, rgba(47, 107, 255, 0.6), rgba(47, 107, 255, 0)); filter: blur(36px); animation: driftB 20s ease-in-out infinite alternate"></span>
+    <span class="aur" style="left: -60px; top: 80px; width: 380px; height: 180px; background: radial-gradient(closest-side, rgba(90, 160, 255, 0.35), rgba(90, 160, 255, 0)); filter: blur(40px); animation: driftC 24s ease-in-out infinite alternate"></span>
+    <span class="aur" style="left: 120px; top: 640px; width: 360px; height: 240px; background: radial-gradient(closest-side, rgba(30, 90, 230, 0.35), rgba(30, 90, 230, 0)); filter: blur(40px); animation: driftB 26s ease-in-out infinite alternate"></span>
+  </div>
+
+  <!-- realistic stars -->
+  <div class="sky" aria-hidden="true" style="position: absolute; inset: 0">
+    <sc-for list="{{stars}}" as="s" hint-placeholder-count="40">
+      <span class="st" style="{{s.style}}"></span>
+    </sc-for>
+    <sc-for list="{{glints}}" as="g" hint-placeholder-count="5">
+      <svg class="glint" width="{{g.size}}" height="{{g.size}}" viewBox="0 0 24 24" style="{{g.style}}"><path d="M12 0 13 10.6 24 12 13 13.4 12 24 11 13.4 0 12 11 10.6z" fill="#FFFFFF"></path><circle cx="12" cy="12" r="2.2" fill="#FFFFFF"></circle></svg>
+    </sc-for>
+    <span style="position: absolute; left: 330px; top: 70px; width: 90px; height: 1.5px; border-radius: 2px; background: linear-gradient(90deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0)); animation: shoot 9s linear infinite"></span>
+  </div>
+
+  <!-- status bar -->
+  <div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 390px; height: 47px">
+    <span style="position: absolute; left: 109px; top: 0; width: 172px; height: 32px; border-radius: 0 0 20px 20px; background: #000000"></span>
+    <span style="position: absolute; left: 16px; top: 15px; width: 54px; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; line-height: 21px; letter-spacing: -0.32px; color: #FFFFFF">9:41</span>
+    <svg width="78" height="13" viewBox="0 0 78 13" style="position: absolute; left: 286px; top: 19px" fill="#FFFFFF">
+      <rect x="0" y="8" width="3" height="4" rx="1"></rect><rect x="5" y="6" width="3" height="6" rx="1"></rect><rect x="10" y="3" width="3" height="9" rx="1"></rect><rect x="15" y="0" width="3" height="12" rx="1"></rect>
+      <path d="M31 3.5a9 9 0 0 1 12 0l-1.4 1.5a7 7 0 0 0-9.2 0zM33.5 6.2a5.4 5.4 0 0 1 7 0l-1.5 1.5a3.3 3.3 0 0 0-4 0zM37 9.4l2-2 2 2-2 2z"></path>
+      <rect x="51" y="0.5" width="23" height="11" rx="3.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.5"></rect><rect x="53" y="2.5" width="19" height="7" rx="2"></rect><rect x="75" y="4" width="2" height="4" rx="1" opacity="0.5"></rect>
+    </svg>
+  </div>
+
+  <!-- header: back · progress dashes · count -->
+  <header style="position: absolute; left: 16px; top: 64px; width: 358px; height: 40px; display: flex; align-items: center; gap: 14px">
+    <a href="#" aria-label="Back" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; color: #FFFFFF">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
+    <div role="progressbar" aria-label="Question 1 of 25" aria-valuenow="1" aria-valuemin="0" aria-valuemax="25" style="flex: 1; display: flex; gap: 5px">
+      <i style="flex: 1; height: 4px; border-radius: 2px; background: #5B8CFF; box-shadow: 0 0 10px rgba(91, 140, 255, 0.9)"></i>
+      <i style="flex: 1; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.16)"></i><i style="flex: 1; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.16)"></i><i style="flex: 1; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.16)"></i><i style="flex: 1; height: 4px; border-radius: 2px; background: rgba(255, 255, 255, 0.16)"></i>
+    </div>
+    <span style="font-weight: 600; font-size: 14px; color: rgba(255, 255, 255, 0.75)">1/25</span>
+  </header>
+
+  <!-- question -->
+  <span style="position: absolute; left: 0; top: 128px; width: 390px; display: flex; justify-content: center"><span style="padding: 5px 12px; border-radius: 99px; background: rgba(255, 255, 255, 0.12); border: 1px solid rgba(255, 255, 255, 0.18); font-weight: 600; font-size: 12.5px">Interests</span></span>
+  <h1 style="position: absolute; left: 24px; top: 166px; width: 342px; margin: 0; text-align: center; font-weight: 800; font-size: 27px; line-height: 33px; letter-spacing: -0.3px">What hobbies or activities do you enjoy most?</h1>
+
+  <!-- search or add your own -->
+  <label for="hq" style="position: absolute; left: -9999px">Search or add a hobby</label>
+  <div style="position: absolute; left: 16px; top: 252px; width: 358px; height: 50px; box-sizing: border-box; padding: 0 6px 0 16px; border-radius: 25px; background: rgba(255, 255, 255, 0.09); border: 1px solid rgba(255, 255, 255, 0.18); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); display: flex; align-items: center; gap: 10px">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3"></path></svg>
+    <input id="hq" value="{{query}}" onChange="{{onQuery}}" onKeyDown="{{onKey}}" placeholder="Search or add your own…" style="flex: 1; min-width: 0; border: none; outline: none; background: transparent; font-family: 'Manrope', sans-serif; font-size: 15px; color: #FFFFFF">
+    <button onClick="{{addCustom}}" aria-label="Add as a new interest" style="height: 38px; padding: 0 14px 0 10px; border: none; border-radius: 19px; cursor: pointer; display: flex; align-items: center; gap: 5px; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 13px; transition: opacity .2s ease; {{addStyle}}">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>{{addLabel}}</button>
+  </div>
+
+  <!-- chips -->
+  <div style="position: absolute; left: 16px; top: 320px; width: 358px; display: flex; flex-wrap: wrap; gap: 8px">
+    <sc-for list="{{chips}}" as="c" hint-placeholder-count="18">
+      <button class="chip" aria-pressed="{{c.on}}" onClick="{{c.toggle}}" style="height: 38px; padding: 0 13px 0 11px; box-sizing: border-box; border-radius: 19px; cursor: pointer; display: flex; align-items: center; gap: 7px; white-space: nowrap; font-family: 'Manrope', sans-serif; font-size: 14px; color: #FFFFFF; {{c.style}}">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{c.d}}"></path></svg>{{c.label}}</button>
+    </sc-for>
+  </div>
+
+  <!-- next -->
+  <div style="position: absolute; left: 0; bottom: 0; width: 390px; box-sizing: border-box; padding: 24px 16px 0; background: linear-gradient(180deg, rgba(4, 11, 42, 0) 0%, rgba(4, 11, 42, 0.92) 35%)">
+    <a href="#" class="go" style="height: 56px; border-radius: 28px; background: linear-gradient(180deg, #3D7BFF 0%, #1F5BFF 55%, #1446E0 100%); box-shadow: 0 0 0 1px rgba(120, 170, 255, 0.35) inset, 0 14px 30px rgba(31, 91, 255, 0.5); display: flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; font-weight: 700; font-size: 16px; color: #FFFFFF">Next · {{count}} selected</a>
+    <div aria-hidden="true" style="position: relative; height: 34px"><span style="position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); width: 134px; height: 5px; border-radius: 100px; background: #FFFFFF"></span></div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { on: { Travelling: true, Hiking: true, Photography: true }, query: '', custom: [] };
+  }
+  renderVals() {
+    const base = [
+      ['Travelling', 'M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z'],
+      ['Reading', 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5'],
+      ['Gaming', 'M6 12h4M8 10v4M15 13h.01M18 11h.01M6 6h12a4 4 0 0 1 4 4v4a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4v-4a4 4 0 0 1 4-4z'],
+      ['Cooking', 'M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2M7 2v20M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3zm0 0v7'],
+      ['Hiking', 'M8 3l4 8 5-5 5 15H2L8 3z'],
+      ['Photography', 'M8 6l2-3h4l2 3M5 6h14a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3V9a3 3 0 0 1 3-3zM16 13a4 4 0 1 1-8 0 4 4 0 0 1 8 0z'],
+      ['Music', 'M9 18V5l12-2v13M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM21 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0z'],
+      ['Coffee & Tea', 'M17 8h1a4 4 0 1 1 0 8h-1M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4ZM6 2v2M10 2v2M14 2v2'],
+      ['Movies & Series', 'M3 7h18v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2zM3 11h18M7 7l2-4M12 7l2-4M17 7l2-4'],
+      ['Art & Design', 'M12 22a10 10 0 1 1 10-10c0 2.8-2.2 4-4 4h-2a2 2 0 0 0-1.5 3.3A1.7 1.7 0 0 1 12 22zM7.5 10.5h.01M12 7.5h.01M16.5 10.5h.01'],
+      ['Fitness', 'M6.5 6.5v11M17.5 6.5v11M3 9.5v5M21 9.5v5M6.5 12h11'],
+      ['Yoga', 'M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z'],
+      ['Languages', 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20zM2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20'],
+      ['Pets', 'M12 14c-3 0-5 3-5 5 0 1.5 1.5 2 2.5 2s1.5-.5 2.5-.5 1.5.5 2.5.5 2.5-.5 2.5-2c0-2-2-5-5-5zM6 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM10 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM18 6a2 2 0 1 1-4 0 2 2 0 0 1 4 0zM22 10a2 2 0 1 1-4 0 2 2 0 0 1 4 0z'],
+      ['Tech', 'M9 18h6M10 22h4M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.3h6c0-1 .4-1.8 1-2.3A7 7 0 0 0 12 2z'],
+      ['Board Games', 'M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zM8 8h.01M16 8h.01M12 12h.01M8 16h.01M16 16h.01'],
+      ['Writing', 'M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z'],
+      ['Volunteering', 'M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z']
+    ];
+    const SPARK = 'M12 3l1.9 5.6L19.5 10.5l-5.6 1.9L12 18l-1.9-5.6L4.5 10.5l5.6-1.9z';
+    const { on, query, custom } = this.state;
+    const q = query.trim();
+    const all = [...custom.map((l) => [l, SPARK]), ...base];
+    const shown = q ? all.filter(([l]) => l.toLowerCase().includes(q.toLowerCase())) : all;
+    const exists = all.some(([l]) => l.toLowerCase() === q.toLowerCase());
+    const add = () => {
+      if (!q || exists) return;
+      const label = q.slice(0, 24);
+      this.setState({ custom: [label, ...custom], on: { ...on, [label]: true }, query: '' });
+    };
+    // stars: deterministic so the sky looks the same every render
+    let seed = 11; const rnd = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+    const stars = Array.from({ length: 70 }, () => {
+      const s = rnd() < 0.12 ? 2.4 : (rnd() < 0.45 ? 1.6 : 1);
+      const y = rnd() < 0.6 ? rnd() * 300 : rnd() * 844;
+      const glow = s > 2 ? 'box-shadow: 0 0 6px 1px rgba(170, 200, 255, 0.9);' : (s > 1.5 ? 'box-shadow: 0 0 3px rgba(190, 215, 255, 0.8);' : '');
+      const tint = rnd() < 0.2 ? 'background: #CFE0FF;' : '';
+      return { style: `left: ${(rnd() * 388).toFixed(0)}px; top: ${y.toFixed(0)}px; width: ${s}px; height: ${s}px; --d: ${(2.4 + rnd() * 4).toFixed(1)}s; --l: -${(rnd() * 6).toFixed(1)}s; ${glow} ${tint}` };
+    });
+    const glints = [[44, 112, 12], [318, 150, 10], [214, 58, 8], [356, 486, 9], [26, 600, 8]].map(([x, y, sz], i) => ({ size: sz, style: `left: ${x}px; top: ${y}px; --d: ${3 + i * 0.7}s; --l: -${i * 1.3}s; filter: drop-shadow(0 0 4px rgba(170, 205, 255, 0.95));` }));
+    const chips = shown.map(([label, d]) => {
+      const sel = !!on[label];
+      return {
+        label, d, on: sel,
+        style: sel
+          ? 'border: 1px solid rgba(160, 195, 255, 0.55); background: linear-gradient(180deg, #3D7BFF 0%, #1F5BFF 100%); box-shadow: 0 6px 18px rgba(31, 91, 255, 0.5); font-weight: 700;'
+          : 'border: 1px solid rgba(255, 255, 255, 0.16); background: rgba(255, 255, 255, 0.07); font-weight: 500;',
+        toggle: () => this.setState({ on: { ...on, [label]: !sel } })
+      };
+    });
+    return {
+      stars, glints, chips, query,
+      onQuery: (e) => this.setState({ query: e.target.value }),
+      onKey: (e) => { if (e.key === 'Enter') add(); },
+      addCustom: add,
+      addLabel: q && !exists ? `Add “${q.slice(0, 14)}${q.length > 14 ? '…' : ''}”` : 'Add',
+      addStyle: q && !exists ? 'background: #FFFFFF; color: #1446E0; opacity: 1;' : 'background: rgba(255, 255, 255, 0.14); color: #FFFFFF; opacity: 0.7;',
+      count: Object.values(on).filter(Boolean).length
+    };
+  }
+}
+</script>
+</body>
+</html>

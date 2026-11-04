@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Feedback R2 — chat</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&amp;family=Manrope:wght@400;500;600;700;800&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+input::placeholder{color:#7C8DB0}
+/* stars flicker like real light: quick dips and glints, never in sync */
+@keyframes flicker{0%,100%{opacity:.35}8%{opacity:1}12%{opacity:.55}20%{opacity:.95}34%{opacity:.4}52%{opacity:1}56%{opacity:.6}70%{opacity:.85}}
+@keyframes glint{0%,100%{opacity:0;transform:scale(.4) rotate(0)}50%{opacity:1;transform:scale(1) rotate(45deg)}}
+.st{position:absolute;border-radius:50%;background:#FFFFFF;animation:flicker var(--d) linear infinite;animation-delay:var(--l)}
+.gl{position:absolute;animation:glint var(--d) ease-in-out infinite;animation-delay:var(--l)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.refresh:active svg{animation:spin .5s ease}
+.spk{transition:transform .15s ease}.spk:active{transform:scale(.95)}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; background: linear-gradient(180deg, #5E97EC 0%, #8DBBF2 24%, #C7E1F8 48%, #E6F2FC 70%, #F3F8FD 100%); font-family: 'Manrope', sans-serif; color: #0E2350">
+
+  <!-- flickering stars, densest at the top -->
+  <div aria-hidden="true" style="position: absolute; inset: 0">
+    <sc-for list="{{stars}}" as="s" hint-placeholder-count="40">
+      <span class="st" style="{{s.style}}"></span>
+    </sc-for>
+    <sc-for list="{{glints}}" as="g" hint-placeholder-count="4">
+      <svg class="gl" width="{{g.size}}" height="{{g.size}}" viewBox="0 0 24 24" style="{{g.style}}"><path d="M12 0 13 10.6 24 12 13 13.4 12 24 11 13.4 0 12 11 10.6z" fill="#FFFFFF"></path></svg>
+    </sc-for>
+  </div>
+
+  <!-- status bar -->
+  <div aria-hidden="true" style="position: absolute; left: 0; top: 0; width: 390px; height: 47px">
+    <span style="position: absolute; left: 109px; top: 0; width: 172px; height: 32px; border-radius: 0 0 20px 20px; background: #000000"></span>
+    <span style="position: absolute; left: 16px; top: 15px; width: 54px; text-align: center; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 16px; line-height: 21px; color: #FFFFFF">9:41</span>
+    <svg width="78" height="13" viewBox="0 0 78 13" style="position: absolute; left: 286px; top: 19px" fill="#FFFFFF">
+      <rect x="0" y="8" width="3" height="4" rx="1"></rect><rect x="5" y="6" width="3" height="6" rx="1"></rect><rect x="10" y="3" width="3" height="9" rx="1"></rect><rect x="15" y="0" width="3" height="12" rx="1"></rect>
+      <path d="M31 3.5a9 9 0 0 1 12 0l-1.4 1.5a7 7 0 0 0-9.2 0zM33.5 6.2a5.4 5.4 0 0 1 7 0l-1.5 1.5a3.3 3.3 0 0 0-4 0zM37 9.4l2-2 2 2-2 2z"></path>
+      <rect x="51" y="0.5" width="23" height="11" rx="3.5" fill="none" stroke="#FFFFFF" stroke-opacity="0.5"></rect><rect x="53" y="2.5" width="19" height="7" rx="2"></rect><rect x="75" y="4" width="2" height="4" rx="1" opacity="0.5"></rect>
+    </svg>
+  </div>
+
+  <!-- header -->
+  <header style="position: absolute; left: 12px; top: 56px; width: 366px; height: 52px; display: flex; align-items: center; gap: 10px">
+    <a href="#" aria-label="Back to chats" style="width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; color: #FFFFFF">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"></path></svg></a>
+    <span style="position: relative; width: 44px; height: 44px; flex: none">
+      <img src="/_blob/57222488b8a9c0cc5e2162c5552491d2" alt="" style="width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255, 255, 255, 0.9)">
+      <i style="position: absolute; right: 0; bottom: 1px; width: 11px; height: 11px; border-radius: 50%; background: #2BD47D; border: 2px solid #FFFFFF"></i></span>
+    <div style="flex: 1; min-width: 0">
+      <div style="font-family: 'Playfair Display', serif; font-weight: 700; font-size: 20px; line-height: 24px; color: #FFFFFF">Sarah</div>
+      <div style="font-size: 12.5px; font-weight: 600; color: rgba(255, 255, 255, 0.85)">Online · 850 ft away</div>
+    </div>
+    <!-- the bolt is a real button now: tap to get a spark (conversation prompt) -->
+    <button class="spk" onClick="{{nextSpark}}" aria-label="Spark a conversation prompt" style="height: 38px; padding: 0 14px 0 10px; border: none; border-radius: 19px; cursor: pointer; display: flex; align-items: center; gap: 6px; background: linear-gradient(180deg, #4FD0F2 0%, #12B3E6 100%); box-shadow: 0 6px 16px rgba(18, 140, 200, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.55) inset; font-family: 'Manrope', sans-serif; font-weight: 800; font-size: 13.5px; color: #FFFFFF">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M13.5 2 4 14h7l-1.5 8L20 10h-7z"></path></svg>Spark</button>
+  </header>
+
+  <!-- subtle talk-about row, refreshes each login -->
+  <div style="position: absolute; left: 16px; top: 120px; width: 358px; display: flex; align-items: center; gap: 6px">
+    <span style="font-size: 11.5px; font-weight: 600; color: rgba(255, 255, 255, 0.85); white-space: nowrap">Talk about</span>
+    <sc-for list="{{topics}}" as="t" hint-placeholder-count="3">
+      <span style="padding: 3px 9px; border-radius: 99px; background: rgba(255, 255, 255, 0.22); border: 1px solid rgba(255, 255, 255, 0.35); font-size: 11.5px; font-weight: 600; color: #FFFFFF; white-space: nowrap">{{t}}</span>
+    </sc-for>
+    <button class="refresh" onClick="{{refreshTopics}}" aria-label="Show other topics" style="margin-left: auto; width: 24px; height: 24px; border: none; border-radius: 50%; background: transparent; cursor: pointer; display: flex; align-items: center; justify-content: center; color: rgba(255, 255, 255, 0.9)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v5h-5"></path></svg></button>
+  </div>
+
+  <!-- messages -->
+  <div style="position: absolute; left: 16px; top: 168px; width: 358px; display: flex; flex-direction: column; gap: 8px">
+    <span style="align-self: center; padding: 3px 10px; border-radius: 99px; background: rgba(255, 255, 255, 0.3); font-size: 11.5px; font-weight: 600; color: #FFFFFF">Today</span>
+    <div style="align-self: flex-start; max-width: 260px; padding: 11px 14px; border-radius: 20px 20px 20px 6px; background: rgba(255, 255, 255, 0.92); box-shadow: 0 4px 14px rgba(30, 80, 160, 0.1); font-size: 15px; line-height: 21px">Hey! Saw we're both around the harbour this weekend 👋</div>
+    <div style="align-self: flex-end; max-width: 260px; padding: 11px 14px; border-radius: 20px 20px 6px 20px; background: linear-gradient(180deg, #2A8DF0 0%, #1767D8 100%); box-shadow: 0 6px 16px rgba(23, 103, 216, 0.3); font-size: 15px; line-height: 21px; color: #FFFFFF">Yes! I'm heading there Saturday morning to shoot the sunrise.</div>
+    <div style="align-self: flex-start; max-width: 260px; padding: 11px 14px; border-radius: 20px 20px 20px 6px; background: rgba(255, 255, 255, 0.92); box-shadow: 0 4px 14px rgba(30, 80, 160, 0.1); font-size: 15px; line-height: 21px">No way, film or digital? I just picked up an old Pentax.</div>
+    <div style="align-self: flex-end; max-width: 260px; padding: 11px 14px; border-radius: 20px 20px 6px 20px; background: linear-gradient(180deg, #2A8DF0 0%, #1767D8 100%); box-shadow: 0 6px 16px rgba(23, 103, 216, 0.3); font-size: 15px; line-height: 21px; color: #FFFFFF">Film! We should do a photo walk ☕📷</div>
+    <span style="align-self: flex-end; font-size: 11px; font-weight: 600; color: #6B7EA3">Read 10:24</span>
+
+    <!-- spark prompt appears when the bolt is tapped -->
+    <sc-if value="{{showSpark}}">
+      <div role="status" style="align-self: stretch; margin-top: 6px; padding: 12px 14px; border-radius: 18px; background: rgba(255, 255, 255, 0.75); border: 1px solid #9FDDF2; box-shadow: 0 8px 22px rgba(18, 140, 200, 0.15); display: flex; gap: 10px; align-items: flex-start">
+        <span style="width: 28px; height: 28px; flex: none; border-radius: 50%; background: linear-gradient(180deg, #4FD0F2, #12B3E6); display: flex; align-items: center; justify-content: center"><svg width="14" height="14" viewBox="0 0 24 24" fill="#FFFFFF" aria-hidden="true"><path d="M13.5 2 4 14h7l-1.5 8L20 10h-7z"></path></svg></span>
+        <div style="flex: 1">
+          <div style="font-size: 11px; font-weight: 800; letter-spacing: 0.6px; color: #0E8FC0">SPARK</div>
+          <div style="font-size: 14.5px; line-height: 20px; font-weight: 600">{{spark}}</div>
+          <div style="margin-top: 8px; display: flex; gap: 8px">
+            <button onClick="{{useSpark}}" style="height: 30px; padding: 0 12px; border: none; border-radius: 15px; background: #12B3E6; cursor: pointer; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12.5px; color: #FFFFFF">Send this</button>
+            <button onClick="{{nextSpark}}" style="height: 30px; padding: 0 12px; border: 1px solid #BFE6F5; border-radius: 15px; background: transparent; cursor: pointer; font-family: 'Manrope', sans-serif; font-weight: 700; font-size: 12.5px; color: #0E8FC0">Another</button>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+  </div>
+
+  <!-- composer -->
+  <div style="position: absolute; left: 0; bottom: 0; width: 390px; box-sizing: border-box; padding: 10px 12px 0; background: linear-gradient(180deg, rgba(243, 248, 253, 0) 0%, #F3F8FD 30%)">
+    <div style="display: flex; align-items: center; gap: 8px">
+      <button aria-label="Add photo" style="width: 44px; height: 44px; flex: none; border: 1px solid #D3E4F4; border-radius: 50%; background: #FFFFFF; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #1767D8">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+      <label for="msg" style="position: absolute; left: -9999px">Message</label>
+      <input id="msg" value="{{draft}}" onChange="{{onDraft}}" placeholder="Message Sarah…" style="flex: 1; min-width: 0; height: 44px; box-sizing: border-box; padding: 0 16px; border: 1px solid #D3E4F4; border-radius: 22px; background: #FFFFFF; outline: none; font-family: 'Manrope', sans-serif; font-size: 15px; color: #0E2350">
+      <button aria-label="Send" style="width: 44px; height: 44px; flex: none; border: none; border-radius: 50%; background: linear-gradient(180deg, #2A8DF0, #1767D8); cursor: pointer; display: flex; align-items: center; justify-content: center">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+    </div>
+    <div aria-hidden="true" style="position: relative; height: 34px"><span style="position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); width: 134px; height: 5px; border-radius: 100px; background: #0E2350"></span></div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { topicSet: 0, sparkIdx: 0, draft: '' };
+  }
+  renderVals() {
+    const sets = [['Film cameras', 'Sunrise spots', 'Coffee'], ['Hiking trails', 'Live music', 'Travel'], ['Street food', 'Old movies', 'Weekend plans']];
+    const sparks = [
+      'What’s a photo you took that you’ll never delete?',
+      'Best coffee spot near the harbour — go.',
+      'If you had a free Saturday, what would you do first?',
+      'What’s the last thing that made you laugh out loud?'
+    ];
+    const { topicSet, sparkIdx } = this.state;
+    let seed = 7; const rnd = () => { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+    const stars = Array.from({ length: 55 }, () => {
+      const s = rnd() < 0.15 ? 2.6 : (rnd() < 0.5 ? 1.8 : 1.2);
+      const y = Math.pow(rnd(), 1.8) * 420;
+      const glow = s > 2 ? 'box-shadow: 0 0 7px 2px rgba(255, 255, 255, 0.85);' : 'box-shadow: 0 0 3px rgba(255, 255, 255, 0.7);';
+      return { style: `left: ${(rnd() * 388).toFixed(0)}px; top: ${y.toFixed(0)}px; width: ${s}px; height: ${s}px; --d: ${(3 + rnd() * 5).toFixed(1)}s; --l: -${(rnd() * 8).toFixed(1)}s; ${glow}` };
+    });
+    const glints = [[40, 22, 14], [300, 96, 12], [190, 150, 9], [350, 30, 10]].map(([x, y, sz], i) => ({ size: sz, style: `left: ${x}px; top: ${y}px; --d: ${4 + i * 1.1}s; --l: -${i * 1.7}s; filter: drop-shadow(0 0 4px #FFFFFF);` }));
+    return {
+      stars, glints,
+      topics: sets[topicSet % sets.length],
+      refreshTopics: () => this.setState({ topicSet: topicSet + 1 }),
+      showSpark: sparkIdx >= 0,
+      spark: sparks[Math.max(0, sparkIdx) % sparks.length],
+      nextSpark: () => this.setState({ sparkIdx: sparkIdx + 1 }),
+      useSpark: () => this.setState({ draft: sparks[sparkIdx % sparks.length], sparkIdx: -1 }),
+      draft: this.state.draft,
+      onDraft: (e) => this.setState({ draft: e.target.value })
+    };
+  }
+}
+</script>
+</body>
+</html>
