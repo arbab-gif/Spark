@@ -1,0 +1,32 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="121.731" height="153.313" viewBox="0 0 121.731 153.313" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Spark mark (fades in, shards slide together, then glows)">
+<g id="Vector" filter="url(#filter0_d_0_26)">
+<path d="M96.8965 12L16 82.0416L53.7788 82.9899L96.8965 12Z" fill="white"/>
+</g>
+<g id="Vector_2" filter="url(#filter1_d_0_26)">
+<path d="M67.5879 67.9852L105.731 67.6648L27.166 133.313L67.5879 67.9852Z" fill="white"/>
+</g>
+</g>
+<defs>
+<filter id="filter0_d_0_26" x="7.15256e-07" y="-2.38419e-07" width="112.897" height="102.99" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="8"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.55 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_26"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_26" result="shape"/>
+</filter>
+<filter id="filter1_d_0_26" x="11.166" y="55.6648" width="110.565" height="97.6484" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="8"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.55 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_26"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_26" result="shape"/>
+</filter>
+</defs>
+</svg>

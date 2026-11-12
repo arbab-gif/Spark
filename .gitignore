@@ -7,3 +7,6 @@ figma-final-assets/preview-*.html
 # OS clutter
 .DS_Store
 Thumbs.db
+
+# Full-size Freepik hero original (1600px copy is committed)
+figma-final-assets/hero/get-started-friends.jpg
