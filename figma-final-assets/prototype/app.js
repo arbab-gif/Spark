@@ -20,9 +20,9 @@ const Q = {
   5: { q: 'What are your favorite film genres?', h: 'Pick genres, then add movies you love.', type: 'chips', movies: true, opts: ['Action', 'Adventure', 'Animation', 'Comedy', 'Crime', 'Documentaries', 'Drama', 'Family', 'Fantasy', 'Horror', 'Romance', 'Sci-Fi', 'Superhero', 'Thriller', 'Musicals', 'Indie'], def: ['Adventure', 'Comedy', 'Sci-Fi'] },
   6: { q: 'Do you collect anything, or have any favorite items, keepsakes, or prized possessions?', h: 'Big or small, tell us the story behind it.', type: 'text', max: 300, ph: 'I keep a jar of sea glass from every beach I’ve visited…', prompts: ['Something you’d save in a fire', 'A gift that means a lot', 'Something you’ve had forever'] },
   7: { q: 'How many close friendships do you feel you currently have?', h: 'No right answer. This helps us understand what you’re looking for.', type: 'choice', priv: 'Only used for matching, never shown on your profile', opts: [['None right now', 'I’m ready to build my circle'], ['1–2', 'A small, tight circle'], ['3–5', 'A solid group I can count on'], ['6 or more', 'My people are everywhere']], def: 1 },
-  8: { q: 'What are your favorite music genres?', h: 'Pick as many as you like.', type: 'chips', search: 'Search or add a genre…', opts: ['Pop', 'Indie', 'Hip-hop', 'R&B', 'Rock', 'Jazz', 'Country', 'Classical', 'Electronic', 'Lo-fi', 'Latin', 'K-pop', 'Soul', 'Folk', 'Metal', 'Afrobeats', 'Reggae', 'Blues'], def: ['Indie', 'R&B', 'Jazz', 'Lo-fi'] },
+  8: { q: 'What are your favorite music genres?', h: 'Pick genres, then add songs you love.', type: 'chips', songs: true, search: 'Search or add a genre…', opts: ['Pop', 'Indie', 'Hip-hop', 'R&B', 'Rock', 'Jazz', 'Country', 'Classical', 'Electronic', 'Lo-fi', 'Latin', 'K-pop', 'Soul', 'Folk', 'Metal', 'Afrobeats', 'Reggae', 'Blues'], def: ['Indie', 'R&B', 'Jazz', 'Lo-fi'] },
   9: { q: 'Where did you grow up, what was it like, and what did you love most about it?', h: 'A few lines is perfect.', type: 'text', max: 400, ph: 'A small coastal town… summers were all rock pools and fish and chips.', prompts: ['Your favorite spot there', 'A smell that takes you back', 'What you miss most'] },
-  10: { q: 'Which best describes your social energy?', h: 'Choose one.', type: 'choice', opts: [['I recharge alone', 'Quiet time fills my cup'], ['A bit of both', 'Depends on the people and the day'], ['People energize me', 'The more time with friends the better'], ['It changes a lot', 'Some weeks social, some weeks hermit']], def: 1 },
+  10: { q: 'Which best describes your social energy?', h: 'Choose one.', type: 'choice', opts: [['Small', 'I need quiet time to recharge'], ['Medium', 'Balance of people and alone time'], ['Full', 'People charge me up'], ['Unpredictable', 'Some weeks out, some weeks home']], def: 1 },
   11: { q: 'In a bookstore, what areas do you spend the most time in?', h: 'Pick as many as you like.', type: 'chips', opts: ['Fiction', 'Mystery & Thriller', 'Sci-fi & Fantasy', 'Romance', 'Biographies', 'History', 'Self-help', 'Travel', 'Cookbooks', 'Poetry', 'Comics & Manga', 'Science', 'Business', 'Art & Design', 'Philosophy', 'Kids’ books', 'I don’t read much'], def: ['Sci-fi & Fantasy', 'Travel', 'Cookbooks'] },
   12: { q: 'What’s a memorable meal or food experience you’ve had, and what made it special?', h: 'Where were you, who were you with?', type: 'text', max: 300, ph: 'Street-food ramen at 1am in Osaka after missing the last train…', prompts: ['A dish you’d travel for', 'Your comfort food', 'A meal with someone special'] },
   13: { q: 'How often do you feel lonely or disconnected from others?', h: 'Be honest. It helps us suggest the right kind of plans.', type: 'choice', priv: 'Private. Never shown on your profile.', opts: [['Rarely', 'I feel well connected'], ['Sometimes', 'Now and then, usually after big changes'], ['Often', 'I’d love more people around me'], ['Most days', 'I’m really looking for my people']], def: 1 },
@@ -48,7 +48,24 @@ const MOVIES = {
   Comedy: [['Superbad', '2007'], ['Bridesmaids', '2011'], ['The Grand Budapest Hotel', '2014'], ['Paddington 2', '2017'], ['Booksmart', '2019'], ['Game Night', '2018']],
   'Sci-Fi': [['Interstellar', '2014'], ['Arrival', '2016'], ['Dune movies', '2021 – 2024 · 2 films'], ['The Matrix', '1999'], ['Everything Everywhere All at Once', '2022'], ['Blade Runner 2049', '2017']],
 };
-const GENERIC_MOVIES = [['A classic you rewatch', 'Add your own'], ['Something recent', 'Add your own']];
+// "AI" song suggestions per genre (refresh rotates the order to feel like new picks)
+const SONGS = {
+  Indie: [['Motion Sickness', 'Phoebe Bridgers · 2017'], ['Electric Feel', 'MGMT · 2007'], ['Holocene', 'Bon Iver · 2011'], ['Heat Waves', 'Glass Animals · 2020'], ['Two Weeks', 'Grizzly Bear · 2009'], ['Sweater Weather', 'The Neighbourhood · 2012'], ['Kids', 'MGMT · 2007']],
+  'R&B': [['Redbone', 'Childish Gambino · 2016'], ['Thinkin Bout You', 'Frank Ocean · 2012'], ['Good Days', 'SZA · 2020'], ['Location', 'Khalid · 2016'], ['Best Part', 'Daniel Caesar · 2017']],
+  Jazz: [['Take Five', 'Dave Brubeck · 1959'], ['So What', 'Miles Davis · 1959'], ['Feeling Good', 'Nina Simone · 1965'], ['Fly Me to the Moon', 'Frank Sinatra · 1964'], ['Blue in Green', 'Bill Evans · 1959']],
+  'Lo-fi': [['Snowman', 'WYS · 2017'], ['Coffee', 'Beabadoobee · 2017'], ['Affection', 'Jinsang · 2016'], ['Feather', 'Nujabes · 2005']],
+};
+// stock images (free Freepik previews) used as poster / cover art
+const MOVIE_IMG = { 'Indiana Jones movies': 'm-indiana', 'Jurassic Park movies': 'm-jurassic', 'Pirates of the Caribbean': 'm-pirates', 'The Lord of the Rings': 'm-lotr', 'Jumanji': 'm-jumanji', 'The Mummy': 'm-mummy', 'Life of Pi': 'm-lifeofpi' };
+const SONG_IMG = { 'Motion Sickness': 's-motion', 'Electric Feel': 's-electric', 'Holocene': 's-holocene', 'Heat Waves': 's-heat', 'Two Weeks': 's-twoweeks', 'Sweater Weather': 's-sweater', 'Kids': 's-kids' };
+const img = n => `url(${A('covers/' + n + '.jpg')}) center/cover`;
+const COVER = [['#FF8A5B', '#E5483A'], ['#B9A6FF', '#6C4CD9'], ['#7AD5FE', '#2F7FC1'], ['#FFC46B', '#FF6B5A'], ['#6EE7B7', '#1D8F6A'], ['#C9C9C9', '#4A4A4A'], ['#F4C0D1', '#D4537E']];
+function songsFor(g) {
+  const base = SONGS[g] || [['A song you love', 'Add your own'], ['Something on repeat', 'Add your own']];
+  const k = (S.songSeed || 0) % base.length, rot = base.slice(k).concat(base.slice(0, k));
+  return rot.map(([t, m], i) => [t, m, COVER[(i + k) % COVER.length]]);
+}
+const GENERIC_MOVIES =[['A classic you rewatch', 'Add your own'], ['Something recent', 'Add your own']];
 
 /* ---------------- state ---------------- */
 let S;
@@ -63,8 +80,9 @@ function freshState() {
     else if (q.type === 'qText') ans[n] = { pairs: [{ q: '', text: '' }] };
     else ans[n] = { text: '' };
   }
+  ans[8].songs = { Indie: ['Motion Sickness', 'Electric Feel', 'Holocene'], 'R&B': ['Redbone'], Jazz: ['Take Five'] };
   ans[5].movies = { Adventure: ['Indiana Jones movies', 'Jurassic Park movies', 'Pirates of the Caribbean'], 'Sci-Fi': ['Interstellar'] };
-  return { ans, skipped: {}, mode: 'full', path: 'complete', photos: ['77daf.png', '77daf.png'], otp: ['4', '8', '2', '', '', ''], code2: ['', '', '', '', '', ''], dob: ['', '', ''], terms: true, gender: 'Man', showGender: true, who: 'Everyone', age: [22, 34], pw1: 'Spirlit2026', pw2: '', sparks: { 1: 1, 2: 1, 7: 1 }, reqs: [1, 1], chat: null, promptIx: 0, tab: 'Adventure', mq: '' };
+  return { ans, skipped: {}, mode: 'full', path: 'complete', photos: ['77daf.png', '77daf.png'], otp: ['4', '8', '2', '', '', ''], code2: ['', '', '', '', '', ''], dob: ['', '', ''], terms: true, gender: 'Man', showGender: true, who: 'Everyone', ages: ['25 to 34', '35 to 44'], ageFlex: true, pw1: 'Spirlit2026', pw2: '', sparks: { 1: 1, 2: 1, 7: 1 }, reqs: [1, 1], chat: null, promptIx: 0, tab: 'Adventure', mq: '' };
 }
 S = freshState();
 function answered(n) {
@@ -178,7 +196,18 @@ const SCREENS = {
       title: 'Who do you want<br>to spark with?', sub: 'Spirlit is for friendships. Choose who you’d like to meet.',
       body: `<div class="lgroup">${[['Women', 'venus'], ['Men', 'mars'], ['Everyone', 'users']].map(([o, ic]) => `<button class="lopt ${S.who === o ? 'on' : ''}" data-a="who:${o}" role="radio" aria-checked="${S.who === o}"><span class="ltile">${GICON[ic]}</span><span class="tx"><b>${o}</b></span><span class="lradio"></span></button>`).join('')}</div>
         <div class="note">${I('shield', 18)}<span>You can change this anytime in Settings.</span></div>`,
-      foot: btn('Continue', 'go:photos', '', !S.who),
+      foot: btn('Continue', 'go:agegroup', '', !S.who),
+    }),
+  },
+  agegroup: {
+    t: 'Age group', g: 'Sign up', cls: 'light on-light',
+    html: () => lightScreen({
+      title: 'What age group do<br>you want to meet?', sub: 'Pick one or more. We’ll show you people in these ages.',
+      body: `<div class="lgroup" style="gap:18px">
+        <div class="brackets" role="group" aria-label="Age groups">${['18 to 24', '25 to 34', '35 to 44', '45 to 54', '55 or above'].map(b => { const on = S.ages.includes(b); return `<button class="bracket ${on ? 'on' : ''}" data-a="agebr:${b}" role="checkbox" aria-checked="${on}"><span>${b}</span><i class="bbox">${I('check', 15)}</i></button>`; }).join('')}</div>
+        <button class="lswitch-row" data-a="ageflex" role="switch" aria-checked="${S.ageFlex}"><span><span style="display:block">Show people slightly outside my range</span><small style="display:block;font-size:13px;font-weight:400;color:var(--n600);margin-top:2px">A few years either side, when there’s a great match</small></span><span class="lswitch ${S.ageFlex ? 'on' : ''}"></span></button></div>
+        ${S.ages.length ? '' : '<p class="err">Pick at least one age group.</p>'}`,
+      foot: btn('Continue', 'go:photos', '', !S.ages.length),
     }),
   },
   photos: {
@@ -382,9 +411,9 @@ const SCREENS = {
       return `<img class="stars" src="${A('24429.svg')}" alt="">${status('dark')}
         <div class="chat-h"><button class="bk" data-a="back" aria-label="Back"><img src="${A('a323a.svg')}" width="22" height="22" alt=""></button><div class="av"><img src="${A('28da5.png')}" alt="Sarah"><img class="i" src="${A('328f2.svg')}" style="position:absolute;right:-2px;bottom:3px;width:11px;height:11px" alt=""></div><div><b>Sarah</b><span>Online · 850 ft away</span></div></div>
         <div class="topics">${['Film cameras', 'Sunrise spots', 'Coffee'].map(t => `<button data-a="topic:${t}">${t}</button>`).join('')}</div>
-        <div class="msgs" data-msgs><span class="day">Today</span>${S.chat.map(([w, t]) => `<div class="bub ${w}">${esc(t)}</div>`).join('')}</div>
+        <div class="msgs" data-msgs><span class="day">Today</span>${S.chat.map(m => chatBubble(...m)).join('')}</div>
         <button class="sprompt" data-a="useprompt"><span class="bt"><img src="${A('fc141.png')}" alt=""></span><span data-ptxt>${PROMPTS[S.promptIx]}</span><span class="rl" data-a="reload" role="button" aria-label="New prompt"><img src="${A('6c11d.svg')}" width="24" height="24" alt=""></span></button>
-        <div class="composer"><button class="pl" data-a="toast:Photo sharing coming soon" aria-label="Add photo"><img src="${A('280df.svg')}" width="20" height="20" alt=""></button><input data-msg placeholder="Message Sarah…" aria-label="Message"><button class="sd" data-a="send" aria-label="Send"><img src="${A('4907e.svg')}" width="24" height="24" alt=""></button></div>
+        <div class="composer"><button class="pl" data-a="sendphoto" aria-label="Send a photo"><img src="${A('280df.svg')}" width="20" height="20" alt=""></button><input data-msg placeholder="Message Sarah…" aria-label="Message"><button class="sd" data-a="send" aria-label="Send"><img src="${A('4907e.svg')}" width="24" height="24" alt=""></button></div>
         ${homeInd()}`;
     },
     after: el => { const m = el.querySelector('[data-msgs]'); m.scrollTop = m.scrollHeight; el.querySelector('[data-msg]').addEventListener('keydown', e => { if (e.key === 'Enter') act('send'); }); },
@@ -433,11 +462,21 @@ SCREENS.q5movies = { t: 'Q5 · Pick movies', g: 'Chapter 1 · What you love', hi
 function seq() { return S.mode === 'quick' ? ['quick', ...QUICK.map(n => 'q' + n), 'done'] : ['ch1', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'ch2', 'q7', 'q8', 'q9', 'q10', 'q11', 'q12', 'ch3', 'q13', 'q14', 'q15', 'q16', 'q17', 'q18', 'ch4', 'q19', 'q20', 'q21', 'q22', 'q23', 'q24', 'q25', 'done']; }
 function nextOf(id) { const s = seq(), i = s.indexOf(id); return i >= 0 ? s[i + 1] : (S.mode === 'quick' ? 'done' : null); }
 
+/* Nebula background (client feedback): slow-drifting blurred colour glows behind dark screens.
+   The negative delay keeps the drift continuous across screen changes instead of restarting. */
+const NEBS = [['deep', 'Deep Sea'], ['aurora', 'Aurora'], ['nebula', 'Nebula'], ['dawn', 'Dawn'], ['off', 'Off (flat)']];
+let NEB = 'deep'; try { NEB = localStorage.getItem('spirlit-neb') || 'deep'; } catch (e) { }
+function nebula() {
+  if (NEB === 'off') return `<span class="shine" style="left:139px;top:-93px;width:340px;height:257px;background:#DDF82E"></span><span class="shine" style="left:-91px;top:487px;width:498px;height:331px;background:#7AD5FE;opacity:.12"></span>`;
+  const t = -(performance.now() / 1000 % 120).toFixed(2);
+  return `<div class="neb" aria-hidden="true" style="--t:${t}s"><i></i><i></i><i></i><i></i>${NEB === 'nebula' ? '<b class="stars"></b>' : ''}</div>`;
+}
+function setNeb(v) { NEB = v; document.body.dataset.neb = v; try { localStorage.setItem('spirlit-neb', v); } catch (e) { } document.querySelectorAll('.nebsw button').forEach(b => b.classList.toggle('on', b.dataset.neb === v)); if (currentEl() && currentEl().classList.contains('dark')) refresh(); }
 function darkFrame({ ch, frac, pill, q, h, body, next, act = 'next', counter, top = '', skip = null }) {
   const cur = SCREENS[current]; // progress: chapters complete + position inside
   const segs = [0, 1, 2, 3].map(i => { let f = 0; if (ch >= 0) { if (i < ch) f = 1; else if (i === ch) f = frac ?? .5; } return `<i><b style="transform:scaleX(${f})"></b></i>`; }).join('');
   const size = q.length > 95 ? 's' : q.length > 60 ? 'm' : 'l';
-  return `<span class="shine" style="left:139px;top:-93px;width:340px;height:257px;background:#DDF82E"></span><span class="shine" style="left:-91px;top:487px;width:498px;height:331px;background:#7AD5FE;opacity:.12"></span>
+  return `${nebula()}
    ${status('white')}<div class="hdr">${backBtn()}<div class="prog" style="${ch < 0 ? 'opacity:0' : ''}">${segs}</div><button class="cnt" data-a="go:all" aria-label="All questions">${counter ?? ''}</button></div>
    <div class="content">${top}<div class="title" style="gap:12px"><div class="pill">${pill}</div><h1 class="q ${size}">${q}</h1>${h ? `<p class="helper">${h}</p>` : ''}</div><div class="ans">${body}</div></div>
    <div class="dfoot"><div class="actions">${skip ? `<button class="btn skipbtn" data-a="skip:${skip}">Skip</button>` : ''}<button class="btn" data-a="${act}">${next} ${arrow()}</button></div>${homeInd()}</div>`;
@@ -455,6 +494,7 @@ function questionScreen(n, ci) {
     const all = [...q.opts, ...a.extra];
     if (q.search) body += `<div class="search">${I('search', 18)}<input data-search="${n}" placeholder="${q.search}" aria-label="${q.search}"><button class="add" data-a="addchip:${n}">${I('plus', 16)}Add</button></div>`;
     body += `<div data-chiparea>${chipsHtml(all, q.icons ? 'grid2' : '')}</div>`;
+    if (q.songs) { const tot = Object.values(a.songs || {}).reduce((x, y) => x + y.length, 0); body += `<button class="movrow" data-a="songs">${I('music', 18)}<span>${tot ? `${tot} songs picked · ${Object.entries(a.songs).filter(([g, v]) => v.length && a.sel.includes(g)).map(([g, v]) => `${g} ${v.length}`).join(', ')}` : 'Add songs you love for each genre'}</span><em>${tot ? 'Edit' : 'Add'}</em></button>`; }
     if (q.movies) { const tot = Object.values(a.movies || {}).reduce((x, y) => x + y.length, 0); body += `<button class="movrow" data-a="movies">${I('clapperboard', 18)}<span>${tot ? `${tot} movies picked · ${Object.entries(a.movies).filter(([, v]) => v.length).map(([g, v]) => `${g} ${v.length}`).join(', ')}` : 'Add movies you love for each genre'}</span><em>${tot ? 'Edit' : 'Add'}</em></button>`; }
     if (q.type === 'chipsText') body += textArea(n, a.text, q.max, q.ph, [], 150);
   } else if (q.type === 'choice') {
@@ -561,18 +601,24 @@ function iosAlert(title, text, onAllow) {
   document.querySelector('.vp').appendChild(w);
 }
 function openSheet() {
-  const el = currentEl(), a = S.ans[5]; a.movies = a.movies || {};
-  const genres = a.sel.length ? a.sel : ['Adventure']; if (!genres.includes(S.tab)) S.tab = genres[0];
-  const list = (MOVIES[S.tab] || GENERIC_MOVIES).filter(m => m[0].toLowerCase().includes(S.mq.toLowerCase()));
-  const picked = a.movies[S.tab] || [];
-  const tot = Object.values(a.movies).reduce((x, y) => x + y.length, 0);
+  const songs = S.sheetKind === 'songs', el = currentEl(), a = S.ans[songs ? 8 : 5], key = songs ? 'songs' : 'movies'; a[key] = a[key] || {};
+  const genres = a.sel.length ? a.sel : [songs ? 'Indie' : 'Adventure']; if (!genres.includes(S.tab)) S.tab = genres[0];
+  const all = songs ? songsFor(S.tab) : (MOVIES[S.tab] || GENERIC_MOVIES);
+  const list = all.filter(m => m[0].toLowerCase().includes(S.mq.toLowerCase()));
+  const picked = a[key][S.tab] || [];
+  const tot = Object.values(a[key]).reduce((x, y) => x + y.length, 0);
+  const noun = songs ? 'song' : 'movie';
   let sh = el.querySelector('.sheet');
-  const html = `<div class="grab"></div><div class="in"><div class="sh"><div><b>Pick your movies</b><span>Add favorites for each genre you chose</span></div><button class="x" data-a="closesheet" aria-label="Close">${I('x', 16)}</button></div>
-    <div class="tabs">${genres.map(g => `<button class="tab ${g === S.tab ? 'on' : ''}" data-a="mtab:${esc(g)}">${esc(g)}<i>${(a.movies[g] || []).length}</i></button>`).join('')}</div>
-    <div class="search">${I('search', 18)}<input data-mq value="${esc(S.mq)}" placeholder="Search ${esc(S.tab)} movies…" aria-label="Search movies"><button class="add" data-a="toast:Custom movie added">${I('plus', 16)}Add</button></div>
-    <div class="movies">${list.map(([m, meta]) => { const on = picked.includes(m); return `<button class="movie ${on ? 'on' : ''}" data-a="movie:${esc(m)}" aria-pressed="${on}"><span class="pst">${I('film', 18)}</span><span class="tx"><b>${esc(m)}</b><span>${meta}</span></span><span class="dbox ${on ? 'on' : ''}">${I('check', 14)}</span></button>`; }).join('') || '<p class="helper">No matches. Tap Add to add your own.</p>'}</div></div>
-    <div class="sfoot"><button class="btn" data-a="closesheet">Done · ${tot} movie${tot === 1 ? '' : 's'} ${arrow()}</button>${homeInd()}</div>`;
-  if (!sh) { const sc = document.createElement('div'); sc.className = 'scrim'; sc.dataset.a = 'closesheet'; sh = document.createElement('div'); sh.className = 'sheet'; sh.setAttribute('role', 'dialog'); sh.setAttribute('aria-label', 'Pick your movies'); el.append(sc, sh); }
+  const row = ([m, meta, c]) => { const on = picked.includes(m); return songs
+    ? `<div class="movie song ${on ? 'on' : ''}"><button class="hit" data-a="movie:${esc(m)}" aria-pressed="${on}">${SONG_IMG[m] ? `<span class="cover" style="background:${img(SONG_IMG[m])}"></span>` : `<span class="cover" style="background:linear-gradient(135deg,${c[0]},${c[1]})">${I('music', 18)}</span>`}<span class="tx"><b>${esc(m)}</b><span>${meta}</span></span></button><button class="play ${S.playing === m ? 'on' : ''}" data-a="play:${esc(m)}" aria-label="Preview ${esc(m)}">${I(S.playing === m ? 'pause' : 'play', 13)}</button><button class="dbox ${on ? 'on' : ''}" data-a="movie:${esc(m)}" aria-label="Pick ${esc(m)}">${I('check', 14)}</button></div>`
+    : `<button class="movie ${on ? 'on' : ''}" data-a="movie:${esc(m)}" aria-pressed="${on}">${MOVIE_IMG[m] ? `<span class="pst poster" style="background:${img(MOVIE_IMG[m])}"></span>` : `<span class="pst">${I('film', 18)}</span>`}<span class="tx"><b>${esc(m)}</b><span>${meta}</span></span><span class="dbox ${on ? 'on' : ''}">${I('check', 14)}</span></button>`; };
+  const html = `<div class="grab"></div><div class="in"><div class="sh"><div><b>Pick your ${noun}s${songs ? ` <em class="aibadge">${I('sparkles', 12)}AI picks</em>` : ''}</b><span>${songs ? 'Suggested from the genres you chose' : 'Add favorites for each genre you chose'}</span></div><button class="x" data-a="closesheet" aria-label="Close">${I('x', 16)}</button></div>
+    <div class="tabs">${genres.map(g => `<button class="tab ${g === S.tab ? 'on' : ''}" data-a="mtab:${esc(g)}">${esc(g)}<i>${(a[key][g] || []).length}</i></button>`).join('')}</div>
+    <div class="search">${I('search', 18)}<input data-mq value="${esc(S.mq)}" placeholder="Search ${esc(S.tab)} ${noun}s…" aria-label="Search ${noun}s"><button class="add" data-a="toast:Custom ${noun} added">${I('plus', 16)}Add</button></div>
+    ${songs ? `<button class="refresh" data-a="refreshsongs">${I('refresh-cw', 14)}Refresh suggestions<span>· ${all.length} picks for ${esc(S.tab)}</span></button>` : ''}
+    <div class="movies">${list.map(row).join('') || '<p class="helper">No matches. Tap Add to add your own.</p>'}</div></div>
+    <div class="sfoot"><button class="btn" data-a="closesheet">Done · ${tot} ${noun}${tot === 1 ? '' : 's'} ${arrow()}</button>${homeInd()}</div>`;
+  if (!sh) { const sc = document.createElement('div'); sc.className = 'scrim'; sc.dataset.a = 'closesheet'; sh = document.createElement('div'); sh.className = 'sheet'; sh.setAttribute('role', 'dialog'); sh.setAttribute('aria-label', `Pick your ${noun}s`); el.append(sc, sh); }
   const keepFocus = document.activeElement && document.activeElement.matches('[data-mq]'); const caret = keepFocus ? document.activeElement.selectionStart : 0;
   sh.innerHTML = html; lucide.createIcons();
   const q = sh.querySelector('[data-mq]'); q.addEventListener('input', () => { S.mq = q.value; openSheet(); });
@@ -596,6 +642,8 @@ function act(a, target) {
     case 'gender': S.gender = v; return refresh();
     case 'showgender': S.showGender = !S.showGender; return refresh();
     case 'who': S.who = v; return refresh();
+    case 'agebr': { const i = S.ages.indexOf(v); i >= 0 ? S.ages.splice(i, 1) : S.ages.push(v); return refresh(); }
+    case 'ageflex': S.ageFlex = !S.ageFlex; return refresh();
     case 'eye': { const inp = target.closest('.input').querySelector('input'); inp.type = inp.type === 'password' ? 'text' : 'password'; target.closest('.eye').innerHTML = I(inp.type === 'password' ? 'eye' : 'eye-off', 20); lucide.createIcons(); return; }
     case 'verify': case 'verify2': { const key = k === 'verify' ? 'otp' : 'code2'; if (S[key].join('').length < 6) { const o = currentEl().querySelector('.otp'); o.classList.remove('shake'); void o.offsetWidth; o.classList.add('shake'); toast('Enter all 6 digits'); return; } return go(k === 'verify' ? 'birthday' : 'newpass'); }
     case 'reset': toast('Password updated'); S.code2 = ['', '', '', '', '', '']; hist = hist.filter(h => !['forgot', 'code', 'newpass', 'login'].includes(h)); return go('login', 'fade');
@@ -606,7 +654,7 @@ function act(a, target) {
     case 'startpath': S.mode = S.path === 'quick' ? 'quick' : 'full'; return go(S.mode === 'quick' ? 'quick' : 'ch1');
     case 'quickgo': S.mode = 'quick'; return go('q1');
     case 'goq': { if (S.mode === 'quick' && !QUICK.includes(n)) S.mode = 'full'; return go('q' + n); }
-    case 'chip': { const a2 = S.ans[n], o = r.slice(1).join(':'); const i = a2.sel.indexOf(o); i >= 0 ? a2.sel.splice(i, 1) : a2.sel.push(o); target.closest('.chip').classList.toggle('on', i < 0); target.closest('.chip').setAttribute('aria-pressed', i < 0); if (Q[n].movies) refreshKeep(); return; }
+    case 'chip': { const a2 = S.ans[n], o = r.slice(1).join(':'); const i = a2.sel.indexOf(o); i >= 0 ? a2.sel.splice(i, 1) : a2.sel.push(o); target.closest('.chip').classList.toggle('on', i < 0); target.closest('.chip').setAttribute('aria-pressed', i < 0); if (Q[n].movies || Q[n].songs) refreshKeep(); return; }
     case 'addchip': { const inp = currentEl().querySelector('[data-search]'); const val = (inp && inp.value.trim()) || ''; if (!val) { inp && inp.focus(); return toast('Type something to add'); } const a2 = S.ans[n]; if (![...Q[n].opts, ...a2.extra].some(o => o.toLowerCase() === val.toLowerCase())) a2.extra.push(val); if (!a2.sel.includes(val)) a2.sel.push(val); return refreshKeep(); }
     case 'opt': { S.ans[n].sel = +r[1]; currentEl().querySelectorAll('.opt').forEach((o, i) => { o.classList.toggle('on', i === +r[1]); o.setAttribute('aria-checked', i === +r[1]); }); return; }
     case 'pick': { const p = S.ans[n].picks, o = r.slice(1).join(':'); o in p ? delete p[o] : (p[o] = ''); return refreshKeep(); }
@@ -618,18 +666,35 @@ function act(a, target) {
     case 'seg': S.ans[23].vis = +v; return refreshKeep();
     case 'qaadd': { const P = S.ans[24].pairs; if (P.length >= 3) return; P.push({ q: '', text: '' }); refreshKeep(); const el = currentEl(), c = el.querySelector('.content'); c.scrollTo({ top: c.scrollHeight, behavior: 'smooth' }); el.querySelector(`[data-qq="${P.length - 1}"]`).focus({ preventScroll: true }); return; }
     case 'qadel': S.ans[24].pairs.splice(+v, 1); return refreshKeep();
-    case 'movies': S.mq = ''; return openSheet();
+    case 'movies': S.sheetKind = 'movies'; S.tab = ''; S.mq = ''; return openSheet();
+    case 'songs': S.sheetKind = 'songs'; S.tab = ''; S.mq = ''; S.playing = null; return openSheet();
     case 'mtab': S.tab = v; S.mq = ''; return openSheet();
-    case 'movie': { const a2 = S.ans[5]; a2.movies[S.tab] = a2.movies[S.tab] || []; const L = a2.movies[S.tab], i = L.indexOf(v); i >= 0 ? L.splice(i, 1) : L.push(v); return openSheet(); }
+    case 'movie': { const songs = S.sheetKind === 'songs', a2 = S.ans[songs ? 8 : 5], k = songs ? 'songs' : 'movies'; a2[k][S.tab] = a2[k][S.tab] || []; const L = a2[k][S.tab], i = L.indexOf(v); i >= 0 ? L.splice(i, 1) : L.push(v); return openSheet(); }
+    case 'play': { S.playing = S.playing === v ? null : v; if (S.playing) toast('Playing a 30-second preview'); return openSheet(); }
+    case 'refreshsongs': { S.songSeed = (S.songSeed || 0) + 1; toast('New AI picks for ' + S.tab); return openSheet(); }
     case 'closesheet': return closeSheet();
     case 'bolt': { S.sparks[n] = !S.sparks[n]; target.closest('.bolt').classList.toggle('sent', !!S.sparks[n]); if (S.sparks[n]) toast('Spark sent ⚡'); return; }
     case 'card': return go('match');
     case 'req': { const row = currentEl().querySelector(`[data-req="${n}"]`); row.classList.add('gone'); S.reqs[n] = 0; toast(+r[1] ? 'Connected! Say hi in Chats' : 'Request declined'); setTimeout(refreshKeep, 320); return; }
     case 'send': return sendMsg();
+    case 'sendphoto': return sendPhoto();
     case 'topic': { const i = currentEl().querySelector('[data-msg]'); i.value = `Tell me about ${v.toLowerCase()}!`; i.focus(); return; }
     case 'reload': { S.promptIx = (S.promptIx + 1) % PROMPTS.length; const el = currentEl(); el.querySelector('[data-ptxt]').textContent = PROMPTS[S.promptIx]; const rl = el.querySelector('.rl'); rl.style.transform = `rotate(${(rl._r = (rl._r || 0) + 360)}deg)`; return; }
     case 'useprompt': { const i = currentEl().querySelector('[data-msg]'); i.value = PROMPTS[S.promptIx]; i.focus(); return; }
   }
+}
+// chat bubbles: text, or a photo with caption ('photo' kind)
+function chatBubble(w, t, kind) {
+  if (kind === 'photo') return `<p class="replyctx">${I('corner-up-left', 12)}Replying to the Spark prompt</p><div class="bub out photo"><span class="ph" style="background:url(${A('covers/chat-harbour.jpg')}) center/cover"></span><span class="cap">${esc(t)}</span></div><p class="delivered">Delivered · 9:42 ${I('check-check', 14)}</p>`;
+  return `<div class="bub ${w}">${esc(t)}</div>`;
+}
+function sendPhoto() {
+  const el = currentEl(), m = el.querySelector('[data-msgs]');
+  const cap = 'Harbour at 6am, shot on film 🌅';
+  S.chat.push(['out', cap, 'photo']);
+  m.insertAdjacentHTML('beforeend', chatBubble('out', cap, 'photo') + '<div class="typing"><i></i><i></i><i></i></div>'); lucide.createIcons(); m.scrollTop = m.scrollHeight;
+  const sp = el.querySelector('.sprompt'); if (sp) sp.style.display = 'none';
+  setTimeout(() => { if (current !== 'chat') return; const r = 'Wow, those colours! 😍 Photo walk Saturday?'; S.chat.push(['in', r]); const ty = m.querySelector('.typing'); ty && ty.remove(); m.insertAdjacentHTML('beforeend', `<div class="bub in">${esc(r)}</div>`); m.scrollTop = m.scrollHeight; }, 1500);
 }
 function sendMsg() {
   const el = currentEl(), inp = el.querySelector('[data-msg]'), t = inp.value.trim(); if (!t) return inp.focus();
@@ -685,7 +750,7 @@ function back() { if (currentEl() && currentEl().querySelector('.sheet')) return
 /* ---------------- shell ---------------- */
 function shell() {
   const nav = document.getElementById('nav'); let g = '';
-  const ORDER = ['splash', 'getstarted', 'signup', 'verify', 'birthday', 'gender', 'sparkwith', 'photos', 'location', 'notifications', 'login', 'forgot', 'code', 'newpass', 'pstart', 'quick',
+  const ORDER = ['splash', 'getstarted', 'signup', 'verify', 'birthday', 'gender', 'sparkwith', 'agegroup', 'photos', 'location', 'notifications', 'login', 'forgot', 'code', 'newpass', 'pstart', 'quick',
     'ch1', 'q1', 'q2', 'q3', 'q4', 'q5', 'q6', 'ch2', 'q7', 'q8', 'q9', 'q10', 'q11', 'q12', 'ch3', 'q13', 'q14', 'q15', 'q16', 'q17', 'q18', 'ch4', 'q19', 'q20', 'q21', 'q22', 'q23', 'q24', 'q25', 'done', 'all', 'home', 'nearby', 'match', 'chats', 'chat', 'qr'];
   ORDER.map(id => [id, SCREENS[id]]).forEach(([id, d]) => {
     if (!d || d.hidden) return;
@@ -693,6 +758,9 @@ function shell() {
     nav.insertAdjacentHTML('beforeend', `<button class="it" data-id="${id}">${d.t}</button>`);
   });
   nav.addEventListener('click', e => { const b = e.target.closest('.it'); if (b) { if (b.dataset.id === 'quick') S.mode = 'quick'; else if (/^(ch\d|q\d+)$/.test(b.dataset.id)) S.mode = 'full'; go(b.dataset.id, 'fade'); } });
+  document.querySelector('.side .ctl').insertAdjacentHTML('afterend', `<div class="nebsw"><span>Background</span><div>${NEBS.map(([k, l]) => `<button data-neb="${k}" class="${k === NEB ? 'on' : ''}">${l}</button>`).join('')}</div></div>`);
+  document.querySelector('.nebsw').addEventListener('click', e => { const b = e.target.closest('[data-neb]'); if (b) setNeb(b.dataset.neb); });
+  document.body.dataset.neb = NEB;
   document.getElementById('bBack').onclick = back;
   document.getElementById('bReset').onclick = () => { S = freshState(); hist = []; show('splash', 1, 'fade'); };
   addEventListener('keydown', e => { if (e.target.matches('input,textarea')) return; if (e.key === 'ArrowLeft') back(); });
