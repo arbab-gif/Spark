@@ -464,14 +464,12 @@ function nextOf(id) { const s = seq(), i = s.indexOf(id); return i >= 0 ? s[i + 
 
 /* Nebula background (client feedback): slow-drifting blurred colour glows behind dark screens.
    The negative delay keeps the drift continuous across screen changes instead of restarting. */
-const NEBS = [['deep', 'Deep Sea'], ['aurora', 'Aurora'], ['nebula', 'Nebula'], ['dawn', 'Dawn'], ['off', 'Off (flat)']];
-let NEB = 'deep'; try { NEB = localStorage.getItem('spirlit-neb') || 'deep'; } catch (e) { }
+const NEB = 'deep'; // Deep Sea is the chosen background (other palettes stay in styles.css for reference)
 function nebula() {
   if (NEB === 'off') return `<span class="shine" style="left:139px;top:-93px;width:340px;height:257px;background:#DDF82E"></span><span class="shine" style="left:-91px;top:487px;width:498px;height:331px;background:#7AD5FE;opacity:.12"></span>`;
   const t = -(performance.now() / 1000 % 120).toFixed(2);
   return `<div class="neb" aria-hidden="true" style="--t:${t}s"><i></i><i></i><i></i><i></i>${NEB === 'nebula' ? '<b class="stars"></b>' : ''}</div>`;
 }
-function setNeb(v) { NEB = v; document.body.dataset.neb = v; try { localStorage.setItem('spirlit-neb', v); } catch (e) { } document.querySelectorAll('.nebsw button').forEach(b => b.classList.toggle('on', b.dataset.neb === v)); if (currentEl() && currentEl().classList.contains('dark')) refresh(); }
 function darkFrame({ ch, frac, pill, q, h, body, next, act = 'next', counter, top = '', skip = null }) {
   const cur = SCREENS[current]; // progress: chapters complete + position inside
   const segs = [0, 1, 2, 3].map(i => { let f = 0; if (ch >= 0) { if (i < ch) f = 1; else if (i === ch) f = frac ?? .5; } return `<i><b style="transform:scaleX(${f})"></b></i>`; }).join('');
@@ -758,8 +756,6 @@ function shell() {
     nav.insertAdjacentHTML('beforeend', `<button class="it" data-id="${id}">${d.t}</button>`);
   });
   nav.addEventListener('click', e => { const b = e.target.closest('.it'); if (b) { if (b.dataset.id === 'quick') S.mode = 'quick'; else if (/^(ch\d|q\d+)$/.test(b.dataset.id)) S.mode = 'full'; go(b.dataset.id, 'fade'); } });
-  document.querySelector('.side .ctl').insertAdjacentHTML('afterend', `<div class="nebsw"><span>Background</span><div>${NEBS.map(([k, l]) => `<button data-neb="${k}" class="${k === NEB ? 'on' : ''}">${l}</button>`).join('')}</div></div>`);
-  document.querySelector('.nebsw').addEventListener('click', e => { const b = e.target.closest('[data-neb]'); if (b) setNeb(b.dataset.neb); });
   document.body.dataset.neb = NEB;
   document.getElementById('bBack').onclick = back;
   document.getElementById('bReset').onclick = () => { S = freshState(); hist = []; show('splash', 1, 'fade'); };
