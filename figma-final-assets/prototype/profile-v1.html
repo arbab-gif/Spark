@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spirlit · User profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..900&family=Outfit:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dark:#053B65; --light:#7AD5FE; --light-12:rgba(122,213,254,.18); --light-30:rgba(122,213,254,.38);
+  --n50:#FAFAFA; --n100:#F5F5F5; --n200:#E6E6E6; --n300:#D6D6D6; --n400:#A5A5A5; --n500:#767676;
+  --n600:#575757; --n700:#434343; --n800:#2D2D2D; --n900:#1A1A1A;
+  --card:#FFFFFF; --line:rgba(5,59,101,.08); --warn:#B4441F; --warn-bg:#FFF1EC;
+  --shadow:0 1px 2px rgba(5,59,101,.05), 0 8px 24px rgba(5,59,101,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font:14px/1.45 Inter,system-ui,sans-serif;color:var(--n700);background:#E9EEF4;display:flex;gap:40px;justify-content:center;align-items:flex-start;padding:32px 16px;min-height:100%}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+
+/* ---------- side panel (preview controls, not part of the app) ---------- */
+.side{width:300px;flex:none;position:sticky;top:32px}
+.side .brand{font:600 15px Outfit,sans-serif;letter-spacing:.22em;color:var(--dark)}
+.side h1{font-size:20px;color:var(--n900);margin:6px 0 4px;letter-spacing:-.01em}
+.side p{margin:0 0 18px;color:var(--n600);font-size:13px}
+.grp{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--n500);margin:18px 0 8px}
+.seg{display:flex;flex-direction:column;gap:6px}
+.seg button{text-align:left;padding:10px 12px;border-radius:12px;background:#fff;border:1px solid var(--n200);font-size:13px}
+.seg button b{display:block;color:var(--n900);font-weight:600}
+.seg button span{color:var(--n500);font-size:12px}
+.seg button[aria-pressed=true]{border-color:var(--dark);box-shadow:inset 0 0 0 1px var(--dark)}
+.map{font-size:12px;color:var(--n600);background:#fff;border:1px solid var(--n200);border-radius:12px;padding:10px 12px}
+.map div{display:flex;justify-content:space-between;gap:10px;padding:4px 0;border-bottom:1px dashed var(--n200)}
+.map div:last-child{border:0}
+.map b{color:var(--n800);font-weight:600}
+
+/* ---------- phone ---------- */
+.phone{width:390px;height:844px;flex:none;border-radius:48px;background:#000;padding:10px;box-shadow:0 30px 80px rgba(5,59,101,.25)}
+.screen{position:relative;width:100%;height:100%;border-radius:40px;overflow:hidden;background:linear-gradient(180deg,#DDEBF7 0%,#EEF4FA 40%,#F7F9FC 100%)}
+.status{position:absolute;inset:0 0 auto;height:46px;transition:background .2s,box-shadow .2s;display:flex;justify-content:space-between;align-items:center;padding:0 28px 0 32px;font-weight:600;font-size:15px;color:var(--n900);z-index:6;pointer-events:none}
+.status i{display:inline-flex;gap:5px;align-items:center}
+.status.solid{background:#EEF4FA}
+.scroll{position:absolute;inset:0;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;padding-bottom:120px}
+.scroll::-webkit-scrollbar{display:none}
+
+/* hero */
+.hero{position:relative;padding:54px 20px 18px;text-align:center}
+.hero::before{content:"";position:absolute;inset:0 0 auto;height:220px;background:
+  radial-gradient(2px 2px at 40px 90px,#fff 50%,transparent 51%),
+  radial-gradient(1.5px 1.5px at 330px 70px,#fff 50%,transparent 51%),
+  radial-gradient(2px 2px at 300px 160px,#fff 50%,transparent 51%),
+  radial-gradient(1.5px 1.5px at 70px 180px,#fff 50%,transparent 51%),
+  radial-gradient(180px 140px at 50% 40%,rgba(122,213,254,.45),transparent 70%);pointer-events:none}
+.topbar{position:relative;display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.icon-btn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.7);border:1px solid var(--line);display:grid;place-items:center;color:var(--dark)}
+.avatar{position:relative;width:112px;height:112px;margin:0 auto;border-radius:50%;padding:4px;background:conic-gradient(var(--light) var(--pct,360deg),rgba(5,59,101,.08) 0)}
+.avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid #fff;display:block}
+.avatar .pct{position:absolute;left:50%;bottom:-10px;transform:translateX(-50%);background:var(--dark);color:#fff;font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px;border:2px solid #fff;white-space:nowrap}
+.name{font-size:26px;font-weight:800;color:var(--n900);letter-spacing:-.02em;margin:18px 0 2px}
+.meta{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 12px;color:var(--n600);font-size:13px}
+.meta span{display:inline-flex;align-items:center;gap:4px}
+.bio{margin:10px auto 0;max-width:300px;color:var(--n700);font-size:14px}
+.battery{display:inline-flex;align-items:center;gap:6px;margin-top:12px;padding:6px 12px;border-radius:99px;background:#fff;border:1px solid var(--line);font-size:12.5px;font-weight:600;color:var(--dark)}
+.actions{display:flex;gap:10px;margin-top:16px}
+.btn{flex:1;height:48px;border-radius:99px;display:flex;align-items:center;justify-content:center;gap:8px;font-weight:700;font-size:15px}
+.btn.primary{background:var(--light);color:var(--n800)}
+.btn.ghost{background:#fff;border:1px solid var(--line);color:var(--dark);flex:0 0 48px}
+.btn.ghost.wide{flex:1}
+
+/* common ground */
+.common{margin:4px 16px 0;padding:14px 16px;border-radius:20px;background:var(--dark);color:#fff;position:relative;overflow:hidden}
+.common::after{content:"";position:absolute;right:-30px;top:-30px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(122,213,254,.35),transparent 70%)}
+.common .h{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px}
+.common .h small{font-weight:500;color:rgba(255,255,255,.7);font-size:12.5px;margin-left:auto}
+.common .chips{margin-top:10px}
+.common .chip{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.18);color:#fff}
+
+/* completion card (own view) */
+.complete{margin:4px 16px 0;padding:14px 16px;border-radius:20px;background:#fff;box-shadow:var(--shadow);display:flex;gap:12px;align-items:center}
+.complete .bar{height:6px;border-radius:9px;background:var(--n200);margin-top:8px;overflow:hidden}
+.complete .bar i{display:block;height:100%;background:var(--dark);border-radius:9px}
+.complete b{color:var(--n900)}
+.complete small{color:var(--n600);display:block}
+
+/* tabs */
+.tabs{position:sticky;top:46px;z-index:5;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:12px 16px 10px;margin-top:6px;background:linear-gradient(180deg,#EEF4FA 80%,rgba(238,244,250,0))}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;padding:8px 14px;border-radius:99px;font-size:13px;font-weight:600;color:var(--n600);background:rgba(255,255,255,.7);border:1px solid var(--line);white-space:nowrap}
+.tab[aria-current=true]{background:var(--dark);color:#fff;border-color:var(--dark)}
+.tabs-spacer{height:0}
+
+/* sections */
+.section{padding:8px 16px 10px;scroll-margin-top:96px}
+.sec-h{display:flex;align-items:flex-end;justify-content:space-between;margin:10px 4px 10px}
+.sec-h h2{margin:0;font-size:19px;font-weight:800;color:var(--n900);letter-spacing:-.01em}
+.sec-h p{margin:2px 0 0;font-size:12.5px;color:var(--n500)}
+.sec-h .edit{font-size:13px;font-weight:600;color:var(--dark)}
+.card{background:var(--card);border-radius:20px;box-shadow:var(--shadow);padding:4px 16px;margin-bottom:10px}
+.card.pad{padding:16px}
+.row{display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.ico{width:36px;height:36px;flex:none;border-radius:12px;background:var(--light-12);color:var(--dark);display:grid;place-items:center}
+.row .lbl{font-size:12px;color:var(--n500);font-weight:500}
+.row .val{font-size:15px;color:var(--n900);font-weight:600}
+.row .sub{font-size:12.5px;color:var(--n600)}
+.row .end{margin-left:auto;align-self:center;font-size:12px;font-weight:600;color:var(--dark);background:var(--light-12);padding:4px 10px;border-radius:99px;white-space:nowrap}
+.grow{flex:1;min-width:0}
+
+/* groups inside favourites */
+.fav{padding:14px 0;border-bottom:1px solid var(--line)}
+.fav:last-child{border-bottom:0}
+.fav-h{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--n500);margin-bottom:9px}
+.fav-h svg{color:var(--dark)}
+.quote{font-size:15px;color:var(--n900);font-weight:600;margin-bottom:8px}
+.quote small{display:block;font-size:12px;color:var(--n500);font-weight:500}
+.sublbl{font-size:12px;color:var(--n500);margin:10px 0 6px}
+.sublbl:first-of-type{margin-top:0}
+
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:6px 11px;border-radius:99px;font-size:13px;font-weight:500;color:var(--n800);background:var(--n100);border:1px solid transparent}
+.chip.shared{background:var(--light-12);border-color:var(--light-30);color:var(--dark);font-weight:600}
+.chip.shared::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--dark)}
+.chip.more{background:#fff;border:1px dashed var(--n300);color:var(--dark);font-weight:600}
+.chip.do{background:var(--light);color:var(--dark);font-weight:600}
+.chip.want{background:var(--light-12);border-color:var(--light-30);color:var(--dark)}
+.chip.warn{background:var(--warn-bg);color:var(--warn);font-weight:600}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--n500);margin:-2px 0 10px}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.legend i{width:10px;height:10px;border-radius:50%;display:inline-block}
+
+.swatches{display:flex;gap:8px;margin-top:8px}
+.sw{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--n700)}
+.sw i{width:18px;height:18px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+
+.list .li{display:flex;gap:10px;align-items:center;padding:9px 0;border-bottom:1px solid var(--line)}
+.list .li:last-child{border-bottom:0}
+.list .li b{color:var(--n900);font-weight:600;font-size:14px;display:block}
+.list .li small{color:var(--n500);font-size:12px}
+.num{width:26px;height:26px;border-radius:8px;background:var(--n100);color:var(--n600);font-size:12px;font-weight:700;display:grid;place-items:center;flex:none}
+.showall{display:block;width:100%;text-align:center;padding:10px 0 4px;font-size:13px;font-weight:600;color:var(--dark)}
+
+/* pets */
+.pets{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;padding:2px 0 4px}
+.pet{flex:0 0 132px;background:#fff;border-radius:18px;box-shadow:var(--shadow);padding:12px}
+.pet .pa{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;color:#fff;font-weight:800;font-size:18px;margin-bottom:8px}
+.pet b{display:block;color:var(--n900)}
+.pet small{display:block;color:var(--n500);font-size:12px}
+.pet .bd{margin-top:8px;font-size:11.5px;font-weight:600;color:var(--dark);display:flex;align-items:center;gap:4px}
+
+/* places */
+.hscroll{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:2px 16px 6px}
+.hscroll::-webkit-scrollbar,.pets::-webkit-scrollbar{display:none}
+.place{flex:0 0 200px;height:150px;border-radius:20px;position:relative;overflow:hidden;color:#fff;box-shadow:var(--shadow)}
+.place img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.place::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(5,30,55,.8))}
+.place div{position:absolute;left:12px;right:12px;bottom:10px;z-index:1}
+.place b{display:block;font-size:15px}
+.place small{font-size:12px;opacity:.85}
+
+/* adventure */
+.adv-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.adv-top b{color:var(--n900)}
+.adv-top small{color:var(--n500)}
+.prog{height:6px;border-radius:9px;background:var(--n200);overflow:hidden;margin-bottom:6px}
+.prog i{display:block;height:100%;background:var(--light)}
+.adv{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.adv:last-of-type{border-bottom:0}
+.tick{width:24px;height:24px;border-radius:50%;flex:none;display:grid;place-items:center;border:1.5px solid var(--n300);color:transparent}
+.adv.done .tick{background:var(--light);border-color:var(--light);color:var(--dark)}
+.adv.done .t{color:var(--n500);text-decoration:line-through;text-decoration-color:var(--n300)}
+.adv .t{display:block;color:var(--n900);font-weight:500}
+.adv .k{display:block;font-size:12px;color:var(--n500)}
+.adv .join{margin-left:6px;font-size:12px;font-weight:700;color:var(--dark);border:1px solid var(--light-30);background:var(--light-12);padding:4px 10px;border-radius:99px;white-space:nowrap}
+
+/* wishlist */
+.wish{flex:0 0 150px;background:#fff;border-radius:18px;box-shadow:var(--shadow);padding:14px;display:flex;flex-direction:column;gap:6px;min-height:132px}
+.wish .wi{width:36px;height:36px;border-radius:12px;background:var(--light-12);color:var(--dark);display:grid;place-items:center}
+.wish b{color:var(--n900);font-size:14px;line-height:1.3}
+.wish small{margin-top:auto;font-size:11.5px;font-weight:600;color:var(--dark)}
+.special li{padding:9px 0;border-bottom:1px solid var(--line);color:var(--n800);display:flex;gap:10px;align-items:flex-start}
+.special li:last-child{border-bottom:0}
+.special{list-style:none;margin:0;padding:0}
+.special svg{color:var(--dark);flex:none;margin-top:2px}
+
+/* good to know */
+.gtk-alert{display:flex;gap:10px;align-items:flex-start;padding:12px;border-radius:14px;background:var(--warn-bg);color:var(--warn);margin:14px 0 4px}
+.gtk-alert b{display:block;font-size:14px}
+.gtk-alert small{color:#8a3a20;font-size:12.5px}
+
+/* empty / add (own view) */
+.add{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);color:var(--n600)}
+.add:last-child{border-bottom:0}
+.add .ico{background:transparent;border:1.5px dashed var(--n300);color:var(--n500)}
+.add b{display:block;color:var(--n800);font-weight:600;font-size:14px}
+.add small{font-size:12px;color:var(--n500)}
+.add .plus{margin-left:auto;font-size:13px;font-weight:700;color:var(--dark)}
+.empty-sec{border:1.5px dashed var(--n300);border-radius:20px;padding:16px;display:flex;gap:12px;align-items:center;background:rgba(255,255,255,.5)}
+.empty-sec b{color:var(--n900);display:block}
+.empty-sec small{color:var(--n600)}
+.empty-sec .plus{margin-left:auto;background:var(--dark);color:#fff;font-weight:700;font-size:13px;padding:8px 14px;border-radius:99px;white-space:nowrap}
+
+.foot{text-align:center;color:var(--n500);font-size:12.5px;padding:10px 30px 20px}
+
+/* nav */
+.nav{position:absolute;left:20px;right:20px;bottom:26px;height:64px;border-radius:99px;background:var(--dark);display:flex;align-items:center;justify-content:space-around;padding:0 8px;z-index:7;box-shadow:0 10px 30px rgba(5,59,101,.35)}
+.nav a{text-decoration:none;color:rgba(255,255,255,.7);display:flex;align-items:center;gap:6px;height:44px;padding:0 12px;border-radius:99px;font-size:13px;font-weight:700}
+.nav a.on{background:var(--light);color:var(--dark)}
+.home-ind{position:absolute;left:50%;bottom:8px;width:134px;height:5px;border-radius:9px;background:var(--n900);transform:translateX(-50%);z-index:8}
+
+@media (max-width:760px){body{flex-direction:column;align-items:center}.side{position:static;width:100%;max-width:390px}}
+</style>
+</head>
+<body>
+
+<aside class="side">
+  <div class="brand">SPIRLIT</div>
+  <h1>User profile</h1>
+  <p>Built from the onboarding answers. Anything a person skipped simply isn't shown, and empty sections disappear from friends' view.</p>
+
+  <div class="grp">How much they answered</div>
+  <div class="seg" id="ctlData">
+    <button data-v="full"><b>Everything filled in</b><span>Profile, Go deeper and Lightning Round</span></button>
+    <button data-v="partial"><b>Some questions skipped</b><span>No pets, wishlist or good to know</span></button>
+    <button data-v="quick"><b>Quick Spark only</b><span>Skipped most of onboarding</span></button>
+  </div>
+
+  <div class="grp">Who is looking</div>
+  <div class="seg" id="ctlView">
+    <button data-v="friend"><b>A friend's view</b><span>Common ground, only filled answers</span></button>
+    <button data-v="own"><b>My own profile</b><span>Gentle prompts to fill the gaps</span></button>
+  </div>
+
+  <div class="grp">Where each section comes from</div>
+  <div class="map">
+    <div><b>About me</b><span>Profile basics, Q14</span></div>
+    <div><b>My favorites</b><span>Q2, Q4, Q5, Q9 + Lightning</span></div>
+    <div><b>Let's do something</b><span>Q1, Q3, Q6, Q8, Q11, Q12</span></div>
+    <div><b>Make my day</b><span>New profile fields</span></div>
+    <div><b>Good to know</b><span>New profile fields</span></div>
+  </div>
+</aside>
+
+<div class="phone"><div class="screen">
+  <div class="status" id="status"><span>9:41</span><i>
+    <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1" fill="currentColor"/><rect x="5" y="5" width="3" height="7" rx="1" fill="currentColor"/><rect x="10" y="2.5" width="3" height="9.5" rx="1" fill="currentColor"/><rect x="15" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
+    <svg width="25" height="12" viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3.5" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="18" height="8" rx="2" fill="currentColor"/><rect x="23" y="4" width="1.5" height="4" rx=".75" fill="currentColor" opacity=".4"/></svg>
+  </i></div>
+  <div class="scroll" id="scroll"></div>
+  <nav class="nav">
+    <a href="#" aria-label="Home" data-ic="home"></a>
+    <a href="#" aria-label="Nearby" data-ic="pin"></a>
+    <a href="#" aria-label="Chats" data-ic="chat"></a>
+    <a href="#" class="on" data-ic="user"><span>Profile</span></a>
+  </nav>
+  <div class="home-ind"></div>
+</div></div>
+
+<script>
+/* ---------- icons (simple 24px strokes) ---------- */
+const P = {
+  cake:'<path d="M4 21h16M5 21v-7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7M12 12V8M12 4.5c.8.9.8 2-.0 2.5-.8-.5-.8-1.6 0-2.5Z"/><path d="M5 16c1.5 1 2.5 1 3.5 0s2-1 3.5 0 2.5 1 3.5 0 2-1 3.5 0"/>',
+  home:'<path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/>',
+  pin:'<path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/>',
+  sprout:'<path d="M12 21v-9"/><path d="M12 12C12 8 9 6 5 6c0 4 3 6 7 6Z"/><path d="M12 14c0-3.5 2.5-5.5 7-5.5 0 3.5-2.5 5.5-7 5.5Z"/>',
+  paw:'<circle cx="7" cy="9" r="1.8"/><circle cx="17" cy="9" r="1.8"/><circle cx="10" cy="5.5" r="1.8"/><circle cx="14" cy="5.5" r="1.8"/><path d="M12 12c-3 0-5 3-5 5.2C7 19 8.5 20 10 19.5c1.3-.4 2.7-.4 4 0 1.5.5 3-.5 3-2.3C17 15 15 12 12 12Z"/>',
+  star:'<path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9Z"/>',
+  fork:'<path d="M7 3v8a2 2 0 0 0 2 2v8M11 3v8a2 2 0 0 1-2 2M7 3h0M9 3v6M16 21V3c2.5 1 3.5 4 3.5 7s-1.5 4-3.5 4"/>',
+  cup:'<path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5Z"/><path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17M8 3v3M12 3v3"/>',
+  candy:'<circle cx="12" cy="12" r="4.5"/><path d="M8.5 9 4 6v6l4.2-1M15.5 15l4.5 3v-6l-4.2 1"/>',
+  flower:'<circle cx="12" cy="10" r="2.2"/><path d="M12 7.8C12 5 10.5 3.5 9 4.5S9 8 12 7.8ZM12 7.8c0-2.8 1.5-4.3 3-3.3S15 8 12 7.8ZM14.2 10c2.8 0 4.3 1.5 3.3 3s-3.5 0-3.3-3ZM9.8 10c-2.8 0-4.3 1.5-3.3 3s3.5 0 3.3-3Z"/><path d="M12 12.2V21M12 18c-2-2-4-2-5-1.5M12 16c2-1.5 3.5-1.5 4.5-1"/>',
+  drop:'<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11Z"/>',
+  music:'<path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/>',
+  box:'<path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5Z"/><path d="m3 7.5 9 4.5 9-4.5M12 12v9"/>',
+  bolt:'<path d="M13 2 4 14h7l-1 8 9-12h-7Z"/>',
+  gift:'<rect x="3.5" y="9" width="17" height="11" rx="2"/><path d="M2.5 9h19M12 9v11M12 9S10.5 4 8 4a2 2 0 0 0 0 4c2 0 4 1 4 1ZM12 9s1.5-5 4-5a2 2 0 0 1 0 4c-2 0-4 1-4 1Z"/>',
+  heart:'<path d="M12 20s-7.5-4.5-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10C19.5 15.5 12 20 12 20Z"/>',
+  info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h0"/>',
+  alert:'<path d="M12 4 2.8 19.5h18.4Z"/><path d="M12 10v4.5M12 17.2h0"/>',
+  no:'<circle cx="12" cy="12" r="8.5"/><path d="m6 6 12 12"/>',
+  check:'<path d="m5 12.5 4.5 4.5L19 7.5"/>',
+  back:'<path d="M15 5 8 12l7 7"/>',
+  dots:'<circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/>',
+  chat:'<path d="M20 12a8 8 0 0 1-11.8 7L4 20l1.1-4A8 8 0 1 1 20 12Z"/>',
+  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  pen:'<path d="M4 20h4L19 9l-4-4L4 16Z"/><path d="m14 6 4 4"/>',
+  share:'<path d="M12 15V3M7.5 7.5 12 3l4.5 4.5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/>',
+  cal:'<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
+  battery:'<rect x="2.5" y="7" width="17" height="10" rx="2.5"/><path d="M22 10.5v3"/><rect x="5" y="9.5" width="7" height="5" rx="1" fill="currentColor"/>',
+  sparkle:'<path d="M12 3c.6 4.2 2.8 6.4 7 7-4.2.6-6.4 2.8-7 7-.6-4.2-2.8-6.4-7-7 4.2-.6 6.4-2.8 7-7Z"/>',
+  plus:'<path d="M12 5v14M5 12h14"/>',
+  map:'<path d="M9 4 3.5 6v14L9 18l6 2 5.5-2V4L15 6Z"/><path d="M9 4v14M15 6v14"/>',
+  smile:'<circle cx="12" cy="12" r="9"/><path d="M8.5 14.5c1.8 2 5.2 2 7 0M9 9.5h0M15 9.5h0"/>',
+  palette:'<path d="M12 3a9 9 0 1 0 0 18c1.2 0 1.8-.8 1.8-1.7 0-1.4-1.3-1.6-1.3-2.8 0-.9.8-1.5 1.7-1.5H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3Z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/>',
+};
+const ic = (n, s = 18, w = 1.8) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[n] || ''}</svg>`;
+document.querySelectorAll('.nav a').forEach(a => a.insertAdjacentHTML('afterbegin', ic(a.dataset.ic, 22, 2)));
+
+/* ---------- sample answers ---------- */
+const FULL = {
+  name: 'Kaden', photo: 'assets/77daf.png',
+  bio: 'Always up for a sunrise hike and a long coffee afterwards.',
+  battery: 'Recharges with a few close friends',
+  birthday: { m: 3, d: 14 },
+  hometown: { v: 'Portland, Oregon', note: 'Rainy days, food carts and a lot of trees' },
+  city: 'Austin, Texas',
+  pets: [
+    { name: 'Miso', kind: 'Shiba Inu', bday: { m: 6, d: 2 }, c: '#E39A4B' },
+    { name: 'Pickle', kind: 'Tabby cat', bday: { m: 10, d: 9 }, c: '#7C8C6E' },
+  ],
+  dates: [
+    { t: 'Moved to Austin', d: { m: 8, d: 21 }, y: 2022 },
+    { t: 'First marathon', d: { m: 11, d: 3 }, y: 2024 },
+    { t: "Mum's birthday", d: { m: 2, d: 2 } },
+  ],
+  foods: ['Thai', 'Neapolitan pizza', 'Ramen', 'Tacos al pastor', 'Sushi', 'Mezze', 'Pho', 'Dumplings'],
+  restaurants: [
+    { n: 'Ramen Tatsu-ya', t: 'Ramen · North Lamar' },
+    { n: 'Veracruz All Natural', t: 'Breakfast tacos' },
+    { n: 'Uchi', t: 'Sushi · special occasions' },
+    { n: 'Odd Duck', t: 'Small plates' },
+    { n: 'Thai Kun', t: 'Late-night Thai' },
+  ],
+  coffee: 'Oat flat white, extra hot',
+  drinks: ['Matcha latte', 'Mezcal margarita', 'Hazy IPA'],
+  treats: ['Sea-salt dark chocolate', 'Mochi', 'Key lime pie', 'Salted caramel'],
+  scents: ['Cedarwood', 'Fresh linen', 'Campfire candles', 'Santal'],
+  flowers: ['Sunflowers', 'Peonies'],
+  colors: [['Forest green', '#2F6B4F'], ['Burnt orange', '#D9772B'], ['Navy', '#1F3A5F']],
+  artists: ['Bon Iver', 'Khruangbin', 'Phoebe Bridgers', 'Tame Impala', 'Fleetwood Mac', 'Hozier', 'Leon Bridges'],
+  shows: ['Interstellar', 'The Bear', 'Spirited Away', 'Severance', 'Arrival'],
+  books: ['Project Hail Mary', 'Atomic Habits'],
+  collects: ['Vinyl records', 'National park pins', 'Film cameras'],
+  hobbies: [['Hiking', 'do'], ['Film photography', 'do'], ['Cooking', 'do'], ['Board games', 'do'], ['Pickleball', 'do'], ['Trail running', 'do'], ['Bouldering', 'want'], ['Pottery', 'want'], ['Surfing', 'want'], ['Salsa dancing', 'want']],
+  activities: ['Farmers market Saturdays', 'Long drives with a playlist', 'Cooking for friends'],
+  places: [
+    { n: 'Barton Springs', t: 'Austin · favourite swim', img: 'assets/profile/mood-harbour.jpg' },
+    { n: 'Mount Bonnell', t: 'Austin · sunset spot', img: 'assets/profile/mood-dome.jpg' },
+    { n: 'Big Sur', t: 'California · would go back', img: 'assets/profile/mood-beach.jpg' },
+  ],
+  adventures: [
+    { t: 'Austin City Limits', k: 'Concert', done: true },
+    { t: 'Hike Angels Landing', k: 'Trip', done: true },
+    { t: 'See the northern lights', k: 'Trip' },
+    { t: 'Omakase at Uchiko', k: 'Restaurant' },
+    { t: 'Learn to surf in Portugal', k: 'Experience' },
+    { t: 'Hot-air balloon ride', k: 'Experience' },
+  ],
+  wishlist: [
+    { t: 'Instax film packs', k: 'Little luxury', i: 'sparkle' },
+    { t: 'Pottery class for two', k: 'Experience', i: 'smile' },
+    { t: 'Record store gift card', k: 'Gift', i: 'music' },
+    { t: 'Hot sauce sampler', k: 'Gift', i: 'gift' },
+  ],
+  special: ['Handwritten notes, even short ones', 'A song that made you think of me', 'Surprise coffee drop-offs', 'Low-key birthdays with a few close friends'],
+  allergy: { t: 'Tree nut allergy', s: 'Please skip pecans and walnuts when cooking or baking.' },
+  dislikes: ['Cilantro', 'Horror films', 'Very loud bars'],
+  notes: ['Early riser, slow to reply after 9pm', 'Prefers a heads-up over last-minute plans'],
+};
+const PARTIAL = { ...FULL, pets: [], dates: [], restaurants: FULL.restaurants.slice(0, 2), scents: [], flowers: [], colors: [], collects: [], books: [], treats: [], wishlist: [], special: [], allergy: null, dislikes: [], notes: [], activities: [] };
+const QUICK = {
+  name: 'Kaden', photo: 'assets/77daf.png', city: 'Austin, Texas',
+  foods: ['Thai', 'Ramen', 'Tacos al pastor'],
+  artists: ['Bon Iver', 'Khruangbin'], shows: ['Interstellar', 'The Bear'],
+  hobbies: [['Hiking', 'do'], ['Film photography', 'do'], ['Bouldering', 'want']],
+  places: [FULL.places[2]],
+  adventures: [FULL.adventures[0], FULL.adventures[2]],
+};
+const DATA = { full: FULL, partial: PARTIAL, quick: QUICK };
+const SHARED = new Set(['Hiking', 'Thai', 'Bon Iver', 'Board games', 'Interstellar', 'Ramen']);
+
+/* ---------- helpers ---------- */
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const fmt = d => `${MONTHS[d.m - 1]} ${d.d}`;
+const daysUntil = d => {
+  const now = new Date(); now.setHours(0, 0, 0, 0);
+  let t = new Date(now.getFullYear(), d.m - 1, d.d);
+  if (t < now) t = new Date(now.getFullYear() + 1, d.m - 1, d.d);
+  return Math.round((t - now) / 864e5);
+};
+const until = d => { const n = daysUntil(d); return n === 0 ? 'Today' : n === 1 ? 'Tomorrow' : n <= 45 ? `in ${n} days` : ''; };
+const has = v => Array.isArray(v) ? v.length > 0 : !!v;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+const open = new Set();         // expanded chip groups / lists
+let state = { data: 'full', view: 'friend' };
+
+function chips(key, items, limit = 6, cls = () => '') {
+  const all = items.map(it => (typeof it === 'string' ? [it, ''] : it));
+  const showAll = open.has(key) || all.length <= limit + 1;
+  const vis = showAll ? all : all.slice(0, limit);
+  const shared = t => state.view === 'friend' && SHARED.has(t) ? ' shared' : '';
+  let h = vis.map(([t, k]) => `<span class="chip${cls(k)}${shared(t)}">${esc(t)}</span>`).join('');
+  if (!showAll) h += `<button class="chip more" data-more="${key}">+${all.length - limit} more</button>`;
+  return `<div class="chips">${h}</div>`;
+}
+function more(key, n, limit) { return n > limit ? `<button class="showall" data-more="${key}">${open.has(key) ? 'Show less' : `Show all ${n}`}</button>` : ''; }
+const take = (key, arr, limit) => open.has(key) ? arr : arr.slice(0, limit);
+const addRow = (i, t, s) => state.view === 'own' ? `<div class="add"><span class="ico">${ic(i)}</span><div class="grow"><b>${t}</b><small>${s}</small></div><span class="plus">Add</span></div>` : '';
+const favGroup = (i, label, body) => `<div class="fav"><div class="fav-h">${ic(i, 15, 2)}${label}</div>${body}</div>`;
+
+/* ---------- sections ---------- */
+function about(d) {
+  const rows = [];
+  if (d.birthday) rows.push(`<div class="row"><span class="ico">${ic('cake')}</span><div class="grow"><div class="lbl">Birthday</div><div class="val">${fmt(d.birthday)}</div></div>${until(d.birthday) ? `<span class="end">${until(d.birthday)}</span>` : ''}</div>`);
+  else rows.push(addRow('cake', 'Birthday', 'Month and day, year is optional'));
+  if (d.city) rows.push(`<div class="row"><span class="ico">${ic('home')}</span><div class="grow"><div class="lbl">Calls home</div><div class="val">${esc(d.city)}</div></div></div>`);
+  if (d.hometown) rows.push(`<div class="row"><span class="ico">${ic('sprout')}</span><div class="grow"><div class="lbl">Grew up in</div><div class="val">${esc(d.hometown.v)}</div><div class="sub">${esc(d.hometown.note)}</div></div></div>`);
+  else rows.push(addRow('sprout', 'Hometown', 'Where you grew up'));
+
+  let pets = '';
+  if (has(d.pets)) pets = `<div class="sublbl" style="margin:14px 4px 8px">Pets</div><div class="pets">${d.pets.map(p => `<div class="pet"><div class="pa" style="background:${p.c}">${ic('paw', 22, 2)}</div><b>${esc(p.name)}</b><small>${esc(p.kind)}</small><div class="bd">${ic('cake', 13, 2)}${fmt(p.bday)}${until(p.bday) ? ' · ' + until(p.bday) : ''}</div></div>`).join('')}</div>`;
+
+  let dates = '';
+  if (has(d.dates)) {
+    const sorted = [...d.dates].sort((a, b) => daysUntil(a.d) - daysUntil(b.d));
+    dates = `<div class="card" style="margin-top:10px">${sorted.map(x => `<div class="row"><span class="ico">${ic('cal')}</span><div class="grow"><div class="val" style="font-size:14px">${esc(x.t)}</div><div class="sub">${fmt(x.d)}${x.y ? ', ' + x.y : ''}</div></div>${until(x.d) ? `<span class="end">${until(x.d)}</span>` : ''}</div>`).join('')}</div>`;
+  }
+  const extras = state.view === 'own' ? [!has(d.pets) && addRow('paw', 'Pets', 'Names, photos and birthdays'), !has(d.dates) && addRow('cal', 'Important dates', 'Anniversaries and milestones')].filter(Boolean).join('') : '';
+  const body = rows.filter(Boolean).join('') + extras;
+  if (!body && !pets && !dates) return null;
+  return { id: 'about', tab: 'About', title: 'About me', sub: 'The essentials', html: `${body ? `<div class="card">${body}</div>` : ''}${pets}${dates}` };
+}
+
+function favourites(d) {
+  const g = [];
+  if (has(d.foods)) g.push(favGroup('fork', 'Food & cuisines', chips('foods', d.foods, 5)));
+  if (has(d.restaurants)) g.push(favGroup('pin', 'Go-to spots', `<div class="list">${take('rest', d.restaurants, 3).map((r, i) => `<div class="li"><span class="num">${i + 1}</span><div><b>${esc(r.n)}</b><small>${esc(r.t)}</small></div></div>`).join('')}</div>${more('rest', d.restaurants.length, 3)}`));
+  if (d.coffee || has(d.drinks)) g.push(favGroup('cup', 'Drinks', `${d.coffee ? `<div class="quote"><small>Coffee order</small>${esc(d.coffee)}</div>` : ''}${has(d.drinks) ? chips('drinks', d.drinks) : ''}`));
+  if (has(d.treats)) g.push(favGroup('candy', 'Treats', chips('treats', d.treats)));
+  if (has(d.scents)) g.push(favGroup('drop', 'Scents', chips('scents', d.scents)));
+  if (has(d.flowers) || has(d.colors)) g.push(favGroup('flower', 'Flowers & colours', `${has(d.flowers) ? chips('flowers', d.flowers) : ''}${has(d.colors) ? `<div class="swatches">${d.colors.map(([n, c]) => `<span class="sw"><i style="background:${c}"></i>${n}</span>`).join('')}</div>` : ''}`));
+  if (has(d.artists) || has(d.shows) || has(d.books)) g.push(favGroup('music', 'Music & entertainment',
+    `${has(d.artists) ? `<div class="sublbl">Artists</div>${chips('artists', d.artists, 4)}` : ''}${has(d.shows) ? `<div class="sublbl">Movies & shows</div>${chips('shows', d.shows, 4)}` : ''}${has(d.books) ? `<div class="sublbl">Books</div>${chips('books', d.books, 4)}` : ''}`));
+  if (has(d.collects)) g.push(favGroup('box', 'Things I collect', chips('collects', d.collects)));
+  if (state.view === 'own') {
+    const miss = [[!has(d.restaurants), 'pin', 'Go-to spots', 'Restaurants you always come back to'], [!has(d.scents), 'drop', 'Scents', 'Perfume, candles, the smell of rain'], [!has(d.flowers), 'flower', 'Flowers & colours', 'Your personal favourites'], [!has(d.collects), 'box', 'Things you collect', 'Collectibles and special interests']].filter(x => x[0]);
+    if (miss.length) g.push(`<div>${miss.map(m => addRow(m[1], m[2], m[3])).join('')}</div>`);
+  }
+  if (!g.length) return null;
+  return { id: 'fav', tab: 'Favorites', title: 'My favorite things', sub: 'The little things that make me happy', html: `<div class="card">${g.join('')}</div>` };
+}
+
+function doTogether(d) {
+  let h = '';
+  if (has(d.hobbies)) {
+    const anyWant = d.hobbies.some(x => x[1] === 'want');
+    h += `<div class="card pad"><div class="fav-h" style="margin-bottom:8px">${ic('star', 15, 2)}Interests & hobbies</div>${anyWant ? `<div class="legend"><span><i style="background:var(--light)"></i>Does it</span><span><i style="background:var(--light-12);box-shadow:inset 0 0 0 1px var(--light-30)"></i>Wants to try</span></div>` : ''}${chips('hobbies', d.hobbies, 7, k => ' ' + k)}${has(d.activities) ? `<div class="sublbl" style="margin-top:14px">Favourite ways to spend free time</div><div class="list">${d.activities.map(a => `<div class="li"><span class="ico" style="width:28px;height:28px;border-radius:9px">${ic('sparkle', 14, 2)}</span><b style="font-weight:500">${esc(a)}</b></div>`).join('')}</div>` : ''}</div>`;
+  }
+  if (has(d.places)) h += `<div class="sublbl" style="margin:16px 4px 8px">Favourite places</div><div class="hscroll">${d.places.map(p => `<div class="place"><img src="${p.img}" alt=""><div><b>${esc(p.n)}</b><small>${esc(p.t)}</small></div></div>`).join('')}</div>`;
+  if (has(d.adventures)) {
+    const done = d.adventures.filter(a => a.done).length, n = d.adventures.length;
+    const list = [...d.adventures].sort((a, b) => (a.done ? 1 : 0) - (b.done ? 1 : 0));
+    h += `<div class="card pad" style="margin-top:10px"><div class="adv-top"><b>Adventure wishlist</b><small>${done} of ${n} done</small></div><div class="prog"><i style="width:${(done / n) * 100}%"></i></div>${take('adv', list, 4).map(a => `<div class="adv${a.done ? ' done' : ''}"><span class="tick">${ic('check', 14, 2.6)}</span><span class="grow"><span class="t">${esc(a.t)}</span><small class="k">${a.k}</small></span>${!a.done && state.view === 'friend' ? '<button class="join">Join</button>' : ''}</div>`).join('')}${more('adv', n, 4)}</div>`;
+  }
+  if (!h) return null;
+  return { id: 'do', tab: "Let's do", title: "Let's do something", sub: 'Experiences we could enjoy together', html: h };
+}
+
+function makeMyDay(d) {
+  if (!has(d.wishlist) && !has(d.special)) return state.view === 'own' ? { id: 'day', tab: 'Make my day', title: 'Make my day', sub: 'How to delight me', html: `<div class="empty-sec"><span class="ico">${ic('gift')}</span><div><b>Help friends spoil you</b><small>Add a wishlist and what makes you feel special.</small></div><span class="plus">Add</span></div>` } : null;
+  let h = '';
+  if (has(d.wishlist)) h += `<div class="sublbl" style="margin:0 4px 8px">Wishlist</div><div class="hscroll">${d.wishlist.map(w => `<div class="wish"><span class="wi">${ic(w.i)}</span><b>${esc(w.t)}</b><small>${w.k}</small></div>`).join('')}</div>`;
+  if (has(d.special)) h += `<div class="card pad" style="margin-top:10px"><div class="fav-h">${ic('heart', 15, 2)}What makes me feel special</div><ul class="special">${d.special.map(s => `<li>${ic('sparkle', 16, 2)}<span>${esc(s)}</span></li>`).join('')}</ul></div>`;
+  return { id: 'day', tab: 'Make my day', title: 'Make my day', sub: 'How to delight me', html: h };
+}
+
+function goodToKnow(d) {
+  if (!d.allergy && !has(d.dislikes) && !has(d.notes)) return state.view === 'own' ? { id: 'gtk', tab: 'Good to know', title: 'Good to know', sub: 'Preferences and helpful details', html: `<div class="empty-sec"><span class="ico">${ic('info')}</span><div><b>Anything friends should know?</b><small>Food restrictions, things you avoid, helpful habits.</small></div><span class="plus">Add</span></div>` } : null;
+  let h = '<div class="card pad">';
+  if (d.allergy) h += `<div class="gtk-alert" style="margin-top:0">${ic('alert', 20, 2)}<div><b>${esc(d.allergy.t)}</b><small>${esc(d.allergy.s)}</small></div></div>`;
+  if (has(d.dislikes)) h += `<div class="sublbl" style="margin-top:14px">Not a fan of</div><div class="chips">${d.dislikes.map(x => `<span class="chip">${ic('no', 13, 2)}${esc(x)}</span>`).join('')}</div>`;
+  if (has(d.notes)) h += `<div class="sublbl" style="margin-top:14px">Helpful to know</div><ul class="special">${d.notes.map(s => `<li>${ic('info', 16, 2)}<span>${esc(s)}</span></li>`).join('')}</ul>`;
+  return { id: 'gtk', tab: 'Good to know', title: 'Good to know', sub: 'Preferences and helpful details', html: h + '</div>' };
+}
+
+/* ---------- page ---------- */
+function completion(d) {
+  const keys = ['birthday', 'hometown', 'city', 'pets', 'dates', 'foods', 'restaurants', 'coffee', 'treats', 'scents', 'flowers', 'artists', 'collects', 'hobbies', 'places', 'adventures', 'wishlist', 'special', 'allergy', 'notes'];
+  return Math.round(keys.filter(k => has(d[k])).length / keys.length * 100);
+}
+
+function render() {
+  const d = DATA[state.data], own = state.view === 'own';
+  const secs = [about(d), favourites(d), doTogether(d), makeMyDay(d), goodToKnow(d)].filter(Boolean);
+  const pct = completion(d);
+  const sharedHere = [...SHARED].filter(t => [...(d.foods || []), ...(d.artists || []), ...(d.shows || []), ...(d.hobbies || []).map(h => h[0])].includes(t));
+
+  const hero = `<header class="hero">
+    <div class="topbar">${own ? '<span style="width:40px"></span>' : `<button class="icon-btn" aria-label="Back">${ic('back', 20, 2)}</button>`}<button class="icon-btn" aria-label="More">${ic(own ? 'share' : 'dots', 20, 2)}</button></div>
+    <div class="avatar" style="${own ? `--pct:${pct * 3.6}deg` : ''}"><img src="${d.photo}" alt="${esc(d.name)}">${own ? `<span class="pct">${pct}% complete</span>` : ''}</div>
+    <div class="name">${esc(d.name)}</div>
+    <div class="meta">${d.city ? `<span>${ic('pin', 14, 2)}${esc(d.city)}</span>` : ''}${d.hometown ? `<span>${ic('sprout', 14, 2)}From ${esc(d.hometown.v.split(',')[0])}</span>` : ''}${d.birthday ? `<span>${ic('cake', 14, 2)}${fmt(d.birthday)}</span>` : ''}</div>
+    ${d.bio ? `<p class="bio">${esc(d.bio)}</p>` : ''}
+    ${d.battery ? `<div class="battery">${ic('battery', 16, 2)}${esc(d.battery)}</div>` : ''}
+    <div class="actions">${own
+      ? `<button class="btn primary">${ic('pen', 18, 2)}Edit profile</button><button class="btn ghost wide">${ic('share', 18, 2)}Share</button>`
+      : `<button class="btn primary">${ic('bolt', 18, 2)}Send a spark</button><button class="btn ghost" aria-label="Message">${ic('chat', 20, 2)}</button>`}</div>
+  </header>`;
+
+  const top = own
+    ? (pct >= 100 ? '' : `<div class="complete"><div class="grow"><b>${pct < 100 ? 'Make it feel like you' : 'Looking great'}</b><small>${pct < 100 ? 'Empty parts stay hidden from friends until you fill them in.' : 'Your profile is complete.'}</small><div class="bar"><i style="width:${pct}%"></i></div></div></div>`)
+    : (sharedHere.length ? `<div class="common"><div class="h">${ic('bolt', 16, 2)}Common ground<small>${sharedHere.length} things you share</small></div>${`<div class="chips">${sharedHere.map(t => `<span class="chip">${esc(t)}</span>`).join('')}</div>`}</div>` : '');
+
+  const tabs = secs.length > 1 ? `<nav class="tabs" id="tabs">${secs.map((s, i) => `<button class="tab" data-go="${s.id}" ${i === 0 ? 'aria-current="true"' : ''}>${s.tab}</button>`).join('')}</nav>` : '<div style="height:16px"></div>';
+
+  const body = secs.map(s => `<section class="section" id="sec-${s.id}"><div class="sec-h"><div><h2>${s.title}</h2><p>${s.sub}</p></div>${own && !s.html.includes('empty-sec') ? '<button class="edit">Edit</button>' : ''}</div>${s.html}</section>`).join('');
+
+  const foot = !own && state.data !== 'full' ? `<div class="foot">${esc(d.name)} is still filling in their profile. More will show up here as they answer.</div>` : '';
+
+  const sc = document.getElementById('scroll');
+  const y = sc.scrollTop;
+  sc.innerHTML = hero + top + tabs + body + foot;
+  sc.scrollTop = y;
+  spy();
+}
+
+/* tabs: scroll-to + scroll-spy */
+function spy() {
+  const sc = document.getElementById('scroll'), tabs = document.getElementById('tabs');
+  if (!tabs) return;
+  sc.onscroll = () => {
+    document.getElementById('status').classList.toggle('solid', sc.scrollTop > 30);
+    let cur = null;
+    tabs.querySelectorAll('.tab').forEach(t => { const s = document.getElementById('sec-' + t.dataset.go); if (s.offsetTop - 120 <= sc.scrollTop) cur = t; });
+    if (sc.scrollTop + sc.clientHeight >= sc.scrollHeight - 4) cur = tabs.lastElementChild;
+    cur = cur || tabs.firstElementChild;
+    tabs.querySelectorAll('.tab').forEach(t => t.toggleAttribute('aria-current', t === cur));
+    if (cur.getAttribute('aria-current') !== null) cur.setAttribute('aria-current', 'true');
+    tabs.scrollTo({ left: cur.offsetLeft - 16, behavior: 'smooth' });
+  };
+}
+
+document.getElementById('scroll').addEventListener('click', e => {
+  const m = e.target.closest('[data-more]'); if (m) { const k = m.dataset.more; open.has(k) ? open.delete(k) : open.add(k); render(); return; }
+  const g = e.target.closest('[data-go]'); if (g) { const sc = document.getElementById('scroll'); sc.scrollTo({ top: document.getElementById('sec-' + g.dataset.go).offsetTop - 104, behavior: 'smooth' }); }
+});
+
+function bindSeg(id, key) {
+  const el = document.getElementById(id);
+  const sync = () => el.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === state[key]));
+  el.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; state[key] = b.dataset.v; open.clear(); document.getElementById('scroll').scrollTop = 0; sync(); render(); });
+  sync();
+}
+bindSeg('ctlData', 'data'); bindSeg('ctlView', 'view');
+render();
+</script>
+</body>
+</html>

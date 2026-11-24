@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spirlit · User profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..900&family=Outfit:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dark:#053B65; --light:#7AD5FE; --light-12:rgba(122,213,254,.18); --light-30:rgba(122,213,254,.4);
+  --n100:#F5F5F5; --n200:#E6E6E6; --n300:#D6D6D6; --n400:#A5A5A5; --n500:#767676; --n600:#575757; --n700:#434343; --n800:#2D2D2D; --n900:#1A1A1A;
+  --bg:#F1F5FA; --line:rgba(5,59,101,.08); --warn:#B4441F; --warn-bg:#FFF1EC;
+  --shadow:0 1px 2px rgba(5,59,101,.04),0 6px 20px rgba(5,59,101,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{font:14px/1.45 Inter,system-ui,sans-serif;color:var(--n700);background:#E6ECF3;display:flex;gap:40px;justify-content:center;align-items:flex-start;padding:32px 16px}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+
+/* ---------- preview controls (not part of the app) ---------- */
+.side{width:300px;flex:none;position:sticky;top:32px}
+.side .brand{font:600 15px Outfit,sans-serif;letter-spacing:.22em;color:var(--dark)}
+.side h1{font-size:20px;color:var(--n900);margin:6px 0 4px}
+.side p{margin:0 0 6px;color:var(--n600);font-size:13px}
+.grp{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--n500);margin:18px 0 8px}
+.seg{display:flex;flex-direction:column;gap:6px}
+.seg button{text-align:left;padding:10px 12px;border-radius:12px;background:#fff;border:1px solid var(--n200);font-size:13px}
+.seg button b{display:block;color:var(--n900);font-weight:600}
+.seg button span{color:var(--n500);font-size:12px}
+.seg button[aria-pressed=true]{border-color:var(--dark);box-shadow:inset 0 0 0 1px var(--dark)}
+.side .v1{display:inline-block;margin-top:16px;font-size:12.5px;color:var(--dark);font-weight:600}
+
+/* ---------- phone ---------- */
+.phone{width:390px;height:844px;flex:none;border-radius:48px;background:#000;padding:10px;box-shadow:0 30px 80px rgba(5,59,101,.25)}
+.screen{position:relative;width:100%;height:100%;border-radius:40px;overflow:hidden;background:var(--bg)}
+.status{position:absolute;inset:0 0 auto;height:46px;display:flex;justify-content:space-between;align-items:center;padding:0 28px 0 34px;font-weight:600;font-size:15px;color:var(--n900);z-index:9;background:var(--bg)}
+.status i{display:inline-flex;gap:5px;align-items:center}
+.head{position:absolute;top:46px;left:0;right:0;height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;z-index:9;background:var(--bg)}
+.head .title{font-weight:700;font-size:16px;color:var(--n900);opacity:0;transition:opacity .2s}
+.head .title.on{opacity:1}
+.head .wm{position:absolute;left:50%;transform:translateX(-50%);font:600 15px Outfit,sans-serif;letter-spacing:.22em;color:var(--dark);transition:opacity .2s}
+.head .wm.off{opacity:0}
+.hbtn{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:var(--n900)}
+.progress{position:absolute;top:94px;left:50%;transform:translateX(-50%);width:120px;height:4px;border-radius:9px;background:var(--n200);z-index:9;overflow:hidden}
+.progress i{display:block;height:100%;width:8%;background:var(--dark);border-radius:9px;transition:width .1s}
+.scroll{position:absolute;top:104px;left:0;right:0;bottom:0;overflow-y:auto;scrollbar-width:none;padding:6px 12px 130px}
+.scroll::-webkit-scrollbar{display:none}
+
+/* hero photo card */
+.hero{position:relative;height:560px;border-radius:28px;overflow:hidden;background:#cfd9e3;box-shadow:var(--shadow)}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,30,55,0) 50%,rgba(5,30,55,.75) 100%)}
+.hero .bottom{position:absolute;left:12px;right:12px;bottom:12px;z-index:2;display:flex;flex-direction:column;gap:12px}
+.hero .info{padding:0 6px 6px;color:#fff}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:99px;background:rgba(5,30,55,.65);backdrop-filter:blur(8px);font-size:13px;font-weight:600;color:#fff}
+.hero h1{margin:10px 0 2px;font-size:32px;font-weight:800;letter-spacing:-.02em;line-height:1.1}
+.hero .loc{display:flex;align-items:center;gap:5px;font-size:14px;opacity:.92}
+.hero .share{position:absolute;top:14px;right:14px;z-index:1;width:40px;height:40px;border-radius:50%;background:rgba(5,30,55,.45);backdrop-filter:blur(8px);color:#fff;display:grid;place-items:center}
+.hero .edit{position:absolute;top:14px;right:14px;z-index:1;padding:9px 14px;border-radius:99px;background:#fff;color:var(--dark);font-weight:700;font-size:13px;display:flex;gap:6px;align-items:center}
+.hero .pct{position:absolute;top:14px;left:14px;z-index:1}
+.common{background:#fff;border-radius:22px;padding:14px 16px}
+.common .chips{flex-wrap:nowrap;overflow:hidden}
+.common .chip{flex:none}
+.common h3{margin:0 0 10px;font-size:16px;color:var(--n900)}
+
+/* content cards */
+.card{background:#fff;border-radius:24px;padding:18px;margin-top:12px;box-shadow:var(--shadow)}
+.card h2{margin:0 0 12px;font-size:17px;font-weight:700;color:var(--n900);letter-spacing:-.01em;display:flex;align-items:center;justify-content:space-between}
+.card h2 small{font-size:12.5px;font-weight:600;color:var(--n500)}
+.card .bio{font-size:16px;line-height:1.5;color:var(--n800);margin:0}
+.sub{font-size:12.5px;color:var(--n500);font-weight:600;margin:14px 0 8px}
+.sub:first-of-type{margin-top:0}
+.note{display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-weight:600;color:var(--dark);font-size:14px}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:99px;background:var(--n100);color:var(--n800);font-size:14px;font-weight:500;line-height:1.2}
+.chip svg{color:var(--n800);flex:none}
+.chip.shared{background:var(--light-12);color:var(--dark);font-weight:600;box-shadow:inset 0 0 0 1px var(--light-30)}
+.chip.shared svg{color:var(--dark)}
+.chip.do{background:var(--light);color:var(--dark);font-weight:600}
+.chip.want{background:#fff;color:var(--dark);box-shadow:inset 0 0 0 1.5px var(--light)}
+.chip.more{background:#fff;color:var(--dark);font-weight:600;box-shadow:inset 0 0 0 1px var(--n300)}
+.chip.warn{background:var(--warn-bg);color:var(--warn);font-weight:600}
+.chip.warn svg{color:var(--warn)}
+.legend{display:flex;gap:14px;font-size:12px;color:var(--n500);margin:-4px 0 12px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:12px;border-radius:50%}
+.quote{display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:16px;background:var(--light-12);color:var(--dark);margin-bottom:4px}
+.quote small{display:block;font-size:12px;color:var(--n600)}
+.quote b{font-size:15px}
+.sw{display:inline-flex;align-items:center;gap:7px;padding:9px 14px 9px 9px;border-radius:99px;background:var(--n100);font-size:14px;color:var(--n800)}
+.sw i{width:20px;height:20px;border-radius:50%;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
+
+.row{display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line)}
+.row:first-of-type{border-top:0;padding-top:2px}
+.row .ic{width:36px;height:36px;border-radius:12px;background:var(--n100);display:grid;place-items:center;color:var(--n800);flex:none}
+.row b{display:block;color:var(--n900);font-weight:600}
+.row small{color:var(--n500);font-size:12.5px}
+.row .pill{margin-left:auto;font-size:12px;font-weight:700;color:var(--dark);background:var(--light-12);padding:4px 10px;border-radius:99px;white-space:nowrap}
+.row .join{margin-left:auto;font-size:12.5px;font-weight:700;color:var(--dark);padding:6px 12px;border-radius:99px;box-shadow:inset 0 0 0 1.5px var(--light);white-space:nowrap}
+.tick{width:26px;height:26px;border-radius:50%;flex:none;display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px var(--n300);color:transparent}
+.row.done .tick{background:var(--light);box-shadow:none;color:var(--dark)}
+.row.done b{color:var(--n500);text-decoration:line-through;text-decoration-color:var(--n300);font-weight:500}
+.bar{height:6px;border-radius:9px;background:var(--n200);overflow:hidden;margin:-4px 0 10px}
+.bar i{display:block;height:100%;background:var(--light)}
+.showall{display:block;width:100%;text-align:center;padding:10px 0 0;font-size:13.5px;font-weight:600;color:var(--dark)}
+
+.photo{position:relative;height:440px;border-radius:24px;overflow:hidden;margin-top:12px;box-shadow:var(--shadow)}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 65%,rgba(5,30,55,.55))}
+.photo .note{position:absolute;left:16px;bottom:14px;z-index:1;border:0;margin:0;padding:0;color:#fff}
+.photo .cap{position:absolute;left:16px;right:16px;bottom:46px;z-index:1;color:#fff;font-weight:600;font-size:15px}
+
+.places{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;margin:0 -18px;padding:0 18px 2px}
+.places::-webkit-scrollbar{display:none}
+.place{flex:0 0 190px;height:140px;border-radius:18px;position:relative;overflow:hidden;color:#fff}
+.place img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.place::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(5,30,55,.8))}
+.place div{position:absolute;left:12px;right:12px;bottom:10px;z-index:1}
+.place b{display:block}
+.place small{font-size:12px;opacity:.85}
+
+.pets{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;margin:0 -18px;padding:0 18px 2px}
+.pets::-webkit-scrollbar{display:none}
+.pet{flex:0 0 150px}
+.pet .pic{position:relative;width:150px;height:170px;border-radius:20px;overflow:hidden;display:grid;place-items:center}
+.pet .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pet .pic .ph{color:#fff;opacity:.9}
+.pet .pic .soon{position:absolute;left:8px;top:8px;display:inline-flex;align-items:center;gap:4px;padding:4px 8px;border-radius:99px;background:#fff;color:var(--dark);font-size:11.5px;font-weight:700}
+.pet b{display:block;margin-top:8px;color:var(--n900);font-size:15px}
+.pet small{display:block;color:var(--n500);font-size:12.5px}
+.pet .bd{display:flex;align-items:center;gap:5px;margin-top:4px;font-size:12.5px;font-weight:600;color:var(--dark)}
+.alert{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:16px;background:var(--warn-bg);color:var(--warn);margin-bottom:4px}
+.alert b{display:block}
+.alert small{color:#8a3a20;font-size:12.5px}
+ul.list{list-style:none;margin:0;padding:0}
+ul.list li{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-top:1px solid var(--line);color:var(--n800)}
+ul.list li:first-child{border-top:0;padding-top:2px}
+ul.list svg{color:var(--dark);flex:none;margin-top:2px}
+
+/* own view */
+.add{display:flex;align-items:center;gap:12px;margin-top:12px;padding:16px 18px;border-radius:24px;border:1.5px dashed var(--n300);background:rgba(255,255,255,.55)}
+.add .ic{width:40px;height:40px;border-radius:14px;background:#fff;display:grid;place-items:center;color:var(--dark);flex:none}
+.add b{display:block;color:var(--n900)}
+.add small{color:var(--n600);font-size:12.5px}
+.add .go{margin-left:auto;background:var(--dark);color:#fff;font-weight:700;font-size:13px;padding:8px 14px;border-radius:99px}
+.thin{text-align:center;color:var(--n500);font-size:13px;padding:18px 24px 0}
+
+/* actions */
+.fab{position:absolute;right:18px;bottom:34px;z-index:8;width:64px;height:64px;border-radius:50%;background:var(--light);color:var(--dark);display:grid;place-items:center;box-shadow:0 10px 24px rgba(5,59,101,.25);transition:opacity .2s,transform .2s}
+.fab.hide{opacity:0;transform:scale(.8);pointer-events:none}
+.endbar{display:flex;align-items:center;justify-content:space-between;padding:34px 18px 10px}
+.endbar button{border-radius:50%;display:grid;place-items:center}
+.endbar .pass,.endbar .msg{width:64px;height:64px;background:var(--dark);color:#fff}
+.endbar .spark{width:84px;height:84px;background:var(--light);color:var(--dark);box-shadow:0 12px 28px rgba(5,59,101,.25)}
+.endlbl{display:flex;justify-content:space-between;padding:0 22px;font-size:12px;font-weight:600;color:var(--n500)}
+.endlbl span{width:64px;text-align:center}
+
+.nav{position:absolute;left:20px;right:20px;bottom:26px;height:64px;border-radius:99px;background:var(--dark);display:flex;align-items:center;justify-content:space-around;padding:0 8px;z-index:8;box-shadow:0 10px 30px rgba(5,59,101,.35)}
+.nav a{color:rgba(255,255,255,.7);text-decoration:none;display:flex;align-items:center;gap:6px;height:44px;padding:0 12px;border-radius:99px;font-size:13px;font-weight:700}
+.nav a.on{background:var(--light);color:var(--dark)}
+.home-ind{position:absolute;left:50%;bottom:8px;width:134px;height:5px;border-radius:9px;background:var(--n900);transform:translateX(-50%);z-index:10}
+
+/* note sheet */
+.sheet-bg{position:absolute;inset:0;background:rgba(5,30,55,.4);z-index:20;opacity:0;pointer-events:none;transition:opacity .2s}
+.sheet-bg.on{opacity:1;pointer-events:auto}
+.sheet{position:absolute;left:0;right:0;bottom:0;z-index:21;background:#fff;border-radius:28px 28px 0 0;padding:10px 20px 34px;transform:translateY(100%);transition:transform .25s}
+.sheet.on{transform:none}
+.sheet .grab{width:40px;height:5px;border-radius:9px;background:var(--n300);margin:0 auto 14px}
+.sheet h3{margin:0 0 4px;font-size:18px;color:var(--n900)}
+.sheet .ctx{display:inline-flex;gap:6px;align-items:center;font-size:12.5px;font-weight:600;color:var(--dark);background:var(--light-12);padding:5px 10px;border-radius:99px;margin:6px 0 12px}
+.sheet textarea{width:100%;height:96px;border:1px solid var(--n200);border-radius:16px;padding:12px 14px;font:inherit;font-size:15px;resize:none;outline:none}
+.sheet textarea:focus{border-color:var(--dark)}
+.sheet .send{margin-top:12px;width:100%;height:52px;border-radius:99px;background:var(--light);color:var(--n800);font-weight:700;font-size:15px;display:flex;gap:8px;align-items:center;justify-content:center}
+
+@media (max-width:760px){body{flex-direction:column;align-items:center}.side{position:static;width:100%;max-width:390px}}
+</style>
+</head>
+<body>
+
+<aside class="side">
+  <div class="brand">SPIRLIT</div>
+  <h1>User profile</h1>
+  <p>Card-by-card layout based on the Bumble reference: a big photo first, then one card per topic, with photos in between. Skipped answers never show, and cards with nothing in them disappear.</p>
+
+  <div class="grp">How much they answered</div>
+  <div class="seg" id="ctlData">
+    <button data-v="full"><b>Everything filled in</b><span>Profile, Go deeper and Lightning Round</span></button>
+    <button data-v="partial"><b>Some questions skipped</b><span>No pets, wishlist or good to know</span></button>
+    <button data-v="quick"><b>Quick Spark only</b><span>Skipped most of onboarding</span></button>
+  </div>
+
+  <div class="grp">Who is looking</div>
+  <div class="seg" id="ctlView">
+    <button data-v="friend"><b>Someone else's view</b><span>Opened from Nearby, with spark actions</span></button>
+    <button data-v="own"><b>My own profile</b><span>Gentle prompts to fill the gaps</span></button>
+  </div>
+  <a class="v1" href="profile-v1.html">See the first version →</a>
+</aside>
+
+<div class="phone"><div class="screen" id="screen">
+  <div class="status"><span>9:41</span><i>
+    <svg width="18" height="12" viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx="1" fill="currentColor"/><rect x="5" y="5" width="3" height="7" rx="1" fill="currentColor"/><rect x="10" y="2.5" width="3" height="9.5" rx="1" fill="currentColor"/><rect x="15" y="0" width="3" height="12" rx="1" fill="currentColor"/></svg>
+    <svg width="25" height="12" viewBox="0 0 25 12"><rect x=".5" y=".5" width="21" height="11" rx="3.5" fill="none" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="18" height="8" rx="2" fill="currentColor"/><rect x="23" y="4" width="1.5" height="4" rx=".75" fill="currentColor" opacity=".4"/></svg>
+  </i></div>
+  <div class="head" id="head"></div>
+  <div class="progress"><i id="prog"></i></div>
+  <div class="scroll" id="scroll"></div>
+  <button class="fab" id="fab" aria-label="Send a spark"></button>
+  <nav class="nav" id="nav">
+    <a href="#" aria-label="Home" data-ic="home"></a>
+    <a href="#" aria-label="Nearby" data-ic="pin"></a>
+    <a href="#" aria-label="Chats" data-ic="chat"></a>
+    <a href="#" class="on" data-ic="user"><span>Profile</span></a>
+  </nav>
+  <div class="sheet-bg" id="sheetBg"></div>
+  <div class="sheet" id="sheet">
+    <div class="grab"></div>
+    <h3 id="sheetTitle">Send a note</h3>
+    <div class="ctx" id="sheetCtx"></div>
+    <textarea id="sheetText" placeholder="Say something about it…"></textarea>
+    <button class="send" id="sheetSend"></button>
+  </div>
+  <div class="home-ind"></div>
+</div></div>
+
+<script>
+const P = {
+  cake:'<path d="M4 21h16M5 21v-7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7M12 12V8"/><path d="M12 4.5c.8.9.8 2 0 2.5-.8-.5-.8-1.6 0-2.5Z"/><path d="M5 16c1.5 1 2.5 1 3.5 0s2-1 3.5 0 2.5 1 3.5 0 2-1 3.5 0"/>',
+  home:'<path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/>',
+  pin:'<path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/>',
+  sprout:'<path d="M12 21v-9"/><path d="M12 12C12 8 9 6 5 6c0 4 3 6 7 6Z"/><path d="M12 14c0-3.5 2.5-5.5 7-5.5 0 3.5-2.5 5.5-7 5.5Z"/>',
+  paw:'<circle cx="7" cy="9" r="1.8"/><circle cx="17" cy="9" r="1.8"/><circle cx="10" cy="5.5" r="1.8"/><circle cx="14" cy="5.5" r="1.8"/><path d="M12 12c-3 0-5 3-5 5.2C7 19 8.5 20 10 19.5c1.3-.4 2.7-.4 4 0 1.5.5 3-.5 3-2.3C17 15 15 12 12 12Z"/>',
+  battery:'<rect x="2.5" y="7" width="17" height="10" rx="2.5"/><path d="M22 10.5v3"/><rect x="5" y="9.5" width="7" height="5" rx="1" fill="currentColor"/>',
+  fork:'<path d="M7 3v8a2 2 0 0 0 2 2v8M11 3v8a2 2 0 0 1-2 2M9 3v6M16 21V3c2.5 1 3.5 4 3.5 7s-1.5 4-3.5 4"/>',
+  cup:'<path d="M4 9h13v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5Z"/><path d="M17 11h1.5a2.5 2.5 0 0 1 0 5H17M8 3v3M12 3v3"/>',
+  music:'<path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/>',
+  film:'<rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/>',
+  book:'<path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2Z"/><path d="M4 19V5M19 19v2H6"/>',
+  drop:'<path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11Z"/>',
+  flower:'<circle cx="12" cy="9" r="2.2"/><path d="M12 6.8C12 4 10.5 2.5 9 3.5S9 7 12 6.8ZM12 6.8c0-2.8 1.5-4.3 3-3.3S15 7 12 6.8ZM14.2 9c2.8 0 4.3 1.5 3.3 3s-3.5 0-3.3-3ZM9.8 9c-2.8 0-4.3 1.5-3.3 3s3.5 0 3.3-3Z"/><path d="M12 11.2V21M12 17c-2-2-4-2-5-1.5"/>',
+  box:'<path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5Z"/><path d="m3 7.5 9 4.5 9-4.5M12 12v9"/>',
+  candy:'<circle cx="12" cy="12" r="4.5"/><path d="M8.5 9 4 6v6l4.2-1M15.5 15l4.5 3v-6l-4.2 1"/>',
+  bolt:'<path d="M13 2 4 14h7l-1 8 9-12h-7Z"/>',
+  gift:'<rect x="3.5" y="9" width="17" height="11" rx="2"/><path d="M2.5 9h19M12 9v11M12 9S10.5 4 8 4a2 2 0 0 0 0 4c2 0 4 1 4 1ZM12 9s1.5-5 4-5a2 2 0 0 1 0 4c-2 0-4 1-4 1Z"/>',
+  heart:'<path d="M12 20s-7.5-4.5-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10C19.5 15.5 12 20 12 20Z"/>',
+  info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h0"/>',
+  alert:'<path d="M12 4 2.8 19.5h18.4Z"/><path d="M12 10v4.5M12 17.2h0"/>',
+  no:'<circle cx="12" cy="12" r="8.5"/><path d="m6 6 12 12"/>',
+  check:'<path d="m5 12.5 4.5 4.5L19 7.5"/>',
+  checkc:'<circle cx="12" cy="12" r="9"/><path d="m8 12.5 3 3 5-6"/>',
+  back:'<path d="M15 5 8 12l7 7"/>',
+  dots:'<circle cx="5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="19" cy="12" r="1.3"/>',
+  chat:'<path d="M20 12a8 8 0 0 1-11.8 7L4 20l1.1-4A8 8 0 1 1 20 12Z"/>',
+  notec:'<path d="M20 12a8 8 0 0 1-11.8 7L4 20l1.1-4A8 8 0 1 1 20 12Z"/><path d="M12 15.5s-3.2-1.9-3.2-4.1a1.8 1.8 0 0 1 3.2-1.1 1.8 1.8 0 0 1 3.2 1.1c0 2.2-3.2 4.1-3.2 4.1Z"/>',
+  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+  pen:'<path d="M4 20h4L19 9l-4-4L4 16Z"/><path d="m14 6 4 4"/>',
+  share:'<path d="M12 15V3M7.5 7.5 12 3l4.5 4.5"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/>',
+  cal:'<rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/>',
+  sparkle:'<path d="M12 3c.6 4.2 2.8 6.4 7 7-4.2.6-6.4 2.8-7 7-.6-4.2-2.8-6.4-7-7 4.2-.6 6.4-2.8 7-7Z"/>',
+  x:'<path d="M6 6l12 12M18 6 6 18"/>',
+  send:'<path d="M21 3 10 14M21 3l-7 18-4-7-7-4Z"/>',
+  mountain:'<path d="m3 20 6-10 4 6 2-3 6 7Z"/><circle cx="16" cy="6" r="2"/>',
+  camera:'<rect x="3" y="7" width="18" height="13" rx="2.5"/><path d="M8 7l1.5-3h5L16 7"/><circle cx="12" cy="13.5" r="3.5"/>',
+  dice:'<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="15" cy="15" r="1" fill="currentColor"/><circle cx="15" cy="9" r="1" fill="currentColor"/><circle cx="9" cy="15" r="1" fill="currentColor"/>',
+  run:'<circle cx="14" cy="4.5" r="1.8"/><path d="m7 21 3-6 3 2v5M5 11l3-3 4 1 2 4 3 1"/>',
+  wave:'<path d="M2 15c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2M2 19c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/><path d="M7 11c0-4 3-7 7-7"/>',
+  palette:'<path d="M12 3a9 9 0 1 0 0 18c1.2 0 1.8-.8 1.8-1.7 0-1.4-1.3-1.6-1.3-2.8 0-.9.8-1.5 1.7-1.5H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3Z"/>',
+};
+const ic = (n, s = 18, w = 1.8) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[n] || P.sparkle}</svg>`;
+document.querySelectorAll('.nav a').forEach(a => a.insertAdjacentHTML('afterbegin', ic(a.dataset.ic, 22, 2)));
+document.getElementById('fab').innerHTML = ic('bolt', 28, 2.2);
+
+/* ---------- sample answers ---------- */
+const FULL = {
+  name: 'Kaden', photo: 'assets/77daf.png', verified: true,
+  bio: 'Portland kid, Austin by choice. Happiest on a sunrise hike followed by a very long coffee. Always up for a board game night or trying a new taco spot.',
+  battery: 'Recharges with a few close friends',
+  birthday: { m: 3, d: 14 },
+  hometown: 'Portland, Oregon', city: 'Austin, Texas',
+  pets: [{ name: 'Miso', kind: 'Shiba Inu', age: '4 yrs', bday: { m: 6, d: 2 }, photo: null, tint: ['#F6D3B0', '#E39A4B'] }, { name: 'Pickle', kind: 'Tabby cat', age: '2 yrs', bday: { m: 12, d: 9 }, photo: null, tint: ['#DCE3D2', '#7C8C6E'] }],
+  dates: [{ t: 'Moved to Austin', d: { m: 8, d: 21 }, y: 2022 }, { t: 'First marathon', d: { m: 11, d: 3 }, y: 2024 }, { t: "Mum's birthday", d: { m: 2, d: 2 } }],
+  photos: [
+    { img: 'assets/profile/mood-friends.jpg', cap: 'Friday dinners are sacred' },
+    { img: 'assets/profile/cooking.jpg', cap: 'Sunday batch cooking' },
+    { img: 'assets/profile/mood-beach.jpg', cap: 'Big Sur, every chance I get' },
+  ],
+  foods: ['Thai', 'Neapolitan pizza', 'Ramen', 'Tacos al pastor', 'Sushi', 'Mezze', 'Pho', 'Dumplings'],
+  restaurants: ['Ramen Tatsu-ya', 'Veracruz All Natural', 'Uchi', 'Odd Duck', 'Thai Kun'],
+  coffee: 'Oat flat white, extra hot',
+  drinks: ['Matcha latte', 'Mezcal margarita', 'Hazy IPA'],
+  treats: ['Sea-salt dark chocolate', 'Mochi', 'Key lime pie', 'Salted caramel'],
+  artists: ['Bon Iver', 'Khruangbin', 'Phoebe Bridgers', 'Tame Impala', 'Fleetwood Mac', 'Hozier', 'Leon Bridges'],
+  shows: ['Interstellar', 'The Bear', 'Spirited Away', 'Severance', 'Arrival'],
+  books: ['Project Hail Mary', 'Atomic Habits'],
+  scents: ['Cedarwood', 'Fresh linen', 'Campfire candles', 'Santal'],
+  flowers: ['Sunflowers', 'Peonies'],
+  colors: [['Forest green', '#2F6B4F'], ['Burnt orange', '#D9772B'], ['Navy', '#1F3A5F']],
+  collects: ['Vinyl records', 'National park pins', 'Film cameras'],
+  hobbies: [['Hiking', 'do', 'mountain'], ['Film photography', 'do', 'camera'], ['Cooking', 'do', 'fork'], ['Board games', 'do', 'dice'], ['Trail running', 'do', 'run'], ['Pickleball', 'do'], ['Bouldering', 'want', 'mountain'], ['Pottery', 'want'], ['Surfing', 'want', 'wave'], ['Salsa dancing', 'want', 'music']],
+  activities: ['Farmers market Saturdays', 'Long drives with a playlist', 'Cooking for friends'],
+  places: [
+    { n: 'Barton Springs', t: 'Austin · favourite swim', img: 'assets/profile/mood-harbour.jpg' },
+    { n: 'Mount Bonnell', t: 'Austin · sunset spot', img: 'assets/profile/mood-dome.jpg' },
+    { n: 'Big Sur', t: 'California · would go back', img: 'assets/profile/mood-beach.jpg' },
+  ],
+  adventures: [
+    { t: 'See the northern lights', k: 'Trip' }, { t: 'Omakase at Uchiko', k: 'Restaurant' },
+    { t: 'Learn to surf in Portugal', k: 'Experience' }, { t: 'Hot-air balloon ride', k: 'Experience' },
+    { t: 'Austin City Limits', k: 'Concert', done: true }, { t: 'Hike Angels Landing', k: 'Trip', done: true },
+  ],
+  wishlist: [['Instax film packs', 'camera'], ['Pottery class for two', 'sparkle'], ['Record store gift card', 'music'], ['Hot sauce sampler', 'gift']],
+  special: ['Handwritten notes, even short ones', 'A song that made you think of me', 'Surprise coffee drop-offs', 'Low-key birthdays with a few close friends'],
+  allergy: { t: 'Tree nut allergy', s: 'Please skip pecans and walnuts when cooking or baking.' },
+  dislikes: ['Cilantro', 'Horror films', 'Very loud bars'],
+  notes: ['Early riser, slow to reply after 9pm', 'Prefers a heads-up over last-minute plans'],
+};
+const PARTIAL = { ...FULL, pets: [], dates: [], photos: FULL.photos.slice(0, 1), restaurants: FULL.restaurants.slice(0, 2), scents: [], flowers: [], colors: [], collects: [], books: [], treats: [], wishlist: [], special: [], allergy: null, dislikes: [], notes: [], activities: [] };
+const QUICK = {
+  name: 'Kaden', photo: 'assets/77daf.png', city: 'Austin, Texas',
+  foods: ['Thai', 'Ramen', 'Tacos al pastor'], artists: ['Bon Iver', 'Khruangbin'], shows: ['Interstellar', 'The Bear'],
+  hobbies: [['Hiking', 'do', 'mountain'], ['Film photography', 'do', 'camera'], ['Bouldering', 'want', 'mountain']],
+  places: [FULL.places[2]], adventures: [FULL.adventures[0], FULL.adventures[4]],
+};
+const DATA = { full: FULL, partial: PARTIAL, quick: QUICK };
+const SHARED = { Hiking: 'mountain', Thai: 'fork', 'Bon Iver': 'music', 'Board games': 'dice', Interstellar: 'film', Ramen: 'fork' };
+
+/* ---------- helpers ---------- */
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+const fmt = d => `${MONTHS[d.m - 1]} ${d.d}`;
+const daysUntil = d => { const n = new Date(); n.setHours(0, 0, 0, 0); let t = new Date(n.getFullYear(), d.m - 1, d.d); if (t < n) t = new Date(n.getFullYear() + 1, d.m - 1, d.d); return Math.round((t - n) / 864e5); };
+const until = d => { const n = daysUntil(d); return n === 0 ? 'Today' : n === 1 ? 'Tomorrow' : n <= 45 ? `in ${n} days` : ''; };
+const has = v => Array.isArray(v) ? v.length > 0 : !!v;
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const open = new Set();
+let state = { data: 'full', view: 'friend' };
+const own = () => state.view === 'own';
+
+function chips(key, items, limit = 6, iconFor) {
+  const all = items.map(it => Array.isArray(it) ? it : [it]);
+  const full = open.has(key) || all.length <= limit + 1;
+  const vis = full ? all : all.slice(0, limit);
+  let h = vis.map(([t, k, i]) => {
+    const sh = !own() && SHARED[t] ? ' shared' : '';
+    const cls = k === 'do' || k === 'want' ? ' ' + k : '';
+    const icon = i || (iconFor && iconFor(t));
+    return `<span class="chip${cls}${sh}">${icon ? ic(icon, 17) : ''}${esc(t)}</span>`;
+  }).join('');
+  if (!full) h += `<button class="chip more" data-more="${key}">+${all.length - limit} more</button>`;
+  return `<div class="chips">${h}</div>`;
+}
+const note = (ctx) => own() ? '' : `<button class="note" data-note="${esc(ctx)}">${ic('notec', 22, 1.8)}Note</button>`;
+const card = (title, body, ctx, extra = '') => `<section class="card"><h2>${title}${extra}</h2>${body}${note(ctx || title)}</section>`;
+const addCard = (icon, t, s) => own() ? `<div class="add"><span class="ic">${ic(icon, 20)}</span><div><b>${t}</b><small>${s}</small></div><span class="go">Add</span></div>` : '';
+const photo = p => p ? `<div class="photo"><img src="${p.img}" alt="">${p.cap ? `<div class="cap">${esc(p.cap)}</div>` : ''}${own() ? '' : `<button class="note" data-note="${esc(p.cap || 'Photo')}">${ic('notec', 22, 1.8)}Note</button>`}</div>` : '';
+
+/* ---------- cards ---------- */
+function hero(d) {
+  const shared = Object.keys(SHARED).filter(t => [...(d.foods || []), ...(d.artists || []), ...(d.shows || []), ...(d.hobbies || []).map(h => h[0])].includes(t));
+  const showCommon = !own() && shared.length;
+  return `<div class="hero${showCommon ? ' with-common' : ''}"><img src="${d.photo}" alt="${esc(d.name)}">
+    ${own() ? `<span class="badge pct">${ic('sparkle', 15, 2)}${completion(d)}% complete</span><button class="edit">${ic('pen', 15, 2)}Edit</button>` : `<button class="share" aria-label="Share">${ic('share', 19, 2)}</button>`}
+    <div class="bottom"><div class="info">${d.verified ? `<span class="badge">${ic('checkc', 16, 2)}Photo verified</span>` : ''}
+      <h1>${esc(d.name)}</h1>${d.city ? `<div class="loc">${ic('pin', 15, 2)}${esc(d.city)}</div>` : ''}</div>
+    ${showCommon ? `<div class="common"><h3>We have things in common</h3><div class="chips">${shared.slice(0, 2).map(t => `<span class="chip">${ic(SHARED[t], 17)}${esc(t)}</span>`).join('')}${shared.length > 2 ? `<span class="chip more">+${shared.length - 2}</span>` : ''}</div></div>` : ''}</div>
+  </div>`;
+}
+
+function aboutCards(d) {
+  let out = '';
+  if (d.bio) out += card('My bio', `<p class="bio">${esc(d.bio)}</p>`);
+  else out += addCard('pen', 'Write a short bio', 'A line or two so people get a feel for you');
+
+  const c = [];
+  if (d.birthday) c.push(['Birthday ' + fmt(d.birthday), '', 'cake']);
+  if (d.city) c.push(['Lives in ' + d.city.split(',')[0], '', 'home']);
+  if (d.hometown) c.push(['From ' + d.hometown.split(',')[0], '', 'sprout']);
+  if (d.battery) c.push([d.battery, '', 'battery']);
+  const petsHtml = has(d.pets) ? `<div class="sub" style="margin-top:16px">Pets</div>` + `<div class="pets">${d.pets.map(p => `<div class="pet"><div class="pic" style="background:linear-gradient(160deg,${p.tint[0]},${p.tint[1]})">${p.photo ? `<img src="${p.photo}" alt="${esc(p.name)}">` : `<span class="ph">${ic('paw', 44, 1.6)}</span>`}${until(p.bday) ? `<span class="soon">${ic('cake', 13, 2)}${until(p.bday)}</span>` : ''}</div><b>${esc(p.name)}</b><small>${esc(p.kind)}${p.age ? ' · ' + p.age : ''}</small><div class="bd">${ic('cake', 14, 2)}Birthday ${fmt(p.bday)}</div></div>`).join('')}</div>` : '';
+  if (c.length || petsHtml) {
+    const soon = [...(d.pets || []).map(p => ({ t: `${p.name}'s birthday`, d: p.bday })), ...(d.birthday ? [{ t: 'Birthday', d: d.birthday }] : []), ...(d.dates || [])].filter(x => until(x.d));
+    out += card('About me', (c.length ? chips('about', c, 8) : '') + petsHtml + (has(d.dates) ? `<div class="sub" style="margin-top:16px">Important dates</div>${[...d.dates].sort((a, b) => daysUntil(a.d) - daysUntil(b.d)).map(x => `<div class="row"><span class="ic">${ic('cal')}</span><div><b>${esc(x.t)}</b><small>${fmt(x.d)}${x.y ? ', ' + x.y : ''}</small></div>${until(x.d) ? `<span class="pill">${until(x.d)}</span>` : ''}</div>`).join('')}` : ''), 'About me');
+  }
+  if (own()) {
+    if (!d.birthday) out += addCard('cake', 'Add your birthday', 'Month and day, the year is optional');
+    if (!has(d.pets)) out += addCard('paw', 'Got pets?', 'Names, photos and birthdays');
+    if (!has(d.dates)) out += addCard('cal', 'Important dates', 'Anniversaries, milestones, special days');
+  }
+  return out;
+}
+
+function favCards(d) {
+  let out = '';
+  let food = '';
+  if (d.coffee) food += `<div class="quote">${ic('cup', 22, 1.8)}<div><small>Coffee order</small><b>${esc(d.coffee)}</b></div></div>`;
+  if (has(d.foods)) food += `<div class="sub"${d.coffee ? ' style="margin-top:14px"' : ''}>Could eat any day</div>${chips('foods', d.foods, 5, () => 'fork')}`;
+  if (has(d.restaurants)) food += `<div class="sub">Go-to spots</div>${chips('rest', d.restaurants, 4, () => 'pin')}`;
+  if (has(d.drinks)) food += `<div class="sub">Drinks</div>${chips('drinks', d.drinks, 4, () => 'cup')}`;
+  if (has(d.treats)) food += `<div class="sub">Treats</div>${chips('treats', d.treats, 4, () => 'candy')}`;
+  if (food) out += card('Food & drink', food);
+
+  let media = '';
+  if (has(d.artists)) media += `<div class="sub">On repeat</div>${chips('artists', d.artists, 4, () => 'music')}`;
+  if (has(d.shows)) media += `<div class="sub">Could watch again and again</div>${chips('shows', d.shows, 4, () => 'film')}`;
+  if (has(d.books)) media += `<div class="sub">Reading</div>${chips('books', d.books, 4, () => 'book')}`;
+  if (media) out += card('Music, films & books', media);
+
+  let little = '';
+  if (has(d.scents)) little += `<div class="sub">Scents</div>${chips('scents', d.scents, 4, () => 'drop')}`;
+  if (has(d.flowers)) little += `<div class="sub">Flowers</div>${chips('flowers', d.flowers, 4, () => 'flower')}`;
+  if (has(d.colors)) little += `<div class="sub">Colours</div><div class="chips">${d.colors.map(([n, c]) => `<span class="sw"><i style="background:${c}"></i>${n}</span>`).join('')}</div>`;
+  if (has(d.collects)) little += `<div class="sub">Things I collect</div>${chips('collects', d.collects, 4, () => 'box')}`;
+  if (little) out += card('The little things', little);
+  else out += addCard('flower', 'The little things', 'Favourite scents, flowers, colours, collections');
+  return out;
+}
+
+function doCards(d) {
+  let out = '';
+  if (has(d.hobbies)) {
+    const want = d.hobbies.some(h => h[1] === 'want');
+    out += card('My interests', `${want ? `<div class="legend"><span><i style="background:var(--light)"></i>Does it</span><span><i style="box-shadow:inset 0 0 0 1.5px var(--light)"></i>Wants to try</span></div>` : ''}${chips('hobbies', d.hobbies, 7)}${has(d.activities) ? `<div class="sub" style="margin-top:16px">Favourite ways to spend free time</div>${d.activities.map(a => `<div class="row"><span class="ic">${ic('sparkle', 16)}</span><b style="font-weight:500">${esc(a)}</b></div>`).join('')}` : ''}`);
+  }
+  if (has(d.places)) out += card('Favourite places', `<div class="places">${d.places.map(p => `<div class="place"><img src="${p.img}" alt=""><div><b>${esc(p.n)}</b><small>${esc(p.t)}</small></div></div>`).join('')}</div>`);
+  if (has(d.adventures)) {
+    const done = d.adventures.filter(a => a.done).length, n = d.adventures.length;
+    const list = open.has('adv') ? d.adventures : d.adventures.slice(0, 4);
+    out += card('Adventure wishlist', `<div class="bar"><i style="width:${done / n * 100}%"></i></div>${list.map(a => `<div class="row${a.done ? ' done' : ''}"><span class="tick">${ic('check', 15, 2.6)}</span><div><b>${esc(a.t)}</b><small>${a.done ? 'Done' : a.k}</small></div>${!a.done && !own() ? '<button class="join">Join</button>' : ''}</div>`).join('')}${n > 4 ? `<button class="showall" data-more="adv">${open.has('adv') ? 'Show less' : `Show all ${n}`}</button>` : ''}`, 'Adventure wishlist', `<small>${done} of ${n} done</small>`);
+  }
+  return out;
+}
+
+function dayCards(d) {
+  if (!has(d.wishlist) && !has(d.special)) return addCard('gift', 'Make my day', 'A wishlist and what makes you feel special');
+  let b = '';
+  if (has(d.wishlist)) b += `<div class="sub">Wishlist</div>${chips('wish', d.wishlist.map(([t, i]) => [t, '', i]), 6)}`;
+  if (has(d.special)) b += `<div class="sub" style="margin-top:16px">What makes me feel special</div><ul class="list">${d.special.map(s => `<li>${ic('heart', 16, 2)}<span>${esc(s)}</span></li>`).join('')}</ul>`;
+  return card('Make my day', b);
+}
+
+function gtkCards(d) {
+  if (!d.allergy && !has(d.dislikes) && !has(d.notes)) return addCard('info', 'Good to know', 'Food restrictions, things you avoid, helpful habits');
+  let b = '';
+  if (d.allergy) b += `<div class="alert">${ic('alert', 20, 2)}<div><b>${esc(d.allergy.t)}</b><small>${esc(d.allergy.s)}</small></div></div>`;
+  if (has(d.dislikes)) b += `<div class="sub" style="margin-top:14px">Not a fan of</div>${chips('dis', d.dislikes, 6, () => 'no')}`;
+  if (has(d.notes)) b += `<div class="sub" style="margin-top:16px">Helpful to know</div><ul class="list">${d.notes.map(s => `<li>${ic('info', 16, 2)}<span>${esc(s)}</span></li>`).join('')}</ul>`;
+  return card('Good to know', b);
+}
+
+function completion(d) {
+  const k = ['bio', 'birthday', 'hometown', 'city', 'pets', 'dates', 'foods', 'restaurants', 'coffee', 'treats', 'scents', 'flowers', 'artists', 'collects', 'hobbies', 'places', 'adventures', 'wishlist', 'special', 'allergy'];
+  return Math.round(k.filter(x => has(d[x])).length / k.length * 100);
+}
+
+/* ---------- page ---------- */
+function render() {
+  const d = DATA[state.data], ph = d.photos || [];
+  document.getElementById('head').innerHTML = own()
+    ? `<span style="width:40px"></span><span class="wm" id="wm">SPIRLIT</span><span class="title" id="ttl">My profile</span><button class="hbtn" aria-label="Settings">${ic('dots', 22, 2)}</button>`
+    : `<button class="hbtn" aria-label="Back">${ic('back', 22, 2)}</button><span class="wm" id="wm">SPIRLIT</span><span class="title" id="ttl">${esc(d.name)}</span><button class="hbtn" aria-label="More">${ic('dots', 22, 2)}</button>`;
+  document.getElementById('nav').style.display = own() ? '' : 'none';
+
+  let h = hero(d);
+  h += aboutCards(d);
+  h += photo(ph[0]);
+  h += favCards(d);
+  h += photo(ph[1]);
+  h += doCards(d);
+  h += photo(ph[2]);
+  if (!own() && !has(d.wishlist) && !has(d.special)) {} else h += dayCards(d);
+  if (!own() && !d.allergy && !has(d.dislikes) && !has(d.notes)) {} else h += gtkCards(d);
+  if (!own() && state.data !== 'full') h += `<div class="thin">${esc(d.name)} is still filling in their profile. More will show up here as they answer.</div>`;
+  if (!own()) h += `<div class="endbar"><button class="pass" aria-label="Not now">${ic('x', 28, 2.4)}</button><button class="spark" aria-label="Send a spark">${ic('bolt', 36, 2.2)}</button><button class="msg" aria-label="Message">${ic('chat', 26, 2)}</button></div><div class="endlbl"><span>Not now</span><span style="width:84px">Spark</span><span>Message</span></div>`;
+
+  const sc = document.getElementById('scroll'), y = sc.scrollTop;
+  sc.innerHTML = h; sc.scrollTop = y;
+  onScroll();
+}
+
+function onScroll() {
+  const sc = document.getElementById('scroll');
+  const max = sc.scrollHeight - sc.clientHeight;
+  document.getElementById('prog').style.width = Math.max(8, max > 0 ? sc.scrollTop / max * 100 : 100) + '%';
+  const past = sc.scrollTop > 480;
+  document.getElementById('ttl')?.classList.toggle('on', past);
+  document.getElementById('wm')?.classList.toggle('off', past);
+  const end = sc.querySelector('.endbar');
+  const nearEnd = end && end.offsetTop - sc.scrollTop < sc.clientHeight - 40;
+  document.getElementById('fab').classList.toggle('hide', own() || nearEnd);
+}
+document.getElementById('scroll').addEventListener('scroll', onScroll);
+
+/* note sheet */
+const sheet = document.getElementById('sheet'), sheetBg = document.getElementById('sheetBg');
+function openSheet(ctx) {
+  const d = DATA[state.data];
+  document.getElementById('sheetTitle').textContent = `Send ${d.name} a note`;
+  document.getElementById('sheetCtx').innerHTML = `${ic('notec', 15, 2)}About: ${esc(ctx)}`;
+  document.getElementById('sheetSend').innerHTML = `${ic('bolt', 18, 2.2)}Send with a spark`;
+  document.getElementById('sheetText').value = '';
+  sheet.classList.add('on'); sheetBg.classList.add('on');
+}
+const closeSheet = () => { sheet.classList.remove('on'); sheetBg.classList.remove('on'); };
+sheetBg.onclick = closeSheet; document.getElementById('sheetSend').onclick = closeSheet;
+
+document.getElementById('scroll').addEventListener('click', e => {
+  const m = e.target.closest('[data-more]'); if (m) { const k = m.dataset.more; open.has(k) ? open.delete(k) : open.add(k); render(); return; }
+  const n = e.target.closest('[data-note]'); if (n) openSheet(n.dataset.note);
+});
+
+function bindSeg(id, key) {
+  const el = document.getElementById(id);
+  const sync = () => el.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === state[key]));
+  el.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; state[key] = b.dataset.v; open.clear(); closeSheet(); document.getElementById('scroll').scrollTop = 0; sync(); render(); });
+  sync();
+}
+bindSeg('ctlData', 'data'); bindSeg('ctlView', 'view');
+render();
+</script>
+</body>
+</html>
