@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spirlit · Core connection notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400..900&family=Outfit:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dark:#053B65; --light:#7AD5FE; --tint:#E7F7FF;
+  --n50:#FAFAFA; --n100:#F5F5F5; --n200:#E6E6E6; --n300:#D6D6D6; --n500:#767676; --n600:#575757; --n700:#434343; --n800:#2D2D2D; --n900:#1A1A1A;
+  --shadow:0 1px 2px rgba(5,59,101,.04),0 6px 18px rgba(5,59,101,.06);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{font:14px/1.45 Inter,system-ui,sans-serif;color:var(--n700);background:#E6ECF3;display:flex;gap:40px;justify-content:center;align-items:flex-start;padding:32px 16px}
+button,input{font:inherit;color:inherit}
+button{background:none;border:0;padding:0;cursor:pointer}
+
+.side{width:300px;flex:none;position:sticky;top:32px}
+.side .brand{font:600 15px Outfit,sans-serif;letter-spacing:.22em;color:var(--dark)}
+.side h1{font-size:20px;color:var(--n900);margin:6px 0 4px}
+.side p{margin:0 0 6px;color:var(--n600);font-size:13px}
+.grp{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--n500);margin:18px 0 8px}
+.seg{display:flex;flex-direction:column;gap:6px}
+.seg button{text-align:left;padding:10px 12px;border-radius:12px;background:#fff;border:1px solid var(--n200);font-size:13px}
+.seg button b{display:block;color:var(--n900);font-weight:600}
+.seg button span{color:var(--n500);font-size:12px}
+.seg button[aria-pressed=true]{border-color:var(--dark);box-shadow:inset 0 0 0 1px var(--dark)}
+
+.phone{width:390px;height:844px;flex:none;border-radius:48px;background:#000;padding:10px;box-shadow:0 30px 80px rgba(5,59,101,.25)}
+.screen{position:relative;width:100%;height:100%;border-radius:40px;overflow:hidden;background:linear-gradient(180deg,#DCEBF8 0%,#EAF2FA 35%,#F4F8FC 100%)}
+.status{position:absolute;inset:0 0 auto;height:46px;display:flex;justify-content:space-between;align-items:center;padding:0 28px 0 34px;font-weight:600;font-size:15px;color:var(--n900);z-index:9;background:#DCEBF8}
+.head{position:absolute;top:46px;left:0;right:0;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;z-index:9;background:#DCEBF8}
+.hbtn{width:36px;height:36px;border-radius:12px;display:grid;place-items:center;color:var(--n900);border:1px dashed rgba(5,59,101,.2)}
+.scroll{position:absolute;top:102px;left:0;right:0;bottom:0;overflow-y:auto;scrollbar-width:none;padding:0 16px 40px}
+.scroll::-webkit-scrollbar{display:none}
+
+.photo{position:relative;height:420px;border-radius:24px;overflow:hidden;background:#cfd9e3}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pager{position:absolute;right:14px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:5px}
+.pager i{width:5px;height:5px;border-radius:3px;background:rgba(255,255,255,.6)}
+.pager i:first-child{height:22px;background:#fff}
+.namerow{display:flex;align-items:center;gap:12px;margin:18px 0 4px}
+.namerow .who{flex:1;min-width:0}
+.namerow h1{margin:0;font-size:28px;font-weight:800;color:var(--n900);letter-spacing:-.02em}
+.loc{display:flex;align-items:center;gap:6px;color:var(--n700);font-size:14px;margin-top:2px}
+.ccb{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:5px 11px 5px 9px;border-radius:99px;background:var(--dark);color:var(--light);font-size:12px;font-weight:600}
+.chatbtn{width:46px;height:46px;border-radius:50%;background:var(--dark);color:#fff;display:grid;place-items:center;flex:none;box-shadow:0 6px 16px rgba(5,59,101,.3)}
+
+.tabs{display:flex;margin:14px 0 16px;border-bottom:1px solid rgba(5,59,101,.12)}
+.tab{flex:1;padding:12px 0 11px;font-size:15px;font-weight:500;color:var(--n500);border-bottom:2.5px solid transparent;margin-bottom:-1px;display:flex;align-items:center;justify-content:center;gap:6px}
+.tab[aria-selected=true]{color:var(--n900);font-weight:600;border-color:var(--dark)}
+.tab .count{min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--light);color:var(--dark);font-size:11px;font-weight:700;display:inline-grid;place-items:center}
+
+.card{background:#fff;border-radius:22px;padding:16px;box-shadow:var(--shadow);margin-bottom:12px}
+.label{display:flex;align-items:center;justify-content:space-between;margin:20px 2px 10px}
+.label h2{margin:0;font-size:15px;font-weight:700;color:var(--n900);letter-spacing:.01em}
+.label small{font-size:12.5px;color:var(--n500)}
+.only{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:99px;background:var(--tint);color:var(--dark);font-size:11.5px;font-weight:600}
+
+/* profile tab */
+.peek{display:flex;gap:12px;align-items:flex-start;background:#fff;border-radius:20px;padding:14px;box-shadow:var(--shadow);border:1.5px solid var(--tint);margin-bottom:12px}
+.peek .ic{width:36px;height:36px;border-radius:12px;background:var(--tint);color:var(--dark);display:grid;place-items:center;flex:none}
+.peek b{display:block;color:var(--n900);font-size:13px}
+.peek p{margin:2px 0 8px;color:var(--n700);font-size:14px;line-height:20px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.peek .go{display:inline-flex;align-items:center;gap:4px;font-size:13px;font-weight:600;color:var(--dark)}
+.spark{background:var(--tint);border-radius:20px;padding:14px 16px;margin-bottom:12px}
+.spark .top{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:var(--n600);margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:8px 13px;border-radius:99px;background:var(--tint);color:var(--dark);font-weight:600;font-size:13.5px}
+.chip.w{background:#fff}
+.bio{font-size:15px;line-height:23px;color:var(--n800);margin:0}
+
+/* notes tab */
+.composer{display:flex;align-items:center;gap:8px;background:#fff;border-radius:18px;padding:6px 6px 6px 14px;box-shadow:var(--shadow);border:1.5px solid transparent;margin-bottom:6px}
+.composer:focus-within{border-color:var(--dark)}
+.composer input{flex:1;border:0;outline:0;background:none;font-size:15px;color:var(--n900);min-width:0}
+.composer input::placeholder{color:var(--n500)}
+.send{width:40px;height:40px;border-radius:12px;background:var(--dark);color:#fff;display:grid;place-items:center;flex:none}
+.send:disabled{background:var(--n200);color:var(--n500);cursor:default}
+.hint{font-size:12px;color:var(--n500);margin:0 4px 4px;display:flex;align-items:center;gap:5px}
+
+.ask li{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid #EEF2F6;list-style:none;transition:opacity .3s}
+.ask ul{margin:0;padding:0}
+.ask li:first-child{border-top:0;padding-top:2px}
+.ask li span{flex:1;color:var(--n900);font-size:15px;line-height:20px}
+.box{width:22px;height:22px;border-radius:7px;border:1.6px solid var(--n300);display:grid;place-items:center;color:transparent;flex:none;transition:all .15s}
+.ask li.done .box{background:var(--light);border-color:var(--light);color:var(--dark)}
+.ask li.done span{text-decoration:line-through;color:var(--n500)}
+.ask li.leaving{opacity:0}
+.addq{display:flex;align-items:center;gap:8px;margin-top:6px;padding-top:10px;border-top:1px solid #EEF2F6}
+.addq input{flex:1;border:0;outline:0;background:none;font-size:14.5px;color:var(--n900)}
+.addq input::placeholder{color:var(--dark);font-weight:600}
+.addq svg{color:var(--dark)}
+
+.facts{display:flex;flex-wrap:wrap;gap:8px}
+.fact{white-space:nowrap;max-width:100%;display:inline-flex;align-items:center;gap:7px;padding:8px 8px 8px 12px;border-radius:14px;background:var(--n100);color:var(--n900);font-size:14px;font-weight:500}
+.fact svg{color:var(--dark)}
+.fact .rem{white-space:nowrap;margin-left:2px;display:inline-flex;align-items:center;gap:4px;padding:4px 9px;border-radius:9px;background:#fff;color:var(--dark);font-size:12px;font-weight:700;box-shadow:inset 0 0 0 1px var(--n200)}
+.fact .rem.on{background:var(--dark);color:#fff;box-shadow:none}
+.fact.plain{padding-right:12px}
+
+.tl{position:relative;padding-left:22px}
+.tl::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:#E3EAF1;border-radius:2px}
+.entry{position:relative;padding:0 0 16px}
+.entry:last-child{padding-bottom:0}
+.entry::before{content:"";position:absolute;left:-21px;top:5px;width:12px;height:12px;border-radius:50%;background:#fff;border:2px solid var(--n300)}
+.entry.new::before{background:var(--light);border-color:var(--dark)}
+.entry.asked::before{background:var(--tint);border-color:var(--light)}
+.entry .meta{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--n500);font-weight:600}
+.entry .meta .more{margin-left:auto;color:var(--n500);padding:2px 4px}
+.entry p{margin:3px 0 0;font-size:15px;line-height:22px;color:var(--n900)}
+.entry .tag{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:99px;background:var(--tint);color:var(--dark);font-size:11px;font-weight:700}
+.entry.flash{animation:flash 1.2s ease}
+@keyframes flash{0%{background:var(--tint)}100%{background:transparent}}
+
+.ph{border:1.5px dashed var(--dark);border-radius:16px;padding:14px 44px 14px 16px;position:relative;background:#fff;margin-bottom:12px}
+.ph b{display:block;color:var(--dark);font-size:15px}
+.ph i{display:block;color:var(--dark);opacity:.8;font-size:14px}
+.ph .plus{position:absolute;right:-10px;top:-10px;width:28px;height:28px;border-radius:50%;background:var(--dark);color:#fff;display:grid;place-items:center;font-weight:700;font-size:18px;box-shadow:0 0 0 2px #fff}
+
+/* chat sheet */
+.bg{position:absolute;inset:0;background:rgba(5,30,55,.42);z-index:20;opacity:0;pointer-events:none;transition:opacity .2s}
+.bg.on{opacity:1;pointer-events:auto}
+.sheet{position:absolute;left:0;right:0;bottom:0;z-index:21;background:#F4F8FC;border-radius:28px 28px 0 0;padding:10px 16px 30px;transform:translateY(100%);transition:transform .25s}
+.sheet.on{transform:none}
+.grab{width:40px;height:5px;border-radius:3px;background:var(--n300);margin:0 auto 12px}
+.sheet .who{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.sheet .who img{width:36px;height:36px;border-radius:50%;object-fit:cover}
+.sheet .who b{color:var(--n900);font-size:16px}
+.bubble{max-width:78%;padding:10px 14px;border-radius:18px 18px 18px 6px;background:#fff;color:var(--n900);font-size:14.5px;box-shadow:var(--shadow);margin-bottom:8px}
+.remember{display:flex;align-items:center;gap:8px;margin:14px 0 8px;font-size:12px;font-weight:600;color:var(--n500)}
+.sugg{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px}
+.sugg button{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:14px;background:var(--tint);color:var(--dark);font-size:13.5px;font-weight:600;text-align:left}
+.msg{display:flex;align-items:center;gap:8px;background:#fff;border-radius:22px;padding:6px 6px 6px 16px;box-shadow:var(--shadow)}
+.msg input{flex:1;border:0;outline:0;font-size:15px;background:none;min-width:0}
+
+@media (max-width:760px){body{flex-direction:column;align-items:center}.side{position:static;width:100%;max-width:390px}}
+</style>
+</head>
+<body>
+
+<aside class="side">
+  <div class="brand">SPIRLIT</div>
+  <h1>Core connection · notes</h1>
+  <p>Your private memory for each Core connection: quick notes, things to ask next time, facts to remember and a dated history. A peek shows on the profile, and reminders pop up in chat.</p>
+  <div class="grp">Notes state</div>
+  <div class="seg" id="ctlState">
+    <button data-v="filled"><b>Has notes</b><span>A few months of notes about Sarah</span></button>
+    <button data-v="empty"><b>No notes yet</b><span>Just became a Core connection</span></button>
+  </div>
+  <div class="grp">Open on</div>
+  <div class="seg" id="ctlTab">
+    <button data-v="notes"><b>My notes tab</b><span>Add, tick off, remind</span></button>
+    <button data-v="profile"><b>Profile tab</b><span>With the note peek</span></button>
+  </div>
+  <div class="grp">Try it</div>
+  <p>Type a note and press Enter · tick an “Ask next time” item · tap Remind me · open the chat button.</p>
+</aside>
+
+<div class="phone"><div class="screen" id="screen">
+  <div class="status"><span>9:41</span><span>●●● ▮</span></div>
+  <div class="head"><button class="hbtn" aria-label="Back" data-i="back"></button><button class="hbtn" aria-label="More" data-i="dots" style="border:0;background:#fff;border-radius:50%"></button></div>
+  <div class="scroll" id="scroll"></div>
+  <div class="bg" id="bg"></div>
+  <div class="sheet" id="sheet"></div>
+</div></div>
+
+<script>
+const P = {
+  back:'<path d="M15 5 8 12l7 7"/>', dots:'<path d="M5 12h.01M12 12h.01M19 12h.01"/>',
+  pin:'<path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/>',
+  chat:'<path d="M4 5h16v11H9l-5 4Z"/><path d="M8 9.5h8M8 12.5h5"/>',
+  lock:'<rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5"/>',
+  star:'<path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9Z"/>',
+  bolt:'<path d="M13 2 4 14h7l-1 8 9-12h-7Z"/>', check:'<path d="m5 12.5 4.5 4.5L19 7.5"/>',
+  send:'<path d="M5 12h13M13 6l6 6-6 6"/>', plus:'<path d="M12 5v14M5 12h14"/>', pen:'<path d="M4 20h4L19 9l-4-4L4 16Z"/><path d="m14 6 4 4"/>',
+  bell:'<path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15Z"/><path d="M10 20a2 2 0 0 0 4 0"/>',
+  paw:'<circle cx="7" cy="9" r="1.8"/><circle cx="17" cy="9" r="1.8"/><circle cx="10" cy="5.5" r="1.8"/><circle cx="14" cy="5.5" r="1.8"/><path d="M12 12c-3 0-5 3-5 5.2C7 19 8.5 20 10 19.5c1.3-.4 2.7-.4 4 0 1.5.5 3-.5 3-2.3C17 15 15 12 12 12Z"/>',
+  cake:'<path d="M4 21h16M5 21v-7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7M12 12V8"/><path d="M5 16c1.5 1 2.5 1 3.5 0s2-1 3.5 0 2.5 1 3.5 0 2-1 3.5 0"/>',
+  fork:'<path d="M7 3v8a2 2 0 0 0 2 2v8M11 3v8a2 2 0 0 1-2 2M9 3v6M16 21V3c2.5 1 3.5 4 3.5 7s-1.5 4-3.5 4"/>',
+  mountain:'<path d="m3 20 6-10 4 6 2-3 6 7Z"/><circle cx="16" cy="6" r="2"/>', run:'<circle cx="14" cy="4.5" r="1.8"/><path d="m7 21 3-6 3 2v5M5 11l3-3 4 1 2 4 3 1"/>',
+  bulb:'<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2V16h5v-.1c0-.8.4-1.5 1-2A6 6 0 0 0 12 3Z"/>',
+  note:'<path d="M5 4h10l4 4v12H5Z"/><path d="M15 4v4h4M8 12h8M8 15.5h5"/>', sparkle:'<path d="M12 3c.6 4.2 2.8 6.4 7 7-4.2.6-6.4 2.8-7 7-.6-4.2-2.8-6.4-7-7 4.2-.6 6.4-2.8 7-7Z"/>',
+};
+const ic = (n, s = 18, w = 1.7) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[n] || P.sparkle}</svg>`;
+document.querySelectorAll('[data-i]').forEach(b => b.innerHTML = ic(b.dataset.i, 20, 1.8));
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+const SEED = () => ({
+  ask: [{ id: 1, t: 'How the marathon training is going', msg: 'Hey! How’s the marathon training going?' }, { id: 2, t: 'Whether she tried the new pottery class', msg: 'Did you end up trying the new pottery class?' }],
+  facts: [{ i: 'paw', t: 'Dog: Pickle' }, { i: 'cake', t: 'Pickle’s birthday · Dec 9', remind: false }, { i: 'cake', t: 'Birthday · Mar 14', remind: true }, { i: 'fork', t: 'Loves Thai Kun' }, { i: 'mountain', t: 'Climbs on Tuesdays' }, { i: 'run', t: 'Austin marathon · Feb' }],
+  history: [
+    { d: 'Nov 20', t: 'Training for the Austin marathon in February. A bit nervous about the hills.' },
+    { d: 'Aug 4', t: 'Started a pottery class with her sister. Wants to make her own mugs.' },
+    { d: 'Mar 12', t: 'Met at the climbing gym. Loves Thai Kun, has a dog called Pickle.' },
+  ],
+});
+let data = SEED();
+let state = { mode: 'filled', tab: 'notes' };
+let nextId = 10;
+
+function profileTab() {
+  const has = state.mode === 'filled';
+  const peek = has
+    ? `<button class="peek" data-go="notes" style="text-align:left;width:100%"><span class="ic">${ic('lock', 17)}</span><span style="flex:1"><b>Your note · only you</b><p>${esc((data.history.find(h => !h.asked) || { t: 'No notes yet' }).t)}</p>${data.ask.length ? `<span class="go">${ic('bulb', 15)}Ask next time · ${data.ask.length} ›</span>` : '<span class="go">Open my notes ›</span>'}</span></button>`
+    : `<button class="ph" data-go="notes" style="text-align:left;width:100%"><b>Add a personal note</b><i>Things you want to remember about Sarah</i><span class="plus">+</span></button>`;
+  return `${peek}
+    <div class="spark"><div class="top"><span>Share Sparks</span>${ic('bolt', 16)}</div><div class="chips"><span class="chip w">${ic('mountain', 15)}Hiking</span><span class="chip w">${ic('fork', 15)}Thai</span><span class="chip w">+4</span></div></div>
+    <div class="label"><h2>BIO</h2></div><div class="card"><p class="bio">Portland kid, Austin by choice. Happiest on a sunrise hike followed by a very long coffee. Always up for a board game night or trying a new taco spot.</p></div>
+    <div class="label"><h2>ABOUT</h2></div><div class="card"><div class="chips"><span class="chip">${ic('cake', 15)}Birthday Mar 14</span><span class="chip">${ic('pin', 15)}Lives in Austin</span><span class="chip">${ic('paw', 15)}Pickle · Dog</span></div></div>`;
+}
+
+function notesTab() {
+  const has = state.mode === 'filled';
+  const composer = `<div class="composer"><input id="noteIn" placeholder="Add a note about Sarah…" maxlength="200"><button class="send" id="noteSend" disabled aria-label="Save note">${ic('send', 18, 2)}</button></div><div class="hint">${ic('lock', 12, 2)}Only you can see your notes. Sarah never does.</div>`;
+  if (!has) {
+    return `${composer}
+      <div class="label"><h2>Ask next time</h2></div>
+      <div class="ph"><b>Add a question for next time</b><i>e.g. How did the interview go?</i><span class="plus">+</span></div>
+      <div class="label"><h2>Things to remember</h2></div>
+      <div class="ph"><b>Add something to remember</b><i>Pets, favourite spots, big dates</i><span class="plus">+</span></div>
+      <div class="label"><h2>Notes</h2></div>
+      <div class="ph"><b>Your first note</b><i>Where you met, what you talked about</i><span class="plus">+</span></div>`;
+  }
+  const ask = `<div class="label"><h2>Ask next time</h2><small>${data.ask.length} open</small></div>
+    <div class="card ask"><ul>${data.ask.map(a => `<li data-ask="${a.id}"><button class="box" aria-label="Mark as asked">${ic('check', 14, 2.4)}</button><span>${esc(a.t)}</span></li>`).join('') || '<li style="color:var(--n500)">All caught up. Nothing left to ask.</li>'}</ul>
+    <div class="addq">${ic('plus', 16, 2.2)}<input id="askIn" placeholder="Add a question" maxlength="120"></div></div>`;
+  const facts = `<div class="label"><h2>Things to remember</h2><small>Tap to edit</small></div>
+    <div class="card"><div class="facts">${data.facts.map((f, i) => `<span class="fact${f.remind === undefined ? ' plain' : ''}">${ic(f.i, 16)}${esc(f.t)}${f.remind !== undefined ? `<button class="rem${f.remind ? ' on' : ''}" data-rem="${i}">${ic('bell', 12, 2)}${f.remind ? 'Reminder on' : 'Remind me'}</button>` : ''}</span>`).join('')}</div></div>`;
+  const hist = `<div class="label"><h2>Notes</h2><small>${data.history.length} entries</small></div>
+    <div class="card"><div class="tl">${data.history.map((h, i) => `<div class="entry${h.cls ? ' ' + h.cls : ''}"><div class="meta">${esc(h.d)}${h.asked ? '<span class="tag">' + ic('check', 11, 2.4) + 'Asked</span>' : ''}<button class="more" aria-label="Edit note">${ic('pen', 14)}</button></div><p>${esc(h.t)}</p></div>`).join('')}</div></div>`;
+  return composer + ask + facts + hist;
+}
+
+function render() {
+  const sc = document.getElementById('scroll'), y = sc.scrollTop;
+  const askCount = state.mode === 'filled' ? data.ask.length : 0;
+  sc.innerHTML = `
+    <div class="photo"><img src="assets/profile/sarah.png" alt="Sarah"><div class="pager"><i></i><i></i><i></i><i></i></div></div>
+    <div class="namerow"><div class="who"><h1>Sarah J.</h1><div class="loc">${ic('pin', 16)}Austin, Texas</div><span class="ccb">${ic('star', 13, 2)}Core connection · since Mar 2026</span></div><button class="chatbtn" id="chatBtn" aria-label="Message Sarah">${ic('chat', 21, 1.8)}</button></div>
+    <div class="tabs" role="tablist"><button class="tab" role="tab" data-tab="profile" aria-selected="${state.tab === 'profile'}">Profile</button><button class="tab" role="tab" data-tab="notes" aria-selected="${state.tab === 'notes'}">${ic('lock', 14, 2)}My notes${askCount ? `<span class="count">${askCount}</span>` : ''}</button></div>
+    <div id="pane">${state.tab === 'profile' ? profileTab() : notesTab()}</div>`;
+  sc.scrollTop = y;
+  wire();
+}
+
+function addNote(text, cls, asked) {
+  data.history.unshift({ d: 'Today', t: text, cls, asked });
+  if (state.mode === 'empty') state.mode = 'filled';
+}
+
+function wire() {
+  const ni = document.getElementById('noteIn'), ns = document.getElementById('noteSend');
+  if (ni) {
+    ni.oninput = () => { ns.disabled = !ni.value.trim(); };
+    const go = () => { const v = ni.value.trim(); if (!v) return; addNote(v, 'new flash'); render(); };
+    ni.onkeydown = e => { if (e.key === 'Enter') go(); };
+    ns.onclick = go;
+  }
+  const ai = document.getElementById('askIn');
+  if (ai) ai.onkeydown = e => { if (e.key === 'Enter' && ai.value.trim()) { data.ask.push({ id: nextId++, t: ai.value.trim(), msg: ai.value.trim().replace(/[?.!]*$/, '') + '?' }); render(); document.getElementById('askIn').focus(); } };
+  document.querySelectorAll('[data-ask]').forEach(li => li.querySelector('.box').onclick = () => {
+    li.classList.add('done');
+    setTimeout(() => li.classList.add('leaving'), 450);
+    setTimeout(() => { const id = +li.dataset.ask; const a = data.ask.find(x => x.id === id); data.ask = data.ask.filter(x => x.id !== id); addNote('Asked: ' + a.t, 'asked flash', true); render(); }, 800);
+  });
+  document.querySelectorAll('[data-rem]').forEach(b => b.onclick = () => { const f = data.facts[+b.dataset.rem]; f.remind = !f.remind; render(); });
+  document.querySelectorAll('[data-tab]').forEach(t => t.onclick = () => { state.tab = t.dataset.tab; sync(); render(); });
+  document.querySelectorAll('[data-go]').forEach(t => t.onclick = () => { state.tab = 'notes'; sync(); render(); });
+  const cb = document.getElementById('chatBtn'); if (cb) cb.onclick = openChat;
+}
+
+/* chat sheet with remember-to-ask suggestions */
+const bg = document.getElementById('bg'), sheet = document.getElementById('sheet');
+function openChat() {
+  const sugg = state.mode === 'filled' && data.ask.length;
+  sheet.innerHTML = `<div class="grab"></div><div class="who"><img src="assets/profile/sarah.png" alt=""><b>Sarah J.</b></div>
+    <div class="bubble">Climbing on Tuesday? 🧗</div>
+    ${sugg ? `<div class="remember">${ic('bulb', 14, 2)}From your notes · only you see this</div><div class="sugg">${data.ask.map(a => `<button data-s="${esc(a.msg || a.t)}">${ic('sparkle', 13, 1.8)}Ask: ${esc(a.t.charAt(0).toLowerCase() + a.t.slice(1))}</button>`).join('')}</div>` : '<div style="height:12px"></div>'}
+    <div class="msg"><input id="msgIn" placeholder="Message Sarah…"><button class="send" aria-label="Send">${ic('send', 18, 2)}</button></div>`;
+  sheet.querySelectorAll('[data-s]').forEach(b => b.onclick = () => { const m = document.getElementById('msgIn'); m.value = b.dataset.s; m.focus(); });
+  bg.classList.add('on'); sheet.classList.add('on');
+}
+bg.onclick = () => { bg.classList.remove('on'); sheet.classList.remove('on'); };
+
+function bindSeg(id, key) {
+  const el = document.getElementById(id);
+  el.addEventListener('click', e => { const b = e.target.closest('button'); if (!b) return; state[key] = b.dataset.v; if (key === 'mode' && b.dataset.v === 'filled') data = SEED(); if (key === 'mode' && b.dataset.v === 'empty') data = { ask: [], facts: [], history: [] }; sync(); render(); document.getElementById('scroll').scrollTop = 0; });
+}
+function sync() {
+  document.querySelectorAll('#ctlState button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === state.mode));
+  document.querySelectorAll('#ctlTab button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === state.tab));
+}
+document.getElementById('ctlState').dataset.k = 'mode';
+bindSeg('ctlState', 'mode'); bindSeg('ctlTab', 'tab');
+sync(); render();
+document.getElementById('scroll').scrollTop = 400;
+</script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spirlit · Helpful to know</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..900;1,14..32,400..600&family=Outfit:wght@600&display=swap" rel="stylesheet">
+<style>
+:root{--dark:#053B65;--light:#7AD5FE;--tint:#E7F7FF;--n100:#F5F5F5;--n200:#E6E6E6;--n300:#D6D6D6;--n500:#767676;--n600:#575757;--n700:#434343;--n800:#2D2D2D;--n900:#1A1A1A;--shadow:0 1px 2px rgba(5,59,101,.04),0 6px 18px rgba(5,59,101,.06)}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{font:14px/1.45 Inter,system-ui,sans-serif;color:var(--n700);background:#E6ECF3;display:flex;gap:40px;justify-content:center;align-items:flex-start;padding:32px 16px}
+button,input,textarea{font:inherit;color:inherit}
+button{background:none;border:0;padding:0;cursor:pointer}
+.side{width:300px;flex:none;position:sticky;top:32px}
+.side .brand{font:600 15px Outfit,sans-serif;letter-spacing:.22em;color:var(--dark)}
+.side h1{font-size:20px;color:var(--n900);margin:6px 0 4px}
+.side p,.side li{color:var(--n600);font-size:13px}
+.side ol{padding-left:18px;margin:8px 0}
+.side .reset{margin-top:14px;padding:9px 14px;border-radius:12px;background:#fff;border:1px solid var(--n200);font-size:13px;font-weight:600;color:var(--dark)}
+
+.phone{width:390px;height:844px;flex:none;border-radius:48px;background:#000;padding:10px;box-shadow:0 30px 80px rgba(5,59,101,.25)}
+.screen{position:relative;width:100%;height:100%;border-radius:40px;overflow:hidden;background:linear-gradient(180deg,#DCEBF8,#F4F8FC)}
+.status{height:46px;display:flex;justify-content:space-between;align-items:center;padding:0 28px 0 34px;font-weight:600;font-size:15px;color:var(--n900)}
+.head{display:flex;align-items:center;gap:12px;padding:6px 16px 10px}
+.head .bk{width:34px;height:34px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--n900)}
+.head b{font-size:17px;color:var(--n900);flex:1}
+.head .save{padding:7px 14px;border-radius:99px;background:var(--dark);color:#fff;font-size:13px;font-weight:600}
+.body{padding:0 16px}
+.lbl{display:flex;justify-content:space-between;align-items:center;margin:12px 2px 10px}
+.lbl h2{margin:0;font-size:16px;font-weight:700;color:var(--n900)}
+.lbl .edit{display:inline-flex;gap:5px;align-items:center;color:var(--dark);font-weight:600;font-size:14px}
+.card{background:#fff;border-radius:22px;padding:16px;box-shadow:var(--shadow)}
+.sub{font-size:12.5px;color:var(--n500);font-weight:600;margin:0 0 8px}
+.sep{height:1px;background:#EEF2F6;margin:14px 0}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:8px 13px;border-radius:99px;background:var(--tint);color:var(--dark);font-weight:600;font-size:13.5px}
+.chip.m{background:var(--n100);color:var(--n700);font-weight:500}
+.ph{position:relative;display:block;width:100%;text-align:left;border:1.5px dashed var(--dark);border-radius:16px;padding:14px 44px 14px 16px;background:#fff}
+.ph b{display:block;color:var(--dark);font-size:15px}
+.ph i{display:block;color:var(--dark);opacity:.8;font-size:14px}
+.ph .plus{position:absolute;right:-10px;top:-10px;width:28px;height:28px;border-radius:50%;background:var(--dark);color:#fff;display:grid;place-items:center;font-weight:700;font-size:18px;box-shadow:0 0 0 2px #fff}
+.ph.pulse{animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(122,213,254,0)}50%{box-shadow:0 0 0 6px rgba(122,213,254,.45)}}
+.hl{list-style:none;margin:0;padding:0}
+.hl li{display:flex;gap:10px;align-items:flex-start;padding:7px 0;color:var(--n900);font-size:15px;line-height:21px}
+.hl li svg{color:var(--dark);flex:none;margin-top:2px}
+.hl.fresh li{animation:fresh 1.4s ease}
+@keyframes fresh{0%{background:var(--tint)}100%{background:transparent}}
+.editrow{display:flex;justify-content:flex-end;margin-top:4px}
+.editrow button{font-size:13px;font-weight:600;color:var(--dark)}
+
+.bg{position:absolute;inset:0;background:rgba(5,30,55,.45);opacity:0;pointer-events:none;transition:opacity .2s;z-index:10}
+.bg.on{opacity:1;pointer-events:auto}
+.sheet{position:absolute;left:0;right:0;bottom:0;z-index:11;background:#fff;border-radius:28px 28px 0 0;padding:10px 20px 30px;transform:translateY(105%);transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+.sheet.on{transform:none}
+.grab{width:40px;height:5px;border-radius:3px;background:var(--n300);margin:0 auto 14px}
+.tr{display:flex;align-items:center;gap:8px}
+.tr h3{flex:1;margin:0;font-size:22px;font-weight:800;color:var(--n900);letter-spacing:-.01em}
+.x{width:32px;height:32px;border-radius:50%;background:var(--n100);display:grid;place-items:center}
+.why{margin:4px 0 14px;color:var(--n600);font-size:14px}
+.show{display:flex;align-items:center;gap:10px;padding:10px 12px 10px 14px;border-radius:14px;background:var(--n100);margin-bottom:14px}
+.show span{flex:1;font-weight:600;color:var(--n900);font-size:14.5px}
+.sw{width:44px;height:26px;border-radius:13px;background:var(--n300);position:relative;transition:background .2s}
+.sw::after{content:"";position:absolute;left:2px;top:2px;width:22px;height:22px;border-radius:50%;background:#fff;transition:left .2s}
+.sw.on{background:var(--dark)}
+.sw.on::after{left:20px}
+.added{margin:0 0 12px;padding:0;list-style:none}
+.added li{display:flex;align-items:center;gap:10px;padding:10px 10px 10px 12px;border-radius:14px;background:var(--tint);margin-bottom:8px;color:var(--n900);font-size:14.5px;animation:pop .25s ease}
+@keyframes pop{from{transform:scale(.96);opacity:0}to{transform:none;opacity:1}}
+.added li span{flex:1}
+.added li button{width:26px;height:26px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--n700)}
+.prompts{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.prompts button{display:inline-flex;align-items:center;gap:6px;padding:7px 12px 7px 10px;border-radius:99px;background:var(--tint);color:var(--dark);font-size:13px;font-weight:500}
+.prompts button:disabled{opacity:.4;cursor:default}
+.ta{border:1.5px solid var(--n200);border-radius:16px;padding:12px 14px 10px;transition:border-color .15s}
+.ta:focus-within{border-color:var(--dark)}
+.ta textarea{width:100%;border:0;outline:0;resize:none;height:62px;font-size:15px;line-height:22px;color:var(--n900);background:none}
+.ta textarea::placeholder{color:var(--n500)}
+.ta .row{display:flex;align-items:center;justify-content:space-between}
+.ta .cnt{font-size:12px;font-weight:500;color:var(--n500)}
+.ta .cnt.warn{color:#B4441F}
+.ta .add{padding:7px 14px;border-radius:10px;background:var(--dark);color:#fff;font-size:13px;font-weight:600}
+.ta .add:disabled{background:var(--n200);color:var(--n500);cursor:default}
+.limit{font-size:12.5px;color:var(--n500);margin:8px 2px 0}
+.done{margin-top:16px;width:100%;height:54px;border-radius:99px;background:var(--light);color:var(--n800);font-weight:700;font-size:16px}
+.done:disabled{opacity:.5;cursor:default}
+.toast{position:absolute;left:16px;right:16px;top:56px;z-index:12;display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:18px;background:var(--dark);color:#fff;box-shadow:0 10px 24px rgba(5,59,101,.3);transform:translateY(-260%);transition:transform .3s}
+.toast.on{transform:none}
+.toast .ok{width:28px;height:28px;border-radius:50%;background:var(--light);color:var(--dark);display:grid;place-items:center}
+.toast b{display:block;font-size:14px}
+.toast small{opacity:.75;font-size:12px}
+@media (max-width:760px){body{flex-direction:column;align-items:center}.side{position:static;width:100%;max-width:390px}}
+</style>
+</head>
+<body>
+<aside class="side">
+  <div class="brand">SPIRLIT</div>
+  <h1>Helpful to know</h1>
+  <p>How filling in an empty My profile field works, using Helpful to know as the example.</p>
+  <ol>
+    <li>Tap the dashed <b>Add something helpful</b> card.</li>
+    <li>Tap a starter, or just type. The counter keeps it short.</li>
+    <li>Tap <b>Add</b>. Add up to 3 notes, remove with ×.</li>
+    <li>Tap <b>Done</b>. The card fills in on your profile.</li>
+    <li>Tap the note on your profile to edit it again.</li>
+  </ol>
+  <button class="reset" id="reset">Start over</button>
+</aside>
+
+<div class="phone"><div class="screen">
+  <div class="status"><span>9:41</span><span>●●● ▮</span></div>
+  <div class="head"><span class="bk" data-i="back"></span><b>Edit profile</b><span class="save">Save</span></div>
+  <div class="body">
+    <div class="lbl"><h2>Good to know</h2><span class="edit" data-i2="pen">Edit</span></div>
+    <div class="card">
+      <p class="sub">Personal preferences</p>
+      <div class="chips"><span class="chip">Texting over calls</span><span class="chip">Small groups</span></div>
+      <div class="sep"></div>
+      <p class="sub">Not a fan of</p>
+      <div class="chips"><span class="chip m">Cilantro</span><span class="chip m">Loud bars</span></div>
+      <div class="sep"></div>
+      <p class="sub">Helpful to know</p>
+      <div id="slot"></div>
+    </div>
+  </div>
+  <div class="bg" id="bg"></div>
+  <div class="sheet" id="sheet">
+    <div class="grab"></div>
+    <div class="tr"><h3>Helpful to know</h3><button class="x" id="close" aria-label="Close" data-i="x"></button></div>
+    <p class="why">Helps friends get you.</p>
+    <div class="show"><span data-pre="eye">Show on my profile</span><button class="sw on" id="sw" aria-label="Show on my profile"></button></div>
+    <ul class="added" id="added"></ul>
+    <div class="prompts" id="prompts"></div>
+    <div class="ta"><textarea id="ta" maxlength="120" placeholder="e.g. Early riser, slow to reply after 9pm"></textarea>
+      <div class="row"><span class="cnt" id="cnt">0 / 120</span><button class="add" id="add" disabled>Add</button></div></div>
+    <p class="limit" id="limit"></p>
+    <button class="done" id="done">Done</button>
+  </div>
+  <div class="toast" id="toast"><span class="ok" data-i="check"></span><div><b id="tTitle">Added to your profile</b><small>Profile is now 70% complete</small></div></div>
+</div></div>
+
+<script>
+const P = { back:'<path d="M15 5 8 12l7 7"/>', x:'<path d="M6 6l12 12M18 6 6 18"/>', check:'<path d="m5 12.5 4.5 4.5L19 7.5"/>', pen:'<path d="M4 20h4L19 9l-4-4L4 16Z"/><path d="m14 6 4 4"/>', info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/>', spark:'<path d="M12 3c.6 4.2 2.8 6.4 7 7-4.2.6-6.4 2.8-7 7-.6-4.2-2.8-6.4-7-7 4.2-.6 6.4-2.8 7-7Z"/>', eye:'<path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/>' };
+const ic = (n, s = 18, w = 1.8) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[n]}</svg>`;
+document.querySelectorAll('[data-i]').forEach(e => e.insertAdjacentHTML('afterbegin', ic(e.dataset.i, 18, 2)));
+document.querySelectorAll('[data-i2]').forEach(e => e.insertAdjacentHTML('afterbegin', ic(e.dataset.i2, 15)));
+document.querySelectorAll('[data-pre]').forEach(e => e.insertAdjacentHTML('beforebegin', `<span style="flex:none;color:var(--dark);display:grid">${ic(e.dataset.pre, 18, 1.6)}</span>`));
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+const STARTERS = [['Best time to reach me…', 'Best time to reach me is '], ['I reply slowly when…', 'I reply slowly when '], ['I’m an early riser', 'I’m an early riser'], ['Ask me about…', 'Ask me about ']];
+const MAX = 3;
+let saved = [];      // what the profile shows
+let draft = [];      // notes in the open sheet
+let visible = true;
+
+const $ = id => document.getElementById(id);
+function renderSlot(fresh) {
+  $('slot').innerHTML = saved.length && visible
+    ? `<ul class="hl${fresh ? ' fresh' : ''}">${saved.map(s => `<li>${ic('info', 17, 1.8)}<span>${esc(s)}</span></li>`).join('')}</ul><div class="editrow"><button id="editNotes">Edit</button></div>`
+    : saved.length && !visible
+      ? `<button class="ph" id="openPh"><b>Hidden from your profile</b><i>${saved.length} note${saved.length > 1 ? 's' : ''} saved · tap to show</i><span class="plus">+</span></button>`
+      : `<button class="ph pulse" id="openPh"><b>Add something helpful</b><i>e.g. Early riser, slow to reply after 9pm</i><span class="plus">+</span></button>`;
+  const o = $('openPh') || $('editNotes'); if (o) o.onclick = openSheet;
+  const list = document.querySelector('.hl'); if (list) list.onclick = openSheet;
+}
+function renderSheet() {
+  $('added').innerHTML = draft.map((d, i) => `<li><span>${esc(d)}</span><button data-rm="${i}" aria-label="Remove">${ic('x', 13, 2.2)}</button></li>`).join('');
+  document.querySelectorAll('[data-rm]').forEach(b => b.onclick = () => { draft.splice(+b.dataset.rm, 1); renderSheet(); });
+  const full = draft.length >= MAX;
+  $('prompts').innerHTML = STARTERS.map(([l, v], i) => `<button data-st="${i}" ${full ? 'disabled' : ''}>${ic('spark', 13, 1.8)}${esc(l)}</button>`).join('');
+  document.querySelectorAll('[data-st]').forEach(b => b.onclick = () => { const ta = $('ta'); ta.value = STARTERS[+b.dataset.st][1]; ta.focus(); ta.setSelectionRange(ta.value.length, ta.value.length); onType(); });
+  $('ta').disabled = full; $('ta').placeholder = full ? 'You’ve added 3 notes' : (draft.length ? 'Add another (optional)' : 'e.g. Early riser, slow to reply after 9pm');
+  $('limit').textContent = draft.length ? `${draft.length} of ${MAX} added` : 'Add up to 3 short notes.';
+  $('sw').classList.toggle('on', visible);
+  onType();
+}
+function onType() { const v = $('ta').value; $('cnt').textContent = `${v.length} / 120`; $('cnt').classList.toggle('warn', v.length > 100); $('add').disabled = !v.trim() || draft.length >= MAX; }
+function add() { const v = $('ta').value.trim(); if (!v || draft.length >= MAX) return; draft.push(v); $('ta').value = ''; renderSheet(); if (draft.length < MAX) $('ta').focus(); }
+function openSheet() { draft = saved.slice(); renderSheet(); $('bg').classList.add('on'); $('sheet').classList.add('on'); setTimeout(() => !$('ta').disabled && $('ta').focus(), 300); }
+function close() { $('bg').classList.remove('on'); $('sheet').classList.remove('on'); }
+function done() {
+  const pending = $('ta').value.trim(); if (pending && draft.length < MAX) draft.push(pending);
+  const wasEmpty = !saved.length; saved = draft.slice(); $('ta').value = ''; close(); renderSlot(true);
+  $('tTitle').textContent = !saved.length ? 'Removed from your profile' : wasEmpty ? 'Added to your profile' : 'Changes saved';
+  $('toast').classList.add('on'); setTimeout(() => $('toast').classList.remove('on'), 2200);
+}
+$('ta').addEventListener('input', onType);
+$('ta').addEventListener('keydown', e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); add(); } });
+$('add').onclick = add; $('done').onclick = done; $('close').onclick = close; $('bg').onclick = close;
+$('sw').onclick = () => { visible = !visible; $('sw').classList.toggle('on', visible); };
+$('reset').onclick = () => { saved = []; draft = []; visible = true; close(); renderSlot(); };
+renderSlot();
+</script>
+</body>
+</html>

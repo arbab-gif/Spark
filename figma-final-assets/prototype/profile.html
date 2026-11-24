@@ -67,6 +67,7 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 
 /* content cards */
 .card{background:#fff;border-radius:24px;padding:18px;margin-top:12px;box-shadow:var(--shadow)}
+.card.glow{box-shadow:-16px 16px 44px -2px rgba(122,213,254,.7),18px 20px 46px -4px rgba(170,140,245,.32),0 2px 6px rgba(5,59,101,.04);margin-bottom:18px}
 .card h2{margin:0 0 12px;font-size:17px;font-weight:700;color:var(--n900);letter-spacing:-.01em;display:flex;align-items:center;justify-content:space-between}
 .card h2 small{font-size:12.5px;font-weight:600;color:var(--n500)}
 .card .bio{font-size:16px;line-height:1.5;color:var(--n800);margin:0}
@@ -77,14 +78,27 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chip{display:inline-flex;align-items:center;gap:7px;padding:9px 14px;border-radius:99px;background:var(--n100);color:var(--n800);font-size:14px;font-weight:500;line-height:1.2}
 .chip svg{color:var(--n800);flex:none}
-.chip.shared{background:var(--light-12);color:var(--dark);font-weight:600;box-shadow:inset 0 0 0 1px var(--light-30)}
+.chip.shared{background:var(--light-12);color:var(--dark);font-weight:600}
 .chip.shared svg{color:var(--dark)}
 .chip.do{background:var(--light);color:var(--dark);font-weight:600}
 .chip.want{background:#fff;color:var(--dark);box-shadow:inset 0 0 0 1.5px var(--light)}
+.chip.muted{background:var(--n100);color:var(--n700);font-weight:500}
 .chip.more{background:#fff;color:var(--dark);font-weight:600;box-shadow:inset 0 0 0 1px var(--n300)}
 .chip.warn{background:var(--warn-bg);color:var(--warn);font-weight:600}
 .chip.warn svg{color:var(--warn)}
+.award{position:relative;overflow:hidden;display:flex;align-items:center;gap:14px;padding:16px 16px 16px 14px;border-radius:22px;background:linear-gradient(120deg,#053B65,#0F5C94);margin-bottom:10px;box-shadow:0 10px 24px -6px rgba(5,59,101,.35)}
+.award .aglow{position:absolute;right:-50px;top:-70px;width:160px;height:160px;border-radius:50%;background:var(--light);opacity:.35;filter:blur(40px)}
+.award .sp{position:absolute;color:var(--light)}
+.award .s1{right:20px;top:14px;opacity:.9}.award .s2{right:46px;top:40px;opacity:.6}
+.award .medal{position:relative;width:56px;height:56px;flex:none;border-radius:50%;background:rgba(255,255,255,.08);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22);display:grid;place-items:center}
+.award .coin{width:44px;height:44px;border-radius:50%;background:var(--light);color:var(--dark);display:grid;place-items:center;box-shadow:0 0 16px rgba(122,213,254,.55)}
+.award div{position:relative}
+.award small{display:block;font-size:11px;font-weight:500;color:rgba(255,255,255,.65);letter-spacing:.02em}
+.award small .who{color:var(--light);font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.award strong{display:block;font-size:20px;line-height:24px;font-weight:800;color:#fff;letter-spacing:-.01em;margin-top:2px}
+.award em{display:block;font-style:normal;font-size:13.5px;color:rgba(255,255,255,.82);margin-top:2px}
 .legend{display:flex;gap:14px;font-size:12px;color:var(--n500);margin:-4px 0 12px}
+.legend span svg{color:var(--dark)}
 .legend span{display:inline-flex;align-items:center;gap:6px}
 .legend i{width:12px;height:12px;border-radius:50%}
 .quote{display:flex;gap:10px;align-items:center;padding:12px 14px;border-radius:16px;background:var(--light-12);color:var(--dark);margin-bottom:4px}
@@ -113,6 +127,22 @@ button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:poin
 .photo .note{position:absolute;left:16px;bottom:14px;z-index:1;border:0;margin:0;padding:0;color:#fff}
 .photo .cap{position:absolute;left:16px;right:16px;bottom:46px;z-index:1;color:#fff;font-weight:600;font-size:15px}
 
+.ptiles{display:flex;gap:12px;overflow-x:auto;scrollbar-width:none;margin:8px -18px 0;padding:0 18px 2px}
+.ptiles::-webkit-scrollbar{display:none}
+.ptile{flex:0 0 132px}
+.ptile .pimg{position:relative;height:96px;border-radius:16px;overflow:hidden}
+.ptile .pimg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ptile b{display:block;margin-top:8px;font-size:15px;line-height:19px;color:var(--n900)}
+.rgroup+.rgroup{margin-top:14px}
+.rgroup .rl{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--n500);margin-bottom:4px}
+.rgroup .rv{margin:0;font-size:15px;line-height:22px;font-weight:500;color:var(--n900)}
+.rgroup .rv span{white-space:nowrap}
+.rgroup .rv i{font-style:normal;margin:0 4px 0 8px;color:var(--n500)}
+.pgroup+.pgroup{margin-top:16px}
+.pgroup .ph{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-weight:600;color:var(--n900);font-size:14.5px}
+.pgroup .ph svg{color:var(--dark)}
+.pgroup .ph small{margin-left:auto;font-weight:600;color:var(--dark);font-size:12.5px}
+.chip.loc{background:var(--light);color:var(--dark);font-weight:600}
 .places{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;margin:0 -18px;padding:0 18px 2px}
 .places::-webkit-scrollbar{display:none}
 .place{flex:0 0 190px;height:140px;border-radius:18px;position:relative;overflow:hidden;color:#fff}
@@ -267,6 +297,9 @@ const P = {
   dice:'<rect x="4" y="4" width="16" height="16" rx="3"/><circle cx="9" cy="9" r="1" fill="currentColor"/><circle cx="15" cy="15" r="1" fill="currentColor"/><circle cx="15" cy="9" r="1" fill="currentColor"/><circle cx="9" cy="15" r="1" fill="currentColor"/>',
   run:'<circle cx="14" cy="4.5" r="1.8"/><path d="m7 21 3-6 3 2v5M5 11l3-3 4 1 2 4 3 1"/>',
   wave:'<path d="M2 15c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2M2 19c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/><path d="M7 11c0-4 3-7 7-7"/>',
+  star:'<path d="m12 3.5 2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8L3.5 9.7l5.9-.9Z"/>',
+  trophy:'<path d="M8 4h8v5a4 4 0 0 1-8 0Z"/><path d="M16 5.5h2.5v1A3.5 3.5 0 0 1 15.3 10M8 5.5H5.5v1A3.5 3.5 0 0 0 8.7 10M12 13v4M8.5 20h7M10 17h4v3h-4Z"/>',
+  plane:'<path d="M10.5 13.5 3 11l1.5-1.5 7 1 4-4.5c.8-.8 2.5-1.3 3.2-.6s.2 2.4-.6 3.2l-4.5 4 1 7L13 21l-2.5-7.5Z"/>',
   palette:'<path d="M12 3a9 9 0 1 0 0 18c1.2 0 1.8-.8 1.8-1.7 0-1.4-1.3-1.6-1.3-2.8 0-.9.8-1.5 1.7-1.5H17a4 4 0 0 0 4-4C21 6.5 17 3 12 3Z"/>',
 };
 const ic = (n, s = 18, w = 1.8) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${P[n] || P.sparkle}</svg>`;
@@ -289,40 +322,32 @@ const FULL = {
   ],
   foods: ['Thai', 'Neapolitan pizza', 'Ramen', 'Tacos al pastor', 'Sushi', 'Mezze', 'Pho', 'Dumplings'],
   restaurants: ['Ramen Tatsu-ya', 'Veracruz All Natural', 'Uchi', 'Odd Duck', 'Thai Kun'],
-  coffee: 'Oat flat white, extra hot',
   drinks: ['Matcha latte', 'Mezcal margarita', 'Hazy IPA'],
   treats: ['Sea-salt dark chocolate', 'Mochi', 'Key lime pie', 'Salted caramel'],
   artists: ['Bon Iver', 'Khruangbin', 'Phoebe Bridgers', 'Tame Impala', 'Fleetwood Mac', 'Hozier', 'Leon Bridges'],
   shows: ['Interstellar', 'The Bear', 'Spirited Away', 'Severance', 'Arrival'],
-  books: ['Project Hail Mary', 'Atomic Habits'],
+  award: { title: 'Interstellar', label: 'My ultimate comfort watch', meta: 'Movie · 2014' },
   scents: ['Cedarwood', 'Fresh linen', 'Campfire candles', 'Santal'],
   flowers: ['Sunflowers', 'Peonies'],
   colors: [['Forest green', '#2F6B4F'], ['Burnt orange', '#D9772B'], ['Navy', '#1F3A5F']],
   collects: ['Vinyl records', 'National park pins', 'Film cameras'],
   hobbies: [['Hiking', 'do', 'mountain'], ['Film photography', 'do', 'camera'], ['Cooking', 'do', 'fork'], ['Board games', 'do', 'dice'], ['Trail running', 'do', 'run'], ['Pickleball', 'do'], ['Bouldering', 'want', 'mountain'], ['Pottery', 'want'], ['Surfing', 'want', 'wave'], ['Salsa dancing', 'want', 'music']],
   activities: ['Farmers market Saturdays', 'Long drives with a playlist', 'Cooking for friends'],
-  places: [
-    { n: 'Barton Springs', t: 'Austin · favourite swim', img: 'assets/profile/mood-harbour.jpg' },
-    { n: 'Mount Bonnell', t: 'Austin · sunset spot', img: 'assets/profile/mood-dome.jpg' },
-    { n: 'Big Sur', t: 'California · would go back', img: 'assets/profile/mood-beach.jpg' },
-  ],
-  adventures: [
-    { t: 'See the northern lights', k: 'Trip' }, { t: 'Omakase at Uchiko', k: 'Restaurant' },
-    { t: 'Learn to surf in Portugal', k: 'Experience' }, { t: 'Hot-air balloon ride', k: 'Experience' },
-    { t: 'Austin City Limits', k: 'Concert', done: true }, { t: 'Hike Angels Landing', k: 'Trip', done: true },
-  ],
+  places: { been: ['Lisbon', 'Tokyo', 'Yosemite', 'Tulum'], dreaming: ['Iceland', 'Amalfi Coast', 'Patagonia'] },
+  adventures: { done: ['Skydiving', 'Austin City Limits', 'Hike Angels Landing', 'Scuba diving'], want: ['See the northern lights', 'Hot-air balloon ride', 'Learn to surf in Portugal', 'Omakase at Uchiko'] },
   wishlist: [['Instax film packs', 'camera'], ['Pottery class for two', 'sparkle'], ['Record store gift card', 'music'], ['Hot sauce sampler', 'gift']],
   special: ['Handwritten notes, even short ones', 'A song that made you think of me', 'Surprise coffee drop-offs', 'Low-key birthdays with a few close friends'],
   allergy: { t: 'Tree nut allergy', s: 'Please skip pecans and walnuts when cooking or baking.' },
+  prefs: ['Texting over calls', 'Small groups over big crowds', 'Coffee catch-ups over late nights', 'A heads-up before plans'],
   dislikes: ['Cilantro', 'Horror films', 'Very loud bars'],
-  notes: ['Early riser, slow to reply after 9pm', 'Prefers a heads-up over last-minute plans'],
+  notes: ['Early riser, slow to reply after 9pm'],
 };
-const PARTIAL = { ...FULL, pets: [], dates: [], photos: FULL.photos.slice(0, 1), restaurants: FULL.restaurants.slice(0, 2), scents: [], flowers: [], colors: [], collects: [], books: [], treats: [], wishlist: [], special: [], allergy: null, dislikes: [], notes: [], activities: [] };
+const PARTIAL = { ...FULL, pets: [], dates: [], photos: FULL.photos.slice(0, 1), restaurants: FULL.restaurants.slice(0, 2), scents: [], flowers: [], colors: [], collects: [], treats: [], wishlist: [], special: [], allergy: null, prefs: [], dislikes: [], notes: [], activities: [] };
 const QUICK = {
   name: 'Kaden', photo: 'assets/77daf.png', city: 'Austin, Texas',
-  foods: ['Thai', 'Ramen', 'Tacos al pastor'], artists: ['Bon Iver', 'Khruangbin'], shows: ['Interstellar', 'The Bear'],
+  foods: ['Thai', 'Ramen', 'Tacos al pastor'], artists: ['Bon Iver', 'Khruangbin'], shows: ['Interstellar', 'The Bear'], award: { title: 'The Bear', label: 'Had me hooked immediately', meta: 'Show · 2022' },
   hobbies: [['Hiking', 'do', 'mountain'], ['Film photography', 'do', 'camera'], ['Bouldering', 'want', 'mountain']],
-  places: [FULL.places[2]], adventures: [FULL.adventures[0], FULL.adventures[4]],
+  places: { been: ['Big Sur'], dreaming: [] }, adventures: { done: ['Austin City Limits'], want: ['See the northern lights'] },
 };
 const DATA = { full: FULL, partial: PARTIAL, quick: QUICK };
 const SHARED = { Hiking: 'mountain', Thai: 'fork', 'Bon Iver': 'music', 'Board games': 'dice', Interstellar: 'film', Ramen: 'fork' };
@@ -344,7 +369,7 @@ function chips(key, items, limit = 6, iconFor) {
   const vis = full ? all : all.slice(0, limit);
   let h = vis.map(([t, k, i]) => {
     const sh = !own() && SHARED[t] ? ' shared' : '';
-    const cls = k === 'do' || k === 'want' ? ' ' + k : '';
+    const cls = k === 'do' || k === 'want' || k === 'muted' ? ' ' + k : '';
     const icon = i || (iconFor && iconFor(t));
     return `<span class="chip${cls}${sh}">${icon ? ic(icon, 17) : ''}${esc(t)}</span>`;
   }).join('');
@@ -370,7 +395,7 @@ function hero(d) {
 
 function aboutCards(d) {
   let out = '';
-  if (d.bio) out += card('My bio', `<p class="bio">${esc(d.bio)}</p>`);
+  if (d.bio) out += card('My bio', `<p class="bio">${esc(d.bio)}</p>`).replace('class="card"', 'class="card glow"');
   else out += addCard('pen', 'Write a short bio', 'A line or two so people get a feel for you');
 
   const c = [];
@@ -394,8 +419,7 @@ function aboutCards(d) {
 function favCards(d) {
   let out = '';
   let food = '';
-  if (d.coffee) food += `<div class="quote">${ic('cup', 22, 1.8)}<div><small>Coffee order</small><b>${esc(d.coffee)}</b></div></div>`;
-  if (has(d.foods)) food += `<div class="sub"${d.coffee ? ' style="margin-top:14px"' : ''}>Could eat any day</div>${chips('foods', d.foods, 5, () => 'fork')}`;
+  if (has(d.foods)) food += `<div class="sub">Could eat any day</div>${chips('foods', d.foods, 5, () => 'fork')}`;
   if (has(d.restaurants)) food += `<div class="sub">Go-to spots</div>${chips('rest', d.restaurants, 4, () => 'pin')}`;
   if (has(d.drinks)) food += `<div class="sub">Drinks</div>${chips('drinks', d.drinks, 4, () => 'cup')}`;
   if (has(d.treats)) food += `<div class="sub">Treats</div>${chips('treats', d.treats, 4, () => 'candy')}`;
@@ -403,9 +427,9 @@ function favCards(d) {
 
   let media = '';
   if (has(d.artists)) media += `<div class="sub">On repeat</div>${chips('artists', d.artists, 4, () => 'music')}`;
-  if (has(d.shows)) media += `<div class="sub">Could watch again and again</div>${chips('shows', d.shows, 4, () => 'film')}`;
-  if (has(d.books)) media += `<div class="sub">Reading</div>${chips('books', d.books, 4, () => 'book')}`;
-  if (media) out += card('Music, films & books', media);
+  if (has(d.shows)) { const aw = d.award && d.shows.includes(d.award.title) ? d.award : null; const rest = aw ? d.shows.filter(x => x !== aw.title) : d.shows;
+    media += `<div class="sub">Could watch again and again</div>${aw ? `<div class="award"><i class="aglow"></i><span class="sp s1">${ic('sparkle', 12, 1.4)}</span><span class="sp s2">${ic('sparkle', 9, 1.4)}</span><span class="medal"><span class="coin">${ic('trophy', 24, 1.8)}</span></span><div><small><b class="who">${esc(d.name)}’s award</b> · ${esc(aw.meta || '')}</small><strong>${esc(aw.title)}</strong><em>“${esc(aw.label)}”</em></div></div>` : ''}${rest.length ? chips('shows', rest, 4, () => 'film') : ''}`; }
+  if (media) out += card('Music & films', media);
 
   let little = '';
   if (has(d.scents)) little += `<div class="sub">Scents</div>${chips('scents', d.scents, 4, () => 'drop')}`;
@@ -421,14 +445,18 @@ function doCards(d) {
   let out = '';
   if (has(d.hobbies)) {
     const want = d.hobbies.some(h => h[1] === 'want');
-    out += card('My interests', `${want ? `<div class="legend"><span><i style="background:var(--light)"></i>Does it</span><span><i style="box-shadow:inset 0 0 0 1.5px var(--light)"></i>Wants to try</span></div>` : ''}${chips('hobbies', d.hobbies, 7)}${has(d.activities) ? `<div class="sub" style="margin-top:16px">Favourite ways to spend free time</div>${d.activities.map(a => `<div class="row"><span class="ic">${ic('sparkle', 16)}</span><b style="font-weight:500">${esc(a)}</b></div>`).join('')}` : ''}`);
+    out += card('My interests', `${want ? `<div class="legend"><span>${ic('check', 14, 2)}Does it</span><span>${ic('star', 14, 1.6)}Wants to try</span></div>` : ''}${chips('hobbies', d.hobbies.map(([t, k]) => [t, k, k === 'do' ? 'check' : 'star']), 7)}${has(d.activities) ? `<div class="sub" style="margin-top:16px">Favourite ways to spend free time</div>${d.activities.map(a => `<div class="row"><span class="ic">${ic('sparkle', 16)}</span><b style="font-weight:500">${esc(a)}</b></div>`).join('')}` : ''}`);
   }
-  if (has(d.places)) out += card('Favourite places', `<div class="places">${d.places.map(p => `<div class="place"><img src="${p.img}" alt=""><div><b>${esc(p.n)}</b><small>${esc(p.t)}</small></div></div>`).join('')}</div>`);
-  if (has(d.adventures)) {
-    const done = d.adventures.filter(a => a.done).length, n = d.adventures.length;
-    const list = open.has('adv') ? d.adventures : d.adventures.slice(0, 4);
-    out += card('Adventure wishlist', `<div class="bar"><i style="width:${done / n * 100}%"></i></div>${list.map(a => `<div class="row${a.done ? ' done' : ''}"><span class="tick">${ic('check', 15, 2.6)}</span><div><b>${esc(a.t)}</b><small>${a.done ? 'Done' : a.k}</small></div>${!a.done && !own() ? '<button class="join">Join</button>' : ''}</div>`).join('')}${n > 4 ? `<button class="showall" data-more="adv">${open.has('adv') ? 'Show less' : `Show all ${n}`}</button>` : ''}`, 'Adventure wishlist', `<small>${done} of ${n} done</small>`);
-  }
+  const rd = (icn, label, list) => has(list) ? `<div class="rgroup"><div class="rl">${ic(icn, 15, 1.6)}${label}</div><p class="rv">${list.map((x, n) => `<span>${esc(x)}${n < list.length - 1 ? '<i>·</i>' : ''}</span>`).join(' ')}</p></div>` : '';
+  const PT = { Lisbon: ['#F2C58A', '#C8553D'], Tokyo: ['#7AA7E8', '#C2477F'], Yosemite: ['#A9C29A', '#4E6B4A'], Iceland: ['#9FD3C7', '#2F5E5A'], 'Amalfi Coast': ['#8EC9E8', '#E58C6A'], Patagonia: ['#CFE3F2', '#4A7BA6'] };
+  Object.assign(PT, { 'Austin City Limits': ['#F4B860', '#C2477F'], 'Hike Angels Landing': ['#E7A15E', '#8A4B2A'], 'Scuba diving': ['#5FD0E0', '#1D5E8C'], 'See the northern lights': ['#58E0A5', '#1B2A5C'], 'Hot-air balloon ride': ['#FFB86B', '#7AA7E8'], 'Learn to surf in Portugal': ['#7FD3E8', '#2F6E9B'], 'Omakase at Uchiko': ['#E8D2B0', '#5A3B2A'] });
+  const PI = { Tulum: 'assets/profile/mood-beach.jpg', 'Big Sur': 'assets/profile/mood-beach.jpg', Skydiving: 'assets/profile/skydiving.png' };
+  const tiles = (icn, label, list) => has(list) ? `<div class="rgroup"><div class="rl">${ic(icn, 15, 1.6)}${label}</div><div class="ptiles">${list.map(x => `<div class="ptile"><div class="pimg" style="background:${PT[x] ? `linear-gradient(150deg,${PT[x][0]},${PT[x][1]})` : '#CBD6E2'}">${PI[x] ? `<img src="${PI[x]}" alt="">` : ''}</div><b>${esc(x)}</b></div>`).join('')}</div></div>` : '';
+  const pl = d.places || {};
+  if (has(pl.been) || has(pl.dreaming)) out += card('Favourite places', tiles('heart', 'Loved visiting', pl.been) + tiles('plane', 'Dreaming of visiting', pl.dreaming));
+  const ad = d.adventures || {};
+  if (has(ad.done) || has(ad.want)) out += card('Adventure wishlist', tiles('check', 'Has done', ad.done) + tiles('star', 'Would love to', ad.want));
+
   return out;
 }
 
@@ -441,16 +469,17 @@ function dayCards(d) {
 }
 
 function gtkCards(d) {
-  if (!d.allergy && !has(d.dislikes) && !has(d.notes)) return addCard('info', 'Good to know', 'Food restrictions, things you avoid, helpful habits');
+  if (!d.allergy && !has(d.prefs) && !has(d.dislikes) && !has(d.notes)) return addCard('info', 'Good to know', 'Food restrictions, things you avoid, helpful habits');
   let b = '';
   if (d.allergy) b += `<div class="alert">${ic('alert', 20, 2)}<div><b>${esc(d.allergy.t)}</b><small>${esc(d.allergy.s)}</small></div></div>`;
-  if (has(d.dislikes)) b += `<div class="sub" style="margin-top:14px">Not a fan of</div>${chips('dis', d.dislikes, 6, () => 'no')}`;
+  if (has(d.prefs)) b += `<div class="sub" style="margin-top:14px">Personal preferences</div>${chips('prefs', d.prefs, 6)}`;
+  if (has(d.dislikes)) b += `<div class="sub" style="margin-top:14px">Not a fan of</div>${chips('dis', d.dislikes.map(x => [x, 'muted']), 6)}`;
   if (has(d.notes)) b += `<div class="sub" style="margin-top:16px">Helpful to know</div><ul class="list">${d.notes.map(s => `<li>${ic('info', 16, 2)}<span>${esc(s)}</span></li>`).join('')}</ul>`;
   return card('Good to know', b);
 }
 
 function completion(d) {
-  const k = ['bio', 'birthday', 'hometown', 'city', 'pets', 'dates', 'foods', 'restaurants', 'coffee', 'treats', 'scents', 'flowers', 'artists', 'collects', 'hobbies', 'places', 'adventures', 'wishlist', 'special', 'allergy'];
+  const k = ['bio', 'birthday', 'hometown', 'city', 'pets', 'dates', 'foods', 'restaurants', 'drinks', 'treats', 'scents', 'flowers', 'artists', 'collects', 'hobbies', 'wishlist', 'special', 'allergy'];
   return Math.round(k.filter(x => has(d[x])).length / k.length * 100);
 }
 
@@ -470,7 +499,7 @@ function render() {
   h += doCards(d);
   h += photo(ph[2]);
   if (!own() && !has(d.wishlist) && !has(d.special)) {} else h += dayCards(d);
-  if (!own() && !d.allergy && !has(d.dislikes) && !has(d.notes)) {} else h += gtkCards(d);
+  if (!own() && !d.allergy && !has(d.prefs) && !has(d.dislikes) && !has(d.notes)) {} else h += gtkCards(d);
   if (!own() && state.data !== 'full') h += `<div class="thin">${esc(d.name)} is still filling in their profile. More will show up here as they answer.</div>`;
   if (!own()) h += `<div class="endbar"><button class="pass" aria-label="Not now">${ic('x', 28, 2.4)}</button><button class="spark" aria-label="Send a spark">${ic('bolt', 36, 2.2)}</button><button class="msg" aria-label="Message">${ic('chat', 26, 2)}</button></div><div class="endlbl"><span>Not now</span><span style="width:84px">Spark</span><span>Message</span></div>`;
 
